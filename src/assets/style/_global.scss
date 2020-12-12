@@ -5,4 +5,8 @@ body,
   font-size: 14px;
   color: $text-color;
   line-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue',
+    Helvetica, Arial, 'Hiragino Sans GB', 'Source Han Sans', 'Noto Sans CJK Sc',
+    'Microsoft YaHei', 'Microsoft Jhenghei', sans-serif;
+  font-smoothing: antialiased;
 }

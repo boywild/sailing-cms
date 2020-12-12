@@ -5,9 +5,7 @@
       <PageHeader></PageHeader>
       <PageNav></PageNav>
       <PageSubNav></PageSubNav>
-      <div>
-        <router-view />
-      </div>
+      <router-view />
       <PageFooter></PageFooter>
       <PageCopyRight></PageCopyRight>
     </div>
@@ -39,6 +37,4 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
