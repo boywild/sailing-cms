@@ -1,0 +1,33 @@
+@charset "UTF-8";
+@import 'var';
+.page-wrapper {
+  width: $wrapper-width;
+  margin: 0 auto;
+}
+.img {
+  max-width: 100%;
+  display: block;
+}
+.alc {
+  text-align: center;
+}
+.mgt15 {
+  margin-top: 15px;
+}
+.mgb15 {
+  margin-bottom: 15px;
+}
+.mgtb15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.pdt15 {
+  padding-top: 15px;
+}
+.pdb15 {
+  padding-bottom: 15px;
+}
+.pdtb15 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
