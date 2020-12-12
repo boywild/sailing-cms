@@ -1,26 +1,46 @@
 <template>
-  <div class="img-box" :style="{ height: height + 'px' }">
+  <div class="img-box" :style="relaWidth">
     <img class="img" :src="src" alt="" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent, computed } from 'vue'
+interface CardProps {
+  width?: string
+  height?: string
+  src?: string
+}
 export default defineComponent({
   name: 'Img',
   props: {
     width: {
       type: String,
-      default: () => '0'
+      default: () => ''
     },
     height: {
       type: String,
-      default: () => '0'
+      default: () => ''
     },
     src: {
       type: String,
       default: () => ''
+    }
+  },
+  setup(props: Readonly<CardProps>) {
+    return {
+      relaWidth: computed(() => {
+        if (!props.width) {
+          return {
+            height: props.height + 'px'
+          }
+        } else {
+          return {
+            width: props.width + 'px',
+            height: props.height + 'px'
+          }
+        }
+      })
     }
   }
 })
