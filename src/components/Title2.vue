@@ -2,8 +2,8 @@
   <div class="article-title2">
     <div class="title-bar">
       <div class="mark"></div>
-      <div class="name-before">国际</div>
-      <div class="name-after">风云</div>
+      <div class="name-before">{{before}}</div>
+      <div class="name-after">{{after}}</div>
     </div>
   </div>
 </template>
@@ -39,6 +39,7 @@ export default defineComponent({
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+    line-height: normal;
   }
   .mark {
   }

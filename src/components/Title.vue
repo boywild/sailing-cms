@@ -1,7 +1,7 @@
 <template>
   <div class="article-title">
-    <div class="zh-name">新闻速递</div>
-    <div class="en-name">news</div>
+    <div class="zh-name">{{name}}</div>
+    <div class="en-name">{{subName}}</div>
   </div>
 </template>
 

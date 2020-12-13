@@ -1,5 +1,5 @@
 <template>
-  <div class="img-box" :style="relaWidth">
+  <div class="img-box" :style="relaStyle">
     <img class="img" :src="src" alt="" />
   </div>
 </template>
@@ -14,33 +14,25 @@ interface CardProps {
 export default defineComponent({
   name: 'Img',
   props: {
-    width: {
-      type: String,
-      default: () => ''
-    },
-    height: {
-      type: String,
-      default: () => ''
-    },
-    src: {
-      type: String,
-      default: () => ''
-    }
+    width: { type: String, default: () => '' },
+    height: { type: String, default: () => '' },
+    src: { type: String, default: () => '' }
   },
   setup(props: Readonly<CardProps>) {
-    return {
-      relaWidth: computed(() => {
-        if (!props.width) {
-          return {
-            height: props.height + 'px'
-          }
-        } else {
-          return {
-            width: props.width + 'px',
-            height: props.height + 'px'
-          }
+    const relaStyle = computed(() => {
+      if (!props.width) {
+        return {
+          height: props.height + 'px'
         }
-      })
+      } else {
+        return {
+          width: props.width + 'px',
+          height: props.height + 'px'
+        }
+      }
+    })
+    return {
+      relaStyle
     }
   }
 })
