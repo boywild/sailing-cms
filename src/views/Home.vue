@@ -45,7 +45,7 @@
             <div class="new-desc">ALFA LAVAL——压载水处理的信心之选</div>
           </div>
         </div>
-        <div class="trade-show">
+        <div class="trade-show mgb15">
           <Title2 before="活动" after="会展"></Title2>
           <div class="trade-list">
             <div
@@ -53,14 +53,14 @@
               v-for="(item, index) in tradeList"
               :key="index"
             >
-              <div class="title">{{ item.title }}</div>
+              <div class="title"><router-link to="/">{{ item.title }}</router-link></div>
               <div class="trade-info" v-if="item.time">
                 会议时间：{{ item.time }} 会议地点：{{ item.location }}
               </div>
             </div>
           </div>
         </div>
-        <div class="reading-top">
+        <div class="reading-top mgb15">
           <Title2 before="阅读" after="排行"></Title2>
           <div class="reading-list">
             <div
@@ -75,6 +75,8 @@
             </div>
           </div>
         </div>
+        <Img class="mgb15" height="92" />
+        <Img height="92" />
       </div>
     </template>
   </PageContent>

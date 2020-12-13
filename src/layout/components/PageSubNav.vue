@@ -1,12 +1,13 @@
 <template>
   <div class="page-sub-nav mgtb15">
-    <div
+    <router-link
       class="page-sub-nav-item"
       v-for="(item, index) in navList"
       :key="index"
+      to=""
     >
-      {{ item.title }}
-    </div>
+      {{ item.title }}</router-link
+    >
   </div>
 </template>
 

@@ -10,3 +10,7 @@ body,
     'Microsoft YaHei', 'Microsoft Jhenghei', sans-serif;
   font-smoothing: antialiased;
 }
+a {
+  text-decoration: none;
+  color: $text-color;
+}

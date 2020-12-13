@@ -1,8 +1,13 @@
 <template>
   <div class="page-nav">
-    <div class="page-nav-item" v-for="(item, index) in navList" :key="index">
-      {{ item.title }}
-    </div>
+    <router-link
+      class="page-nav-item"
+      v-for="(item, index) in navList"
+      :key="index"
+      to="/"
+    >
+      {{ item.title }}</router-link
+    >
   </div>
 </template>
 

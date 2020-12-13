@@ -11,6 +11,9 @@
         <slot name="side"></slot>
       </div>
     </div>
+    <div class="page-footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
