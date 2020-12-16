@@ -2,8 +2,8 @@
   <div class="article-title2">
     <div class="title-bar">
       <div class="mark"></div>
-      <div class="name-before">{{before}}</div>
-      <div class="name-after">{{after}}</div>
+      <div class="name-before">{{ before }}</div>
+      <div class="name-after">{{ after }}</div>
     </div>
   </div>
 </template>
@@ -42,6 +42,28 @@ export default defineComponent({
     line-height: normal;
   }
   .mark {
+    position: relative;
+    width: 4px;
+    height: 20px;
+    margin-right: 10px;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      background: #6bbfcf;
+      height: 10px;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 10px;
+      background: #de6560;
+    }
   }
   .name-after {
     color: #ff0000;

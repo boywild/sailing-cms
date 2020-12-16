@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent } from 'vue'
 interface CardProps {
   width?: string
   height?: string

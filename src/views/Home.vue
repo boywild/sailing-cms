@@ -10,21 +10,14 @@
         <Title name="新闻速递" sub-name="news"></Title>
         <div class="article-content">
           <div class="news-list">
-            <div
-              class="news-item"
-              v-for="(article, index) in articles"
-              :key="index"
-            >
+            <div class="news-item" v-for="(article, index) in articles" :key="index">
               <Img width="151" height="101" />
               <div class="new-info">
                 <div class="title">
                   <div class="t-txt">世界最大船用双燃料发动机全球发布</div>
                   <div class="t-comment">2</div>
                 </div>
-                <div class="desc">
-                  由中国船舶自主研发的目前世界上最大的船用双燃料发动机昨天(26日)正式面向
-                  全球市场发布
-                </div>
+                <div class="desc">由中国船舶自主研发的目前世界上最大的船用双燃料发动机昨天(26日)正式面向 全球市场发布</div>
                 <div class="time">信德海事 2020-05-27 15:33</div>
               </div>
             </div>
@@ -48,26 +41,32 @@
         <div class="trade-show mgb15">
           <Title2 before="活动" after="会展"></Title2>
           <div class="trade-list">
-            <div
-              class="trade-topic"
-              v-for="(item, index) in tradeList"
-              :key="index"
-            >
-              <div class="title"><router-link to="/">{{ item.title }}</router-link></div>
-              <div class="trade-info" v-if="item.time">
-                会议时间：{{ item.time }} 会议地点：{{ item.location }}
+            <div class="trade-topic" v-for="(item, index) in tradeList" :key="index">
+              <div class="title">
+                <router-link to="/">{{ item.title }}</router-link>
               </div>
+              <div class="trade-info">会议时间：{{ item.time }} 会议地点：{{ item.location }}</div>
             </div>
+          </div>
+        </div>
+        <div class="usually-tools mgb15">
+          <div class="tools-title">
+            <div class="txt">实用查询</div>
+            <div class="more">更多</div>
+          </div>
+          <div class="tools-content">
+            <div class="tools">近海天气</div>
+            <div class="tools">全球海况</div>
+            <div class="tools">台风路径</div>
+            <div class="tools">实时船位</div>
+            <div class="tools">潮汐查询</div>
+            <div class="tools">PSC查询</div>
           </div>
         </div>
         <div class="reading-top mgb15">
           <Title2 before="阅读" after="排行"></Title2>
           <div class="reading-list">
-            <div
-              class="reading-title"
-              v-for="(item, index) in readingTop"
-              :key="index"
-            >
+            <div class="reading-title" v-for="(item, index) in readingTop" :key="index">
               <router-link to="/">
                 <span class="num">{{ index + 1 }}</span>
                 <span class="content">{{ item.title }}</span>
@@ -85,19 +84,11 @@
       <Img class="mgb15" height="118" />
     </template>
     <template #content>
-      <div
-        class="category-box mgb15"
-        v-for="(area, index) in categoryList"
-        :key="index"
-      >
+      <div class="category-box mgb15" v-for="(area, index) in categoryList" :key="index">
         <Img class="mgb15" height="118" v-if="area.banner" />
         <div class="category-content">
           <div class="category-list">
-            <div
-              class="category-item"
-              v-for="(item, index) in area.category"
-              :key="index"
-            >
+            <div class="category-item" v-for="(item, index) in area.category" :key="index">
               <Img width="151" height="101" />
               <div class="category-info">
                 <div class="category-top">
@@ -144,126 +135,40 @@ export default defineComponent({
         {
           banner: '',
           category: [
-            {
-              catName: '航情',
-              title: '会展业按下重启键 SHIPTEC助力企业线上新商机',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '招聘',
-              title: '会展业会展业按下重启键 SHIPTEC助力企业线上',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '活动',
-              title: '宁波市政府携手英富曼会展创办宁波海博会',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '专栏',
-              title: '奖征集 | 纪念陈嘉庚先生创办集美航海教育',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '图片',
-              title: '第三期“海仲云讲坛”线上讲座成功举办',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            }
+            { catName: '航情', title: '会展业按下重启键 SHIPTEC助力企业线上新商机', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '招聘', title: '会展业会展业按下重启键 SHIPTEC助力企业线上', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '活动', title: '宁波市政府携手英富曼会展创办宁波海博会', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '专栏', title: '奖征集 | 纪念陈嘉庚先生创办集美航海教育', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '图片', title: '第三期“海仲云讲坛”线上讲座成功举办', from: '信德海事', time: '2020-05-27 15:33' }
           ]
         },
         {
           banner: '1',
           category: [
-            {
-              catName: '视频',
-              title: '2020集装箱多式联运亚洲展将于2021年3月16',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '造船',
-              title: '会展业按下重启键 SHIPTEC助力企业线上新',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '交易',
-              title: '第二期“海仲云讲坛”线上讲座成功举办',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '港口',
-              title: '欢迎参加！YPSN 都市之夜Metro Night',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '海员',
-              title: '大连海事大学港澳校友会成功举办“2020春天',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            }
+            { catName: '视频', title: '2020集装箱多式联运亚洲展将于2021年3月16', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '造船', title: '会展业按下重启键 SHIPTEC助力企业线上新', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '交易', title: '第二期“海仲云讲坛”线上讲座成功举办', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '港口', title: '欢迎参加！YPSN 都市之夜Metro Night', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '海员', title: '大连海事大学港澳校友会成功举办“2020春天', from: '信德海事', time: '2020-05-27 15:33' }
           ]
         },
         {
           banner: '2',
           category: [
-            {
-              catName: '企业',
-              title: '拖航到半路被拖船断裂沉没引起的纠缠',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '人物',
-              title: '嘉年华邮轮公司与沙特主权财富基金之间的交',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '技术',
-              title: '水上交通事故认定书等海事调查结论是否可诉',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '安全',
-              title: '水上交通事故认定书等海事调查结论是否可诉',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            },
-            {
-              catName: '政策',
-              title: '一家船代公司集体跑路了..........警惕航运欺诈',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            }
+            { catName: '企业', title: '拖航到半路被拖船断裂沉没引起的纠缠', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '人物', title: '嘉年华邮轮公司与沙特主权财富基金之间的交', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '技术', title: '水上交通事故认定书等海事调查结论是否可诉', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '安全', title: '水上交通事故认定书等海事调查结论是否可诉', from: '信德海事', time: '2020-05-27 15:33' },
+            { catName: '政策', title: '一家船代公司集体跑路了..........警惕航运欺诈', from: '信德海事', time: '2020-05-27 15:33' }
           ]
         },
         {
           banner: '3',
-          category: [
-            {
-              catName: '金融',
-              title: '国际邮轮公司最新复工时间表',
-              from: '信德海事',
-              time: '2020-05-27 15:33'
-            }
-          ]
+          category: [{ catName: '金融', title: '国际邮轮公司最新复工时间表', from: '信德海事', time: '2020-05-27 15:33' }]
         }
       ],
       tradeList: [
-        {
-          title: '2020（第十四届）干散货海运峰会',
-          time: '2020年7月2-3日',
-          location: '上海（详询会'
-        },
+        { title: '2020（第十四届）干散货海运峰会', time: '2020年7月2-3日', location: '上海（详询会' },
         { title: '会展业按下重启键 SHIPTEC助力企业线上新' },
         { title: '宁波市政府携手英富曼会展创办宁波海博' },
         { title: '有奖征集 | 纪念陈嘉庚先生创办集美航海' },
@@ -416,11 +321,17 @@ export default defineComponent({
   .trade-topic {
     line-height: normal;
     padding: 5px 0;
-    &:first-child {
+    &:hover {
       .title {
         font-size: 16px;
         font-weight: bold;
         padding-bottom: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .trade-info {
+        display: block;
       }
     }
     .title {
@@ -442,6 +353,7 @@ export default defineComponent({
       color: #999999;
       font-size: 12px;
       padding-left: 15px;
+      display: none;
     }
   }
 }
@@ -461,7 +373,41 @@ export default defineComponent({
       color: #a5a5a5;
       margin-right: 10px;
     }
-    .content {
+  }
+}
+.usually-tools {
+  .tools-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: normal;
+    padding: 6px 0;
+    border-bottom: 1px solid #dddddd;
+    .txt {
+      font-size: 18px;
+      color: #4669b1;
+      font-weight: bold;
+    }
+    .more {
+      color: #FF0000;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+  .tools-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    .tools {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 85px;
+      height: 35px;
+      border: 1px solid #707070;
+      color: #4669b1;
+      margin-top: 9px;
     }
   }
 }

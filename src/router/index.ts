@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
+// import Home from '../views/Home.vue'
 import LayoutArticle from '@/layout/LayoutArticle.vue'
 
 const routes: Array<RouteRecordRaw> = [
