@@ -1,5 +1,5 @@
 <template>
-  <PageContent>
+  <PageContent class="mgb15">
     <template #banner>
       <Img class="mgb15" height="118" />
     </template>
@@ -84,21 +84,23 @@
       <Img class="mgb15" height="118" />
     </template>
     <template #content>
-      <div class="category-box mgb15" v-for="(area, index) in categoryList" :key="index">
-        <Img class="mgb15" height="118" v-if="area.banner" />
-        <div class="category-content">
-          <div class="category-list">
-            <div class="category-item" v-for="(item, index) in area.category" :key="index">
-              <Img width="151" height="101" />
-              <div class="category-info">
-                <div class="category-top">
-                  <div class="c-name">{{ item.catName }}</div>
-                  <div class="c-comment">2</div>
+      <div>
+        <div class="category-box mgb15" v-for="(area, index) in categoryList" :key="index">
+          <Img class="mgb15" height="118" v-if="area.banner" />
+          <div class="category-content">
+            <div class="category-list">
+              <div class="category-item" v-for="(item, index) in area.category" :key="index">
+                <Img width="151" height="101" />
+                <div class="category-info">
+                  <div class="category-top">
+                    <div class="c-name">{{ item.catName }}</div>
+                    <div class="c-comment">2</div>
+                  </div>
+                  <div class="category-title">
+                    {{ item.title }}
+                  </div>
+                  <div class="category-time">{{ item.from }} {{ item.time }}</div>
                 </div>
-                <div class="category-title">
-                  {{ item.title }}
-                </div>
-                <div class="category-time">{{ item.from }} {{ item.time }}</div>
               </div>
             </div>
           </div>
@@ -106,7 +108,9 @@
       </div>
     </template>
     <template #side>
-      <div>side</div>
+      <div>
+        <HotBox></HotBox>
+      </div>
     </template>
   </PageContent>
 </template>
@@ -118,6 +122,7 @@ import Img from '@/components/Img.vue'
 import Title from '@/components/Title.vue'
 import Title2 from '@/components/Title2.vue'
 import Search from '@/components/Search.vue'
+import HotBox from '@/components/HotBox.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -126,7 +131,8 @@ export default defineComponent({
     Img,
     Title,
     Title2,
-    Search
+    Search,
+    HotBox
   },
   data() {
     return {

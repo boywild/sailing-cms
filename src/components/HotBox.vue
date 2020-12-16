@@ -1,5 +1,5 @@
 <template>
-  <div class="article-hot mgb15">
+  <div class="article-hot">
     <Title2 before="国内" after="热点"></Title2>
     <div class="article-hot-content">
       <div class="hot-main">
