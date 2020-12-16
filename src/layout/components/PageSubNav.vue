@@ -1,13 +1,6 @@
 <template>
   <div class="page-sub-nav mgtb15">
-    <router-link
-      class="page-sub-nav-item"
-      v-for="(item, index) in navList"
-      :key="index"
-      to=""
-    >
-      {{ item.title }}</router-link
-    >
+    <router-link class="page-sub-nav-item" v-for="(item, index) in navList" :key="index" to=""> {{ item.title }}</router-link>
   </div>
 </template>
 
@@ -45,10 +38,8 @@ export default defineComponent({
 <style scoped lang="scss">
 .page-sub-nav {
   height: 36px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border: 2px solid #4669b1;
+  @include flex(flex-start);
+  border: 2px solid $theme-blue;
   border-left: none;
   border-right: none;
   .page-sub-nav-item {
@@ -56,9 +47,7 @@ export default defineComponent({
     text-align: center;
     cursor: pointer;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex();
   }
 }
 </style>

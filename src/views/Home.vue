@@ -196,16 +196,12 @@ export default defineComponent({
 }
 .news-list {
   .news-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    @include flex(flex-start);
     padding: 15px 0;
     border-bottom: 1px solid #e1e1e1;
     .new-info {
       height: 101px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      @include flex(space-between);
       flex-direction: column;
       padding: 0 0 0 15px;
       flex: 1;
@@ -214,11 +210,9 @@ export default defineComponent({
       .title {
         overflow: hidden;
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flex(space-between);
         .t-txt {
-          font-size: 18px;
+          font-size: $text-size-big;
           font-weight: bold;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -234,7 +228,7 @@ export default defineComponent({
         }
       }
       .desc {
-        font-size: 12px;
+        font-size: $text-size-small;
         height: 36px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -242,7 +236,7 @@ export default defineComponent({
         overflow: hidden;
       }
       .time {
-        font-size: 12px;
+        font-size: $text-size-small;
         color: #acacac;
       }
     }
@@ -250,17 +244,12 @@ export default defineComponent({
 }
 .category-list {
   .category-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    @include flex(flex-start);
     padding: 15px 0;
     border-bottom: 1px solid #e1e1e1;
     .category-info {
       height: 101px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-direction: column;
+      @include flex(space-between, flex-start, column);
       padding: 0 0 0 15px;
       flex: 1;
       overflow: hidden;
@@ -268,17 +257,15 @@ export default defineComponent({
       .category-top {
         overflow: hidden;
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flex(space-between);
         .c-name {
-          font-size: 18px;
+          font-size: $text-size-big;
           font-weight: bold;
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
           flex: 1;
-          color: #4669b1;
+          color: $theme-blue;
         }
         .c-comment {
           color: #a5a5a5;
@@ -289,7 +276,7 @@ export default defineComponent({
         }
       }
       .category-title {
-        font-size: 18px;
+        font-size: $text-size-big;
         font-weight: bold;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -298,7 +285,7 @@ export default defineComponent({
         cursor: pointer;
       }
       .category-time {
-        font-size: 12px;
+        font-size: $text-size-small;
         color: #acacac;
       }
     }
@@ -308,12 +295,10 @@ export default defineComponent({
   .new-info {
     .new-desc {
       height: 25px;
-      font-size: 12px;
+      font-size: $text-size-small;
       padding: 0 10px;
       background: #f7f8f9;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
+      @include flex(flex-start);
     }
   }
 }
@@ -323,7 +308,7 @@ export default defineComponent({
     padding: 5px 0;
     &:hover {
       .title {
-        font-size: 16px;
+        font-size: $text-size-middle;
         font-weight: bold;
         padding-bottom: 5px;
         overflow: hidden;
@@ -350,8 +335,8 @@ export default defineComponent({
       }
     }
     .trade-info {
-      color: #999999;
-      font-size: 12px;
+      color: $text-light-color;
+      font-size: $text-size-small;
       padding-left: 15px;
       display: none;
     }
@@ -368,7 +353,7 @@ export default defineComponent({
       }
     }
     .num {
-      font-size: 18px;
+      font-size: $text-size-big;
       font-weight: bold;
       color: #a5a5a5;
       margin-right: 10px;
@@ -377,36 +362,30 @@ export default defineComponent({
 }
 .usually-tools {
   .tools-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(space-between);
     line-height: normal;
     padding: 6px 0;
     border-bottom: 1px solid #dddddd;
     .txt {
-      font-size: 18px;
-      color: #4669b1;
+      font-size: $text-size-big;
+      color: $theme-blue;
       font-weight: bold;
     }
     .more {
-      color: #FF0000;
+      color: $theme-red;
       font-size: 14px;
       font-weight: bold;
     }
   }
   .tools-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(space-between);
     flex-wrap: wrap;
     .tools {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex();
       width: 85px;
       height: 35px;
       border: 1px solid #707070;
-      color: #4669b1;
+      color: $theme-blue;
       margin-top: 9px;
     }
   }

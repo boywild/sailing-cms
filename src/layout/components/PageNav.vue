@@ -1,13 +1,6 @@
 <template>
   <div class="page-nav">
-    <router-link
-      class="page-nav-item"
-      v-for="(item, index) in navList"
-      :key="index"
-      to="/"
-    >
-      {{ item.title }}</router-link
-    >
+    <router-link class="page-nav-item" v-for="(item, index) in navList" :key="index" to="/"> {{ item.title }}</router-link>
   </div>
 </template>
 
@@ -45,20 +38,16 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .page-nav {
-  background: #4669b1;
+  background: $theme-blue;
   height: 43px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  @include flex(flex-start);
   .page-nav-item {
     color: #fff;
     width: 66px;
     text-align: center;
     cursor: pointer;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex(center);
   }
 }
 </style>

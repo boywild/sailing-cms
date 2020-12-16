@@ -29,15 +29,11 @@ export default defineComponent({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .article-title2 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(space-between);
   position: relative;
-  font-size: 18px;
+  font-size: $text-size-big;
   .title-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(space-between);
     font-weight: bold;
     line-height: normal;
   }
@@ -66,7 +62,7 @@ export default defineComponent({
     }
   }
   .name-after {
-    color: #ff0000;
+    color: $theme-red;
   }
 }
 </style>

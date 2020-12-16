@@ -22,9 +22,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .search-article {
   border: 1px solid #707070;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(space-between);
   height: 40px;
   padding-left: 10px;
   .search-input {
@@ -37,11 +35,9 @@ export default defineComponent({
   .search-btn {
     width: 76px;
     height: 40px;
-    background: #4669b1;
+    background: $theme-blue;
     color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex();
     cursor: pointer;
   }
 }

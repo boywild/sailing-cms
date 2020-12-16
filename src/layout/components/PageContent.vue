@@ -31,8 +31,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .page-section {
   .page-content {
-    display: flex;
-    justify-content: space-between;
+    @include flex(space-between);
     .page-main {
       width: 656px;
     }

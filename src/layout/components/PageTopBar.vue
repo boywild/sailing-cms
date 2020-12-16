@@ -27,14 +27,12 @@ export default defineComponent({
   height: 43px;
   background: #e4e4e4;
   > .page-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(space-between);
     height: 100%;
   }
   .page-registry {
     .line {
-      color: #4669b1;
+      color: $theme-blue;
       font-weight: bold;
       margin: 0 10px;
     }

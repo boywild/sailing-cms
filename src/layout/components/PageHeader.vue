@@ -22,9 +22,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(space-between);
   .page-logo {
     width: 320px;
     height: 81px;

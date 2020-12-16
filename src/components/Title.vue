@@ -26,9 +26,7 @@ export default defineComponent({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .article-title {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  @include flex(flex-start);
   border-top: 2px solid #666666;
   position: relative;
   padding: 7px 0 0 0;
@@ -39,7 +37,7 @@ export default defineComponent({
     top: -2px;
     width: 114px;
     height: 5px;
-    background: #ff0000;
+    background: $theme-red;
     z-index: 3;
   }
   &::after {
@@ -51,18 +49,18 @@ export default defineComponent({
     left: 109px;
     border-width: 5px 5px 0 0;
     border-style: solid;
-    border-color: #ff0000 #fff transparent transparent;
+    border-color: $theme-red #fff transparent transparent;
     z-index: 4;
   }
   .zh-name {
-    font-size: 18px;
+    font-size: $text-size-big;
     font-family: PingFang SC;
     font-weight: 600;
     line-height: 25px;
-    color: #4669b1;
+    color: $theme-blue;
   }
   .en-name {
-    font-size: 12px;
+    font-size: $text-size-small;
     color: #acacac;
     text-transform: uppercase;
     margin-left: 15px;
