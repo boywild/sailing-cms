@@ -14,14 +14,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'Title2',
   props: {
-    before: {
-      type: String,
-      default: () => ''
-    },
-    after: {
-      type: String,
-      default: () => ''
-    }
+    before: { type: String, default: () => '' },
+    after: { type: String, default: () => '' }
   }
 })
 </script>

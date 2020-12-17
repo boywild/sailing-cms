@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="usually-tools mgb15">
+        <div class="usually-tools mgb20">
           <div class="tools-title">
             <div class="txt">实用查询</div>
             <div class="more">更多</div>
@@ -107,7 +107,29 @@
     </template>
     <template #side>
       <div>
-        <HotBox></HotBox>
+        <HotBox class="mgb20" before="国内" after="热点" :main="hotMain" :list="hotList"></HotBox>
+        <div class="article-today mgb20">
+          <Title2 class="mgb10" before="国际" after="风云"></Title2>
+          <div class="article-today-content">
+            <div class="today-list">
+              <div class="feature-msg">
+                <div class="num">1</div>
+                <router-link class="title" to="/">33条船“刮船底”后，猜猜能够节省多少</router-link>
+              </div>
+              <div class="feature-msg">
+                <div class="num">2</div>
+                <router-link class="title" to="/">33条船“刮船底”后，猜猜能够节省多少</router-link>
+              </div>
+              <div class="feature-msg">
+                <div class="num">3</div>
+                <router-link class="title" to="/">33条船“刮船底”后，猜猜能够节省多少</router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <HotBox class="mgb20" before="活动" after="热点" :main="hotMain" :list="hotList"></HotBox>
+        <HotBox class="mgb20" before="航情" after="热点" :main="hotMain" :list="hotList"></HotBox>
+        <FeatureBox before="专栏" after="分享" :content="featureList"></FeatureBox>
       </div>
     </template>
   </PageContent>
@@ -121,6 +143,7 @@ import Title from '@/components/Title.vue'
 import Title2 from '@/components/Title2.vue'
 import Search from '@/components/Search.vue'
 import HotBox from '@/components/HotBox.vue'
+import FeatureBox from '@/components/FeatureBox.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -130,7 +153,8 @@ export default defineComponent({
     Title,
     Title2,
     Search,
-    HotBox
+    HotBox,
+    FeatureBox
   },
   data() {
     return {
@@ -187,6 +211,24 @@ export default defineComponent({
         { title: 'APL箱船大风浪中40箱子落水，本航次从中' },
         { title: '希腊船东航运公司Central Group进入超大型油' },
         { title: '需求受阻！沙特阿美暂停12艘LNG新造船建' }
+      ],
+      hotMain: [
+        { title: '大连海事大学原党委书记王昭翮调任中国农业', img: '' },
+        { title: '重磅！中国石化集团改制为国有独资公司', img: '' }
+      ],
+      hotList: [
+        { title: '大连海事大学原党委书记王昭翮调任中国农业', img: '' },
+        { title: '重磅！中国石化集团改制为国有独资公司！', img: '' },
+        { title: '董家口海事局成立', img: '' },
+        { title: '王永新先生担任招商轮船总经理', img: '' },
+        { title: '海员请注意：关于海事综合服务平台密码', img: '' }
+      ],
+      featureList: [
+        { title: '拉番轮大豆热损案定损数学模 式“科学性”论证', from: '信德海事网', img: '' },
+        { title: '海洋光谱号为何被称为超量子 级邮轮？', from: '信德海事网', img: '' },
+        { title: '使用低硫油的相关规定', from: '信德海事网', img: '' },
+        { title: '1999-2017海运进口大豆热损 损失认定案例综述', from: '信德海事网', img: '' },
+        { title: 'IMO第101届海安会概况', from: '信德海事网', img: '' }
       ]
     }
   }
@@ -391,6 +433,28 @@ export default defineComponent({
       border: 1px solid #707070;
       color: $theme-blue;
       margin-top: 9px;
+    }
+  }
+}
+.article-today {
+  .article-today-content {
+    .today-list {
+      .feature-msg {
+        line-height: normal;
+        padding: 12px 0;
+        // font-weight: bold;
+        @include flex(flex-start);
+        border-top: 1px dashed #d5d5d5;
+        &:first-child {
+          border: none;
+        }
+        .num {
+          font-size: 18px;
+          color: $text-light-color;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+      }
     }
   }
 }
