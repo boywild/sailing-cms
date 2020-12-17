@@ -4,11 +4,11 @@
     <div class="article-hot-content">
       <div class="hot-main">
         <div class="preview-article">
-          <Img height="95" />
+          <ImgLazy height="95"></ImgLazy>
           <div class="article-short-content">大连海事大学原党委书</div>
         </div>
         <div class="preview-article">
-          <Img height="95" />
+          <ImgLazy height="95"></ImgLazy>
           <div class="article-short-content">大连海事大学原党委书</div>
         </div>
       </div>
@@ -25,13 +25,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Title2 from './Title2.vue'
-import Img from './Img.vue'
+import ImgLazy from './ImgLazy.vue'
 
 export default defineComponent({
   name: 'HotBox',
   components: {
     Title2,
-    Img
+    ImgLazy
   },
   props: {}
 })

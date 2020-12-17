@@ -1,17 +1,17 @@
 <template>
   <PageContent class="mgb15">
     <template #banner>
-      <Img class="mgb15" height="118" />
+      <ImgLazy class="mgb15" height="118"></ImgLazy>
     </template>
     <template #content>
       <div class="home-banner mgb15"></div>
-      <Img class="mgb15" height="118" />
+      <ImgLazy class="mgb15" height="118"></ImgLazy>
       <div class="article-box">
         <Title name="新闻速递" sub-name="news"></Title>
         <div class="article-content">
           <div class="news-list">
             <div class="news-item" v-for="(article, index) in articles" :key="index">
-              <Img width="151" height="101" />
+              <ImgLazy width="151" height="101"></ImgLazy>
               <div class="new-info">
                 <div class="title">
                   <div class="t-txt">世界最大船用双燃料发动机全球发布</div>
@@ -30,11 +30,11 @@
         <Search class="mgb15"></Search>
         <div class="new-technology">
           <div class="new-info mgb15">
-            <Img height="96" />
+            <ImgLazy height="96"></ImgLazy>
             <div class="new-desc">ALFA LAVAL——压载水处理的信心之选</div>
           </div>
           <div class="new-info mgb15">
-            <Img height="96" />
+            <ImgLazy height="96"></ImgLazy>
             <div class="new-desc">ALFA LAVAL——压载水处理的信心之选</div>
           </div>
         </div>
@@ -74,33 +74,31 @@
             </div>
           </div>
         </div>
-        <Img class="mgb15" height="92" />
-        <Img height="92" />
+        <ImgLazy class="mgb15" height="92"></ImgLazy>
+        <ImgLazy height="92"></ImgLazy>
       </div>
     </template>
   </PageContent>
   <PageContent>
     <template #banner>
-      <Img class="mgb15" height="118" />
+      <ImgLazy class="mgb15" height="118"></ImgLazy>
     </template>
     <template #content>
-      <div>
-        <div class="category-box mgb15" v-for="(area, index) in categoryList" :key="index">
-          <Img class="mgb15" height="118" v-if="area.banner" />
-          <div class="category-content">
-            <div class="category-list">
-              <div class="category-item" v-for="(item, index) in area.category" :key="index">
-                <Img width="151" height="101" />
-                <div class="category-info">
-                  <div class="category-top">
-                    <div class="c-name">{{ item.catName }}</div>
-                    <div class="c-comment">2</div>
-                  </div>
-                  <div class="category-title">
-                    {{ item.title }}
-                  </div>
-                  <div class="category-time">{{ item.from }} {{ item.time }}</div>
+      <div class="category-box mgb15" v-for="(area, index) in categoryList" :key="index">
+        <ImgLazy class="mgb15" height="118" v-if="area.banner"></ImgLazy>
+        <div class="category-content">
+          <div class="category-list">
+            <div class="category-item" v-for="(item, index) in area.category" :key="index">
+              <ImgLazy width="151" height="101"></ImgLazy>
+              <div class="category-info">
+                <div class="category-top">
+                  <div class="c-name">{{ item.catName }}</div>
+                  <div class="c-comment">2</div>
                 </div>
+                <div class="category-title">
+                  {{ item.title }}
+                </div>
+                <div class="category-time">{{ item.from }} {{ item.time }}</div>
               </div>
             </div>
           </div>
@@ -118,7 +116,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import PageContent from '@/layout/components/PageContent.vue'
-import Img from '@/components/Img.vue'
+import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
 import Title2 from '@/components/Title2.vue'
 import Search from '@/components/Search.vue'
@@ -128,7 +126,7 @@ export default defineComponent({
   name: 'Home',
   components: {
     PageContent,
-    Img,
+    ImgLazy,
     Title,
     Title2,
     Search,

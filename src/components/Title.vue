@@ -9,7 +9,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Img',
+  name: 'Title',
   props: {
     name: {
       type: String,

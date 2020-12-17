@@ -34,9 +34,11 @@ export default defineComponent({
     @include flex(space-between);
     .page-main {
       width: 656px;
+      align-self: flex-start;
     }
     .page-side {
       width: 315px;
+      align-self: flex-start;
     }
   }
 }

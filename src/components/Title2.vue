@@ -12,7 +12,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Img',
+  name: 'Title2',
   props: {
     before: {
       type: String,

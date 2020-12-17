@@ -12,7 +12,7 @@ interface CardProps {
   src?: string
 }
 export default defineComponent({
-  name: 'Img',
+  name: 'ImgLazy',
   props: {
     width: { type: String, default: () => '' },
     height: { type: String, default: () => '' },
