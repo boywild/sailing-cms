@@ -19,7 +19,7 @@ import Title2 from './Title2.vue'
 import ImgLazy from './ImgLazy.vue'
 
 export default defineComponent({
-  name: 'HotBox',
+  name: 'FeatureBox',
   components: {
     Title2,
     ImgLazy

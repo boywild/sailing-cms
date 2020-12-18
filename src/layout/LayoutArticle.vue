@@ -6,7 +6,6 @@
       <PageNav></PageNav>
       <PageSubNav></PageSubNav>
       <router-view />
-      <PageFooter></PageFooter>
       <PageCopyRight></PageCopyRight>
     </div>
   </div>
@@ -17,7 +16,6 @@ import PageTopBar from './components/PageTopBar.vue'
 import PageHeader from './components/PageHeader.vue'
 import PageNav from './components/PageNav.vue'
 import PageSubNav from './components/PageSubNav.vue'
-import PageFooter from './components/PageFooter.vue'
 import PageCopyRight from './components/PageCopyRight.vue'
 import { defineComponent } from 'vue'
 
@@ -28,7 +26,6 @@ export default defineComponent({
     PageHeader,
     PageNav,
     PageSubNav,
-    PageFooter,
     PageCopyRight
   },
   props: {

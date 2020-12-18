@@ -16,7 +16,7 @@
 import { defineComponent } from 'vue'
 import Title2 from './Title2.vue'
 export default defineComponent({
-  name: 'Technology',
+  name: 'TradeShow',
   components: { Title2 },
   props: {
     content: { type: Array, default: () => [] },

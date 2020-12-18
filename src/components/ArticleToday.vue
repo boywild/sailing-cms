@@ -33,7 +33,7 @@ import { defineComponent } from 'vue'
 import Title2 from './Title2.vue'
 
 export default defineComponent({
-  name: 'HotBox',
+  name: 'ArticleToday',
   components: {
     Title2
   },

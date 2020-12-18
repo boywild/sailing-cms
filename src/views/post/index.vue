@@ -23,9 +23,7 @@
           <div class="next-article related">下一篇：中国最大服务器厂商浪潮遭英特尔“断供”；拼多多黄峥转捐股权并卸任CEO</div>
         </div>
       </div>
-      <div class="article-recommend">
-        <Title name="相关推荐"></Title>
-      </div>
+      <Recommend></Recommend>
     </template>
     <template #side>
       <div>
@@ -40,6 +38,9 @@
         <ArticleToday class="mgb20"></ArticleToday>
         <FeatureBox before="专栏" after="分享" :content="featureList"></FeatureBox>
       </div>
+    </template>
+    <template #footer>
+      <SiteMap></SiteMap>
     </template>
   </PageContent>
 </template>
@@ -56,6 +57,8 @@ import Technology from '@/components/Technology.vue'
 import TradeShow from '@/components/TradeShow.vue'
 import ArticleToday from '@/components/ArticleToday.vue'
 import ReadingTop from '@/components/ReadingTop.vue'
+import SiteMap from '@/components/SiteMap.vue'
+import Recommend from './components/Recommend.vue'
 export default defineComponent({
   name: 'Home',
   components: {
@@ -68,7 +71,9 @@ export default defineComponent({
     Technology,
     TradeShow,
     ArticleToday,
-    ReadingTop
+    ReadingTop,
+    Recommend,
+    SiteMap
   },
   data() {
     return {
@@ -154,7 +159,7 @@ export default defineComponent({
     padding-top: 20px;
     .article-detail-title {
       font-size: 28px;
-      line-height: 35px;
+      line-height: 40px;
     }
     .article-detail-time {
       color: #707070;
@@ -162,7 +167,7 @@ export default defineComponent({
     }
     .article-detail-content {
       color: #707070;
-      line-height: normal;
+      line-height: 25px;
       padding: 10px 0;
     }
     .article-editor {
