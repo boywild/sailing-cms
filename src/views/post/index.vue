@@ -4,15 +4,34 @@
       <ImgLazy class="mgb15" height="118"></ImgLazy>
     </template>
     <template #content>
-      <div class="article-box">
-        <Title name="新闻速递" sub-name="news"></Title>
-        <div class="article-paragraph">阿斯顿发送到发送到</div>
+      <div class="article-detail-box gap">
+        <Title></Title>
+        <div class="article-detail-paragraph">
+          <div class="article-detail-title">
+            T早报|瑞幸造假自查出结果；字节跳动称印度封杀导致其损失超60亿美元；美国疫情加剧 苹果再关30家门店
+          </div>
+          <div class="article-detail-time">2020年07月02日 08:43 来源于 财新网</div>
+          <div class="article-detail-content">
+            瑞幸在召开董事会讨论是否罢免董事长陆正耀前晚发布了造假“自查”结果。7月1日晚，瑞幸咖啡（OTC：
+            LKNCY）宣布，特别委员会对财务造假一事的内部调查基本结束，发现瑞幸的造假始于2019年4月，致使2019年净收入虚增了21.2亿元，成本与费用虚增了13.4亿元。这一数据与其4月2日自爆的造假金额基本吻合。但内部调查对于董事
+          </div>
+          <div class="article-editor">文章编辑：信德海事</div>
+        </div>
+        <div class="article-share">分享到：微信 微博</div>
+        <div class="article-between">
+          <div class="prev-article related">上一篇：中国最大服务器厂商浪潮遭英特尔“断供”；拼多多黄峥转捐股权并卸任CEO</div>
+          <div class="next-article related">下一篇：中国最大服务器厂商浪潮遭英特尔“断供”；拼多多黄峥转捐股权并卸任CEO</div>
+        </div>
+      </div>
+      <div class="article-recommend">
+        <Title name="相关推荐"></Title>
       </div>
     </template>
     <template #side>
       <div>
         <Search class="mgb15"></Search>
         <Technology
+          :showTitle="false"
           :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
         ></Technology>
         <TradeShow class="mgb15" before="点击" after="排行" :content="tradeList"></TradeShow>
@@ -130,4 +149,42 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
+.article-detail-box {
+  .article-detail-paragraph {
+    padding-top: 20px;
+    .article-detail-title {
+      font-size: 28px;
+      line-height: 35px;
+    }
+    .article-detail-time {
+      color: #707070;
+      padding: 15px 0;
+    }
+    .article-detail-content {
+      color: #707070;
+      line-height: normal;
+      padding: 10px 0;
+    }
+    .article-editor {
+      text-align: right;
+      font-weight: bold;
+      padding: 10px 0;
+    }
+  }
+  .article-share {
+    padding: 20px 0;
+  }
+  .article-between {
+    line-height: normal;
+    .prev-article {
+      border-bottom: 1px solid #707070;
+    }
+    .related {
+      padding: 10px 0;
+    }
+  }
+}
+.gap {
+  padding-bottom: 30px;
+}
 </style>

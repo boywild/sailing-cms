@@ -8,6 +8,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'index',
     component: LayoutArticle,
     redirect: 'home',
+    meta: { title: '海德赛事' },
     children: [
       {
         path: 'home',
