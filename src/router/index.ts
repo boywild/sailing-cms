@@ -13,8 +13,57 @@ const routes: Array<RouteRecordRaw> = [
         path: 'home',
         name: 'home',
         redirect: '',
-        component: () =>
-          import(/* webpackChunkName: "home" */ '../views/Home.vue')
+        meta: { title: '首页' },
+        component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
+      },
+      {
+        path: 'post/:id',
+        name: 'post',
+        redirect: '',
+        meta: { title: '文章' },
+        component: () => import('../views/post/index.vue')
+      },
+      {
+        path: 'sailing',
+        name: 'sailing',
+        redirect: '',
+        meta: { title: '航情' },
+        component: () => import('../views/sailing/index.vue')
+      },
+      {
+        path: 'partner',
+        name: 'partner',
+        redirect: '',
+        meta: { title: '招聘' },
+        component: () => import('../views/partner/index.vue')
+      },
+      {
+        path: 'activity',
+        name: 'activity',
+        redirect: '',
+        meta: { title: '活动' },
+        component: () => import('../views/activity/index.vue')
+      },
+      {
+        path: 'profession',
+        name: 'profession',
+        redirect: '',
+        meta: { title: '专栏' },
+        component: () => import('../views/profession/index.vue')
+      },
+      {
+        path: 'imagelib',
+        name: 'imagelib',
+        redirect: '',
+        meta: { title: '图片' },
+        component: () => import('../views/imagelib/index.vue')
+      },
+      {
+        path: 'videolib',
+        name: 'videolib',
+        redirect: '',
+        meta: { title: '视频' },
+        component: () => import('../views/videolib/index.vue')
       }
     ]
   },
@@ -24,8 +73,7 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 

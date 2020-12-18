@@ -1,6 +1,8 @@
 <template>
   <div class="page-nav">
-    <router-link class="page-nav-item" v-for="(item, index) in navList" :key="index" to="/"> {{ item.title }}</router-link>
+    <router-link class="page-nav-item" v-for="(item, index) in navList" :key="index" :to="{ name: item.link }">
+      {{ item.title }}</router-link
+    >
   </div>
 </template>
 
@@ -15,13 +17,13 @@ export default defineComponent({
   data() {
     return {
       navList: [
-        { title: '首页', link: '' },
-        { title: '航情', link: '' },
-        { title: '招聘', link: '' },
-        { title: '活动', link: '' },
-        { title: '专栏', link: '' },
-        { title: '图片', link: '' },
-        { title: '视频', link: '' },
+        { title: '首页', link: 'home' },
+        { title: '航情', link: 'sailing' },
+        { title: '招聘', link: 'partner' },
+        { title: '活动', link: 'activity' },
+        { title: '专栏', link: 'profession' },
+        { title: '图片', link: 'imagelib' },
+        { title: '视频', link: 'videolib' },
         { title: '造船', link: '' },
         { title: '交易', link: '' },
         { title: '港口', link: '' },

@@ -4,25 +4,9 @@
       <ImgLazy class="mgb15" height="118"></ImgLazy>
     </template>
     <template #content>
-      <div class="home-banner mgb15"></div>
-      <ImgLazy class="mgb15" height="118"></ImgLazy>
       <div class="article-box">
         <Title name="新闻速递" sub-name="news"></Title>
-        <div class="article-content">
-          <div class="news-list">
-            <div class="news-item" v-for="(article, index) in articles" :key="index">
-              <ImgLazy width="151" height="101"></ImgLazy>
-              <div class="new-info">
-                <div class="title">
-                  <div class="t-txt">世界最大船用双燃料发动机全球发布</div>
-                  <div class="t-comment">2</div>
-                </div>
-                <div class="desc">由中国船舶自主研发的目前世界上最大的船用双燃料发动机昨天(26日)正式面向 全球市场发布</div>
-                <div class="time">信德海事 2020-05-27 15:33</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="article-paragraph">阿斯顿发送到发送到</div>
       </div>
     </template>
     <template #side>
@@ -31,59 +15,10 @@
         <Technology
           :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
         ></Technology>
-        <TradeShow class="mgb15" before="活动" after="会展" :content="tradeList"></TradeShow>
-        <div class="usually-tools mgb20">
-          <div class="tools-title">
-            <div class="txt">实用查询</div>
-            <div class="more">更多</div>
-          </div>
-          <div class="tools-content">
-            <div class="tools">近海天气</div>
-            <div class="tools">全球海况</div>
-            <div class="tools">台风路径</div>
-            <div class="tools">实时船位</div>
-            <div class="tools">潮汐查询</div>
-            <div class="tools">PSC查询</div>
-          </div>
-        </div>
+        <TradeShow class="mgb15" before="点击" after="排行" :content="tradeList"></TradeShow>
         <ReadingTop class="mgb15" before="阅读" after="排行" :content="readingTop"></ReadingTop>
-        <ImgLazy class="mgb15" height="92"></ImgLazy>
-        <ImgLazy height="92"></ImgLazy>
-      </div>
-    </template>
-  </PageContent>
-  <PageContent>
-    <template #banner>
-      <ImgLazy class="mgb15" height="118"></ImgLazy>
-    </template>
-    <template #content>
-      <div class="category-box mgb15" v-for="(area, index) in categoryList" :key="index">
-        <ImgLazy class="mgb15" height="118" v-if="area.banner"></ImgLazy>
-        <div class="category-content">
-          <div class="category-list">
-            <div class="category-item" v-for="(item, index) in area.category" :key="index">
-              <ImgLazy width="151" height="101"></ImgLazy>
-              <div class="category-info">
-                <div class="category-top">
-                  <div class="c-name">{{ item.catName }}</div>
-                  <div class="c-comment">2</div>
-                </div>
-                <div class="category-title">
-                  {{ item.title }}
-                </div>
-                <div class="category-time">{{ item.from }} {{ item.time }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
-    <template #side>
-      <div>
-        <HotBox class="mgb20" before="国内" after="热点" :main="hotMain" :list="hotList"></HotBox>
+        <HotBox class="mgb20" before="实时" after="热点" :main="hotMain" :list="hotList"></HotBox>
         <ArticleToday class="mgb20"></ArticleToday>
-        <HotBox class="mgb20" before="活动" after="热点" :main="hotMain" :list="hotList"></HotBox>
-        <HotBox class="mgb20" before="航情" after="热点" :main="hotMain" :list="hotList"></HotBox>
         <FeatureBox before="专栏" after="分享" :content="featureList"></FeatureBox>
       </div>
     </template>
@@ -102,7 +37,6 @@ import Technology from '@/components/Technology.vue'
 import TradeShow from '@/components/TradeShow.vue'
 import ArticleToday from '@/components/ArticleToday.vue'
 import ReadingTop from '@/components/ReadingTop.vue'
-
 export default defineComponent({
   name: 'Home',
   components: {
@@ -196,137 +130,4 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-.home-banner {
-  width: 656px;
-  height: 319px;
-  background: #eee;
-}
-.news-list {
-  .news-item {
-    @include flex(flex-start);
-    padding: 15px 0;
-    border-bottom: 1px solid #e1e1e1;
-    .new-info {
-      height: 101px;
-      @include flex(space-between, flex-start);
-      flex-direction: column;
-      padding: 0 0 0 15px;
-      flex: 1;
-      overflow: hidden;
-      line-height: normal;
-      .title {
-        overflow: hidden;
-        width: 100%;
-        @include flex(space-between);
-        .t-txt {
-          font-size: $text-size-big;
-          font-weight: bold;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          flex: 1;
-        }
-        .t-comment {
-          color: #a5a5a5;
-          font-size: 14px;
-          width: 40px;
-          text-align: right;
-          margin-left: 20px;
-        }
-      }
-      .desc {
-        font-size: $text-size-small;
-        height: 36px;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-      }
-      .time {
-        font-size: $text-size-small;
-        color: #acacac;
-      }
-    }
-  }
-}
-.category-list {
-  .category-item {
-    @include flex(flex-start);
-    padding: 15px 0;
-    border-bottom: 1px solid #e1e1e1;
-    .category-info {
-      height: 101px;
-      @include flex(space-between, flex-start, column);
-      padding: 0 0 0 15px;
-      flex: 1;
-      overflow: hidden;
-      line-height: normal;
-      .category-top {
-        overflow: hidden;
-        width: 100%;
-        @include flex(space-between);
-        .c-name {
-          font-size: $text-size-big;
-          font-weight: bold;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          flex: 1;
-          color: $theme-blue;
-        }
-        .c-comment {
-          color: #a5a5a5;
-          font-size: 14px;
-          width: 40px;
-          text-align: right;
-          margin-left: 20px;
-        }
-      }
-      .category-title {
-        font-size: $text-size-big;
-        font-weight: bold;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 100%;
-        cursor: pointer;
-      }
-      .category-time {
-        font-size: $text-size-small;
-        color: #acacac;
-      }
-    }
-  }
-}
-
-.usually-tools {
-  .tools-title {
-    @include flex(space-between);
-    line-height: normal;
-    padding: 6px 0;
-    border-bottom: 1px solid #dddddd;
-    .txt {
-      font-size: $text-size-big;
-      color: $theme-blue;
-      font-weight: bold;
-    }
-    .more {
-      color: $theme-red;
-      font-size: 14px;
-      font-weight: bold;
-    }
-  }
-  .tools-content {
-    @include flex(space-between);
-    flex-wrap: wrap;
-    .tools {
-      @include flex();
-      width: 85px;
-      height: 35px;
-      border: 1px solid #707070;
-      color: $theme-blue;
-      margin-top: 9px;
-    }
-  }
-}
 </style>
