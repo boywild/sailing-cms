@@ -28,27 +28,10 @@
     <template #side>
       <div>
         <Search class="mgb15"></Search>
-        <div class="new-technology">
-          <div class="new-info mgb15">
-            <ImgLazy height="96"></ImgLazy>
-            <div class="new-desc">ALFA LAVAL——压载水处理的信心之选</div>
-          </div>
-          <div class="new-info mgb15">
-            <ImgLazy height="96"></ImgLazy>
-            <div class="new-desc">ALFA LAVAL——压载水处理的信心之选</div>
-          </div>
-        </div>
-        <div class="trade-show mgb15">
-          <Title2 before="活动" after="会展"></Title2>
-          <div class="trade-list">
-            <div class="trade-topic" v-for="(item, index) in tradeList" :key="index">
-              <div class="title">
-                <router-link to="/">{{ item.title }}</router-link>
-              </div>
-              <div class="trade-info">会议时间：{{ item.time }} 会议地点：{{ item.location }}</div>
-            </div>
-          </div>
-        </div>
+        <Technology
+          :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
+        ></Technology>
+        <TradeShow class="mgb15" before="活动" after="会展" :content="tradeList"></TradeShow>
         <div class="usually-tools mgb20">
           <div class="tools-title">
             <div class="txt">实用查询</div>
@@ -144,6 +127,8 @@ import Title2 from '@/components/Title2.vue'
 import Search from '@/components/Search.vue'
 import HotBox from '@/components/HotBox.vue'
 import FeatureBox from '@/components/FeatureBox.vue'
+import Technology from '@/components/Technology.vue'
+import TradeShow from '@/components/TradeShow.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -154,7 +139,9 @@ export default defineComponent({
     Title2,
     Search,
     HotBox,
-    FeatureBox
+    FeatureBox,
+    Technology,
+    TradeShow
   },
   data() {
     return {
@@ -334,57 +321,6 @@ export default defineComponent({
         font-size: $text-size-small;
         color: #acacac;
       }
-    }
-  }
-}
-.new-technology {
-  .new-info {
-    .new-desc {
-      height: 25px;
-      font-size: $text-size-small;
-      padding: 0 10px;
-      background: #f7f8f9;
-      @include flex(flex-start);
-    }
-  }
-}
-.trade-list {
-  .trade-topic {
-    line-height: normal;
-    padding: 5px 0;
-    &:hover {
-      .title {
-        font-size: $text-size-middle;
-        font-weight: bold;
-        padding-bottom: 5px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      .trade-info {
-        display: block;
-      }
-    }
-    .title {
-      padding-left: 15px;
-      position: relative;
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #9a9a9a;
-      }
-    }
-    .trade-info {
-      color: $text-light-color;
-      font-size: $text-size-small;
-      padding-left: 15px;
-      display: none;
     }
   }
 }

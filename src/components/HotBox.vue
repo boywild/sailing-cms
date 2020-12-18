@@ -9,7 +9,9 @@
         </router-link>
       </div>
       <div class="hot-list">
-        <div class="hot-title" v-for="(item, index) in list" :key="index">{{ item.title }}</div>
+        <div class="hot-title" v-for="(item, index) in list" :key="index">
+          <router-link to="/">{{ item.title }}</router-link>
+        </div>
       </div>
     </div>
   </div>
