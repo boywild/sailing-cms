@@ -13,10 +13,10 @@
             <div class="news-item" v-for="(article, index) in articles" :key="index">
               <ImgLazy width="151" height="101"></ImgLazy>
               <div class="new-info">
-                <div class="title">
+                <router-link :to="{ name: 'post', params: { id: 1 } }" class="title">
                   <div class="t-txt">世界最大船用双燃料发动机全球发布</div>
                   <div class="t-comment">2</div>
-                </div>
+                </router-link>
                 <div class="desc">由中国船舶自主研发的目前世界上最大的船用双燃料发动机昨天(26日)正式面向 全球市场发布</div>
                 <div class="time">信德海事 2020-05-27 15:33</div>
               </div>
