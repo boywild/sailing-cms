@@ -2,6 +2,7 @@
   <div :class="['article-title', { bottom: direction === 'bottom', top: direction === 'top' }]">
     <div class="zh-name">{{ name }}</div>
     <div class="en-name">{{ subName }}</div>
+    <slot name="right"></slot>
   </div>
 </template>
 

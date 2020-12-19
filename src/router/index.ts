@@ -65,9 +65,28 @@ const routes: Array<RouteRecordRaw> = [
         redirect: '',
         meta: { title: '视频' },
         component: () => import('../views/videolib/index.vue')
+      },
+      {
+        path: 'topic',
+        name: 'topic',
+        meta: { title: '专题' },
+        component: () => import('../views/topic/index.vue')
+      },
+      {
+        path: 'meeting',
+        name: 'meeting',
+        meta: { title: '会议' },
+        component: () => import('../views/meeting/index.vue')
+      },
+      {
+        path: 'kol',
+        name: 'kol',
+        meta: { title: '领航者' },
+        component: () => import('../views/kol/index.vue')
       }
     ]
   },
+
   {
     path: '/about',
     name: 'About',

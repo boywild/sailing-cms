@@ -22,13 +22,11 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'PageContent',
-  props: {
-    msg: String
-  }
+  props: {}
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .page-section {
   .page-content {
     @include flex(space-between);
