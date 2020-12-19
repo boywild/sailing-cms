@@ -3,10 +3,7 @@
     <Title2 class="mgb10" :before="before" :after="after"></Title2>
     <div class="article-hot-content">
       <div class="hot-main">
-        <router-link class="preview-article" to="/" v-for="(item, index) in main" :key="index">
-          <ImgLazy height="95"></ImgLazy>
-          <div class="article-short-content">{{ item.title }}</div>
-        </router-link>
+        <PreviewArticle v-for="(item, index) in main" :key="index" :content="item"></PreviewArticle>
       </div>
       <div class="hot-list">
         <div class="hot-title" v-for="(item, index) in list" :key="index">
@@ -20,13 +17,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Title2 from './Title2.vue'
-import ImgLazy from './ImgLazy.vue'
+import PreviewArticle from './PreviewArticle.vue'
 
 export default defineComponent({
   name: 'HotBox',
   components: {
     Title2,
-    ImgLazy
+    PreviewArticle
   },
   props: {
     before: { type: String, default: () => '' },
@@ -44,16 +41,6 @@ export default defineComponent({
     .hot-main {
       @include flex(space-between);
       padding: 0 0 10px 0;
-      .preview-article {
-        width: 145px;
-        .article-short-content {
-          line-height: 26px;
-          padding-left: 5px;
-          background: #f6f7f8;
-          font-size: $text-size-small;
-          @include text-overflow();
-        }
-      }
     }
     .hot-list {
       font-size: $text-size-normal;

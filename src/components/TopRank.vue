@@ -64,8 +64,6 @@ export default defineComponent({
       }
     }
   }
-  .top-rank-content {
-  }
 }
 .top-rank-list {
   .t-p-item {
