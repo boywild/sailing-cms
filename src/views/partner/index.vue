@@ -25,10 +25,10 @@ import Title from '@/components/Title.vue'
 import InnerSide from '@/components/InnerSide.vue'
 import ArticleList from '@/components/ArticleList.vue'
 import TradeComing from '@/components/TradeComing.vue'
-
+import SiteMap from '@/components/SiteMap.vue'
 export default defineComponent({
   name: 'Partner',
-  components: { PageContent, ImgLazy, Title, InnerSide, ArticleList, TradeComing },
+  components: { PageContent, ImgLazy, Title, InnerSide, ArticleList, TradeComing, SiteMap },
   data() {
     return {
       list: [

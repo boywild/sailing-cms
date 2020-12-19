@@ -38,9 +38,10 @@ import WonderfulMsg from './components/WonderfulMsg.vue'
 import Authors from './components/Authors.vue'
 import AuthArticle from './components/AuthArticle.vue'
 import Focusing from './components/Focusing.vue'
+import SiteMap from '@/components/SiteMap.vue'
 export default defineComponent({
   name: 'Home',
-  components: { PageContent, Title, Search, Technology, TopRank, FeatureBox, WonderfulMsg, Authors, AuthArticle, Focusing },
+  components: { PageContent, Title, Search, Technology, TopRank, FeatureBox, WonderfulMsg, Authors, AuthArticle, Focusing, SiteMap },
   data() {
     return {
       featureList: [

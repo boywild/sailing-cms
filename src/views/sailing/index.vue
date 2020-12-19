@@ -5,7 +5,7 @@
     </template>
     <template #content>
       <TradeComing class="mgb20"></TradeComing>
-      <Title name="要闻" subName="news"></Title>
+      <Title class="mgb10" name="要闻" subName="news"></Title>
       <ArticleList :list="list"></ArticleList>
     </template>
     <template #side>
@@ -25,10 +25,10 @@ import Title from '@/components/Title.vue'
 import InnerSide from '@/components/InnerSide.vue'
 import ArticleList from '@/components/ArticleList.vue'
 import TradeComing from '@/components/TradeComing.vue'
-
+import SiteMap from '@/components/SiteMap.vue'
 export default defineComponent({
   name: 'Home',
-  components: { PageContent, ImgLazy, Title, InnerSide, ArticleList, TradeComing },
+  components: { PageContent, ImgLazy, Title, InnerSide, ArticleList, TradeComing, SiteMap },
   data() {
     return {
       list: [
