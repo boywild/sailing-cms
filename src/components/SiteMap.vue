@@ -1,13 +1,12 @@
 <template>
   <div class="site-map">
-    <div key="site-map-title">网站地图</div>
+    <div class="site-map-title">网站地图</div>
     <div class="site-map-cols">
-      <div class="map-col">
-        <div class="m-c-item">航情</div>
-        <div class="m-c-item">航情观察</div>
-        <div class="m-c-item">市场交易</div>
-        <div class="m-c-item">船舶管理</div>
-        <div class="m-c-item">信德周报</div>
+      <div class="map-col" v-for="(map, index) in mapList" :key="index">
+        <div class="m-c-title">{{ map.title }}</div>
+        <div class="m-c-item" v-for="(col, colIndex) in map.items" :key="colIndex">
+          <router-link to="/">{{ col.name }}</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -101,4 +100,30 @@ export default defineComponent({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.site-map {
+  .site-map-title {
+    text-align: center;
+    color: $theme-blue;
+    border-top: 2px solid $theme-blue;
+    font-weight: bold;
+    padding: 10px 0;
+    margin-bottom: 10px;
+  }
+}
+.site-map-cols {
+  @include flex(space-between, flex-start);
+  .map-col {
+    font-size: $text-size-small;
+    text-align: center;
+    line-height: 23px;
+    .m-c-title {
+      font-weight: bold;
+    }
+    .m-c-item {
+      color: #666;
+      font-weight: 500;
+    }
+  }
+}
+</style>

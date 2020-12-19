@@ -24,14 +24,14 @@ export default defineComponent({
         { title: '专栏', link: 'profession' },
         { title: '图片', link: 'imagelib' },
         { title: '视频', link: 'videolib' },
-        { title: '造船', link: '' },
-        { title: '交易', link: '' },
-        { title: '港口', link: '' },
-        { title: '海员', link: '' },
-        { title: '企业', link: '' },
-        { title: '人物', link: '' },
-        { title: '技术', link: '' },
-        { title: '安全', link: '' }
+        { title: '造船', link: 'About' },
+        { title: '交易', link: 'About' },
+        { title: '港口', link: 'About' },
+        { title: '海员', link: 'About' },
+        { title: '企业', link: 'About' },
+        { title: '人物', link: 'About' },
+        { title: '技术', link: 'About' },
+        { title: '安全', link: 'About' }
       ]
     }
   }
@@ -50,6 +50,9 @@ export default defineComponent({
     cursor: pointer;
     height: 100%;
     @include flex(center);
+    &.router-link-active{
+      background: #517ace;
+    }
   }
 }
 </style>
