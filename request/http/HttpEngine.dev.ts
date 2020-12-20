@@ -2,7 +2,7 @@
  * Created by duy on 2018/6/20 15:38.
  */
 
-import _ from 'lodash'
+import _, { reject } from 'lodash'
 import axios, { AxiosResponse, AxiosRequestConfig, AxiosInstance, AxiosError, AxiosPromise } from 'axios'
 import DebugOk from './DebugOk'
 import DebugFail from './DebugFail'
@@ -129,7 +129,13 @@ export default class HttpEngine implements HttpConfig, RequestMethod {
       axiosConfig = {
         ...axiosConfig,
         adapter: (config: AxiosRequestConfig): AxiosPromise<any> => {
-          return this.adapterHandler(config)
+          if (process.env.NODE_ENV === 'development') {
+            return this.adapterHandler(config)
+          } else {
+            return new Promise((resolve, reject) => {
+              resolve()
+            })
+          }
         }
       }
     }

@@ -10,6 +10,7 @@ export default class MockResolveResponse implements MockResolve {
     this._config = config
     this._headers = headers
   }
+
   private _config = {}
   private _headers = {}
   private _data = {}

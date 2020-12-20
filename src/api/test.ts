@@ -1,4 +1,4 @@
-import Http from '@/api/request'
+import Http from '@/api/index'
 // import helper from 'utils/helper'
 
 // const moduleName = 'lztask'
@@ -10,11 +10,11 @@ class Test {
    */
   static queryTaskStatus() {
     const http = new Http()
-    http.path = '/test'
-    http.headers = {}
-    http.query = { age: 12 }
-    http.body = { name: 'chentian' }
-    http.loading = true
+    http.path = '/toparticles'
+    // http.headers = {}
+    // http.query = { age: 12 }
+    // http.body = { name: 'chentian' }
+    // http.loading = true
     return http.get()
   }
 }

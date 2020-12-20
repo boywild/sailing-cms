@@ -13,7 +13,8 @@ module.exports = {
       extensions: ['.ts', '.js', '.vue', '.json'],
       alias: {
         json: path.resolve(__dirname, 'json/'),
-        mock: path.resolve(__dirname, 'mock/')
+        mock: path.resolve(__dirname, 'mock/'),
+        request: path.resolve(__dirname, 'request/')
       }
     }
   }

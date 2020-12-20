@@ -17,26 +17,22 @@ export default class DebugEngine implements DebugConfig {
   protected _response = {}
 
   set printMethod(value: LogType) {
-    if (typeOf(value) !== 'string')
-      throw new TypeError('DebugEngine.printMethod 类型应为 String')
+    if (typeOf(value) !== 'string') throw new TypeError('DebugEngine.printMethod 类型应为 String')
     this._printMethod = value
   }
 
   set url(value: string) {
-    if (typeOf(value) !== 'string')
-      throw new TypeError('DebugEngine.url 类型应为 String')
+    if (typeOf(value) !== 'string') throw new TypeError('DebugEngine.url 类型应为 String')
     this._url = value
   }
 
   set method(value: MethodType) {
-    if (typeOf(value) !== 'string')
-      throw new TypeError('DebugEngine.method 类型应为 String')
+    if (typeOf(value) !== 'string') throw new TypeError('DebugEngine.method 类型应为 String')
     this._method = value.toUpperCase()
   }
 
   set headers(value: any) {
-    if (typeOf(value) !== 'object')
-      throw new TypeError('DebugEngine.headers 类型应为 Object')
+    if (typeOf(value) !== 'object') throw new TypeError('DebugEngine.headers 类型应为 Object')
     this._headers = value
   }
 
@@ -49,8 +45,7 @@ export default class DebugEngine implements DebugConfig {
   }
 
   set status(value: number) {
-    if (!Number.isInteger(value))
-      throw new TypeError('DebugEngine.status 类型应为整数')
+    if (!Number.isInteger(value)) throw new TypeError('DebugEngine.status 类型应为整数')
     this._status = value
   }
 
@@ -70,9 +65,7 @@ export default class DebugEngine implements DebugConfig {
     ]
     if (typeOf(this._headers['Content-Type']) === 'string') {
       if (
-        this._headers['Content-Type'].indexOf(
-          'application/x-www-form-urlencoded'
-        ) >= 0 ||
+        this._headers['Content-Type'].indexOf('application/x-www-form-urlencoded') >= 0 ||
         this._headers['Content-Type'].indexOf('multipart/form-data') >= 0
       ) {
         collection.splice(4, 1, {
@@ -91,11 +84,9 @@ export default class DebugEngine implements DebugConfig {
     if (Utils.isDevelopmentEnv()) {
       console[this._printMethod]('****************************************')
       for (const item of this.getCollectionInfo()) {
-        console[this._printMethod](`* - ${item['title']}：`, item['content'])
+        console[this._printMethod](`* - ${item.title}：`, item.content)
       }
-      console[this._printMethod](
-        '****************************************\n\r\n\r'
-      )
+      console[this._printMethod]('****************************************\n\r\n\r')
     }
   }
 }
