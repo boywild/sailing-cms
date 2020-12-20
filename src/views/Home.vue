@@ -102,7 +102,7 @@ import Technology from '@/components/Technology.vue'
 import TradeShow from '@/components/TradeShow.vue'
 import ArticleToday from '@/components/ArticleToday.vue'
 import ReadingTop from '@/components/ReadingTop.vue'
-
+import Test from '@/api/test'
 export default defineComponent({
   name: 'Home',
   components: {
@@ -192,6 +192,9 @@ export default defineComponent({
         { title: 'IMO第101届海安会概况', from: '信德海事网', img: '' }
       ]
     }
+  },
+  mounted() {
+    Test.queryTaskStatus()
   }
 })
 </script>
