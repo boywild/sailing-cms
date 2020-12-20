@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: '/sailing-cms/',
   css: {
     loaderOptions: {
       sass: {
