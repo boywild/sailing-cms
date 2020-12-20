@@ -1,6 +1,7 @@
 <template>
   <PageContent class="mgb15">
     <template #banner>
+      <!-- <div v-html="decode(topArticles[0] && topArticles[0].article.content)"></div> -->
       <ImgLazy class="mgb15" height="118"></ImgLazy>
     </template>
     <template #content>
@@ -91,7 +92,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import PageContent from '@/layout/components/PageContent.vue'
 import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
@@ -116,6 +117,18 @@ export default defineComponent({
     TradeShow,
     ArticleToday,
     ReadingTop
+  },
+  setup() {
+    const topArticles = ref([])
+    onMounted(async() => {
+      const { data = [] } = await Test.queryTaskStatus()
+      console.log(data)
+      topArticles.value = data
+    })
+    console.log(topArticles)
+    return {
+      topArticles
+    }
   },
   data() {
     return {
@@ -193,8 +206,18 @@ export default defineComponent({
       ]
     }
   },
-  mounted() {
-    Test.queryTaskStatus()
+  methods: {
+    decode(html: string) {
+      console.log(html)
+      if (html) {
+        return html
+          .replace(html ? /&(?!#?\w+;)/g : /&/g, '&amp;')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+      }
+    }
   }
 })
 </script>
