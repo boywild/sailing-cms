@@ -22,67 +22,67 @@ const routes: Array<RouteRecordRaw> = [
         name: 'post',
         redirect: '',
         meta: { title: '文章' },
-        component: () => import('../views/post/index.vue')
+        component: () => import(/* webpackChunkName: "post" */ '../views/post/index.vue')
       },
       {
         path: 'sailing',
         name: 'sailing',
         redirect: '',
         meta: { title: '航情' },
-        component: () => import('../views/sailing/index.vue')
+        component: () => import(/* webpackChunkName: "sailing" */ '../views/sailing/index.vue')
       },
       {
         path: 'partner',
         name: 'partner',
         redirect: '',
         meta: { title: '招聘' },
-        component: () => import('../views/partner/index.vue')
+        component: () => import(/* webpackChunkName: "partner" */ '../views/partner/index.vue')
       },
       {
         path: 'activity',
         name: 'activity',
         redirect: '',
         meta: { title: '活动' },
-        component: () => import('../views/activity/index.vue')
+        component: () => import(/* webpackChunkName: "activity" */ '../views/activity/index.vue')
       },
       {
         path: 'profession',
         name: 'profession',
         redirect: '',
         meta: { title: '专栏' },
-        component: () => import('../views/profession/index.vue')
+        component: () => import(/* webpackChunkName: "profession" */ '../views/profession/index.vue')
       },
       {
         path: 'imagelib',
         name: 'imagelib',
         redirect: '',
         meta: { title: '图片' },
-        component: () => import('../views/imagelib/index.vue')
+        component: () => import(/* webpackChunkName: "imagelib" */ '../views/imagelib/index.vue')
       },
       {
         path: 'videolib',
         name: 'videolib',
         redirect: '',
         meta: { title: '视频' },
-        component: () => import('../views/videolib/index.vue')
+        component: () => import(/* webpackChunkName: "videolib" */ '../views/videolib/index.vue')
       },
       {
         path: 'topic',
         name: 'topic',
         meta: { title: '专题' },
-        component: () => import('../views/topic/index.vue')
+        component: () => import(/* webpackChunkName: "topic" */ '../views/topic/index.vue')
       },
       {
         path: 'meeting',
         name: 'meeting',
         meta: { title: '会议' },
-        component: () => import('../views/meeting/index.vue')
+        component: () => import(/* webpackChunkName: "meeting" */ '../views/meeting/index.vue')
       },
       {
         path: 'kol',
         name: 'kol',
         meta: { title: '领航者' },
-        component: () => import('../views/kol/index.vue')
+        component: () => import(/* webpackChunkName: "kol" */'../views/kol/index.vue')
       }
     ]
   },
