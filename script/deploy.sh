@@ -4,7 +4,7 @@
 set -e
 
 # 打包静态资源
-npm run build
+yarn run build
 
 # 将dist文件发送到远程
 sshpass -p ${serverPass} scp -o stricthostkeychecking=no -r dist/ ${serverUser}@${serverIP}:/home/www/sailing-cms
