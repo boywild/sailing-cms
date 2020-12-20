@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 10.22.1
+branchs:
+  - master
+install:
+  "yarn install"
+script:
+  - "yarn run build"
+after_success:
+  - ./script/deploy.sh
