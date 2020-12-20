@@ -3,6 +3,10 @@ node_js:
   - 10.22.1
 branchs:
   - master
+addons:
+  apt:
+    packages:
+    - sshpass
 install:
   "yarn install"
 script:
