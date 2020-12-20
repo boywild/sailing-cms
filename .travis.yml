@@ -7,9 +7,6 @@ addons:
   apt:
     packages:
     - sshpass
-cache:
-  directories:
-    - node_modules
 install:
   "yarn install"
 script:
