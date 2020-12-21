@@ -104,6 +104,7 @@ import TradeShow from '@/components/TradeShow.vue'
 import ArticleToday from '@/components/ArticleToday.vue'
 import ReadingTop from '@/components/ReadingTop.vue'
 import Test from '@/api/test'
+import article from '@/api/article'
 export default defineComponent({
   name: 'Home',
   components: {
@@ -120,8 +121,9 @@ export default defineComponent({
   },
   setup() {
     const topArticles = ref([])
-    onMounted(async() => {
-      const { data = [] } = await Test.queryTaskStatus()
+    onMounted(async () => {
+      // const { data = [] } = await Test.queryTaskStatus()
+      const { data = [] } = await article.getCategoryList()
       console.log(data)
       topArticles.value = data
     })
