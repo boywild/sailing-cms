@@ -53,6 +53,20 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "profession" */ '../views/profession/index.vue')
       },
       {
+        path: 'profession/author',
+        name: 'author',
+        redirect: '',
+        meta: { title: '专栏作者' },
+        component: () => import(/* webpackChunkName: "author" */ '../views/profession/author.vue')
+      },
+      {
+        path: 'profession/author/recommend',
+        name: 'author',
+        redirect: '',
+        meta: { title: '专栏推荐作者' },
+        component: () => import(/* webpackChunkName: "authorRecommend" */ '../views/profession/author-recommend.vue')
+      },
+      {
         path: 'imagelib',
         name: 'imagelib',
         redirect: '',
@@ -82,7 +96,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'kol',
         name: 'kol',
         meta: { title: '领航者' },
-        component: () => import(/* webpackChunkName: "kol" */'../views/kol/index.vue')
+        component: () => import(/* webpackChunkName: "kol" */ '../views/kol/index.vue')
       }
     ]
   },

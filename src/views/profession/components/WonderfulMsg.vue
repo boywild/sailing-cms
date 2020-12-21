@@ -53,8 +53,7 @@ export default defineComponent({
         font-size: 24px;
         font-weight: bold;
         padding: 10px 0;
-      }
-      .desc {
+        @include text-overflow();
       }
     }
   }

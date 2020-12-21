@@ -1,6 +1,6 @@
 <template>
   <div class="authors-box">
-    <Title2 class="mgb20" before="推荐" after="作者"></Title2>
+    <Title2 class="mgb20" :before="before" after="作者"></Title2>
     <div class="authors-list">
       <div class="author" v-for="(item, index) in content" :key="index">
         <ImgLazy width="80" height="105"></ImgLazy>
@@ -18,7 +18,8 @@ export default defineComponent({
   name: 'Authors',
   components: { ImgLazy, Title2 },
   props: {
-    content: { type: Array, default: () => [] }
+    content: { type: Array, default: () => [] },
+    before: { type: String, default: () => '推荐' }
   }
 })
 </script>

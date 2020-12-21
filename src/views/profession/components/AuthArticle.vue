@@ -1,9 +1,11 @@
 <template>
   <div class="auth-article">
-    <ImgLazy width="80" height="105"></ImgLazy>
+    <ImgLazy v-if="thumbnail" width="80" height="105"></ImgLazy>
     <div class="auth-a-content">
       <div class="auth-a-title">
-        <div class="text"><router-link to="/">{{ content.title }}</router-link></div>
+        <div class="text">
+          <router-link to="/">{{ content.title }}</router-link>
+        </div>
         <div class="comment">1</div>
       </div>
       <div class="publish-time">{{ content.from }}{{ content.time }}</div>
@@ -19,7 +21,8 @@ export default defineComponent({
   name: 'Authors',
   components: { ImgLazy },
   props: {
-    content: { type: Object, default: () => ({}) }
+    content: { type: Object, default: () => ({}) },
+    thumbnail: { type: Boolean, default: () => true }
   }
 })
 </script>
@@ -48,6 +51,7 @@ export default defineComponent({
         @include text-overflow();
       }
       .comment {
+        color: $text-light-color2;
         width: 70px;
         text-align: right;
       }
