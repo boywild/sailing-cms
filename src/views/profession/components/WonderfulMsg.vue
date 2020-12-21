@@ -69,8 +69,6 @@ export default defineComponent({
           font-weight: bold;
           padding: 10px 0;
         }
-        .desc {
-        }
       }
     }
   }
