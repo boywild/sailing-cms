@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { AxiosResponse, AxiosError } from 'axios/index'
-import commonParams from '@/utils/common-params'
+import setCommonParams from '@/utils/common-params'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { RequestConfig } from 'request/http'
@@ -13,7 +13,6 @@ export default class Http extends HttpEngine {
   constructor() {
     super()
     this.baseURL = process.env.VUE_APP_HTTP_BASE_URL || ''
-    // this.baseURL = '/api'
     this.mockTimeout = 1
     this.requestedSever = true
   }
@@ -21,16 +20,15 @@ export default class Http extends HttpEngine {
   beforeSendRequestHandler(config: RequestConfig) {
     NProgress.start()
     config.headers = { ...config.headers }
-    console.log(config)
     if (config.data) {
       config.data = {
         ...config.data,
-        ...commonParams
+        ...setCommonParams()
       }
     } else if (config.params) {
       config.params = {
         ...config.params,
-        ...commonParams
+        ...setCommonParams()
       }
     }
   }

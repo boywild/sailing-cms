@@ -1,6 +1,14 @@
 const path = require('path')
 module.exports = {
   publicPath: '/sailing-cms/',
+  chainWebpack: config => {
+    config.devServer.proxy({
+      '/api': {
+        target: 'http://47.104.188.251',
+        changeOrigin: true
+      }
+    })
+  },
   css: {
     loaderOptions: {
       sass: {

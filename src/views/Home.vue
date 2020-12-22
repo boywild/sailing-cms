@@ -103,7 +103,7 @@ import Technology from '@/components/Technology.vue'
 import TradeShow from '@/components/TradeShow.vue'
 import ArticleToday from '@/components/ArticleToday.vue'
 import ReadingTop from '@/components/ReadingTop.vue'
-import Test from '@/api/test'
+// import Test from '@/api/test'
 import article from '@/api/article'
 export default defineComponent({
   name: 'Home',
@@ -123,7 +123,7 @@ export default defineComponent({
     const topArticles = ref([])
     onMounted(async () => {
       // const { data = [] } = await Test.queryTaskStatus()
-      const { data = [] } = await article.getCategoryList()
+      const { data = [] } = await article.getArticleList({ pageNo: 1, pageSize: 30 })
       console.log(data)
       topArticles.value = data
     })

@@ -18,6 +18,13 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
       },
       {
+        path: 'category/:id',
+        name: 'category',
+        redirect: '',
+        meta: { title: '分类' },
+        component: () => import(/* webpackChunkName: "category" */ '../views/post/index.vue')
+      },
+      {
         path: 'post/:id',
         name: 'post',
         redirect: '',

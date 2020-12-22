@@ -9,13 +9,15 @@ function randomStr(len = 4): string {
   }
   return strSmall
 }
-const timestamp = Date.now()
-const suffix = 'lixinkeji'
-const nonce = randomStr()
-const sign = md5(timestamp + nonce + suffix)
 
-export default {
-  timestamp,
-  nonce,
-  sign
+export default function setCommonParams() {
+  const timestamp = Date.now()
+  const suffix = 'lixinkeji'
+  const nonce = randomStr()
+  const sign = md5(timestamp + nonce + suffix)
+  return {
+    timestamp,
+    nonce,
+    sign
+  }
 }
