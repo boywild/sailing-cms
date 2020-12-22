@@ -17,7 +17,7 @@ export default class HttpEngine implements HttpConfig, RequestMethod {
   protected _baseURL = ''
   protected _headers = {
     Accept: 'application/json',
-    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Type': 'application/json;charset=UTF-8'
   }
 
   protected _timeout = 10000

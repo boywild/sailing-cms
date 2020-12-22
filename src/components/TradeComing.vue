@@ -1,6 +1,6 @@
 <template>
   <div class="trade-coming">
-    <ImgLazy :width="302" :height="201"></ImgLazy>
+    <ImgLazy width="302" height="201"></ImgLazy>
     <div class="trade-box">
       <div class="trade-recent">
         <router-link to="/" class="title">2020（第五届）青岛国际海...</router-link>
