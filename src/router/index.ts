@@ -113,7 +113,18 @@ const routes: Array<RouteRecordRaw> = [
       }
     ]
   },
-
+  {
+    path: '/login',
+    name: 'login',
+    meta: { title: '登录' },
+    component: () => import(/* webpackChunkName: "login" */ '../views/user/login.vue')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    meta: { title: '注册' },
+    component: () => import(/* webpackChunkName: "register" */ '../views/user/register.vue')
+  },
   {
     path: '/about',
     name: 'About',

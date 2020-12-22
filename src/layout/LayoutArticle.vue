@@ -8,12 +8,13 @@
       <router-view />
       <PageCopyRight></PageCopyRight>
     </div>
-    <BackTop><UpSquareFilled :style="{ fontSize: '50px', color: '#4669b1' }"/></BackTop>
+    <a-back-top>
+      <UpSquareFilled :style="{ fontSize: '50px', color: '#4669b1' }" />
+    </a-back-top>
   </div>
 </template>
 
 <script lang="ts">
-import { BackTop } from 'ant-design-vue'
 import { UpSquareFilled } from '@ant-design/icons-vue'
 import PageTopBar from './components/PageTopBar.vue'
 import PageHeader from './components/PageHeader.vue'
@@ -25,7 +26,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'LayoutArticle',
   components: {
-    BackTop,
     UpSquareFilled,
     PageTopBar,
     PageHeader,

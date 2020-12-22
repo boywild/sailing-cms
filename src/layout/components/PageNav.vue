@@ -1,39 +1,34 @@
 <template>
   <div class="page-nav">
-    <router-link class="page-nav-item" v-for="(item, index) in navList" :key="index" :to="{ name: item.link }">
+    <router-link class="page-nav-item" v-for="(item, index) in catList" :key="index" :to="{ name: item.link, params: { id: item.id } }">
       {{ item.title }}</router-link
     >
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent, onBeforeMount, ref } from 'vue'
+import article from '@/api/article'
+import { Category } from '@/types/article'
 export default defineComponent({
   name: 'PageNav',
   props: {
     msg: String
   },
-  data() {
+  setup() {
+    const catList = ref([{ title: '首页', link: 'home' }])
+    onBeforeMount(async () => {
+      const { data = {} } = await article.getCategoryList()
+      console.log(data.dataList)
+      catList.value = catList.value.concat(data.dataList.map((ele: Category) => ({ ...ele, link: 'category' })))
+    })
+    console.log(catList)
     return {
-      navList: [
-        { title: '首页', link: 'home' },
-        { title: '航情', link: 'sailing' },
-        { title: '招聘', link: 'partner' },
-        { title: '活动', link: 'activity' },
-        { title: '专栏', link: 'profession' },
-        { title: '图片', link: 'imagelib' },
-        { title: '视频', link: 'videolib' },
-        { title: '造船', link: 'topic' },
-        { title: '交易', link: 'meeting' },
-        { title: '港口', link: 'kol' },
-        { title: '海员', link: 'About' },
-        { title: '企业', link: 'About' },
-        { title: '人物', link: 'About' },
-        { title: '技术', link: 'About' },
-        { title: '安全', link: 'About' }
-      ]
+      catList
     }
+  },
+  data() {
+    return {}
   }
 })
 </script>
@@ -50,9 +45,9 @@ export default defineComponent({
     cursor: pointer;
     height: 100%;
     @include flex(center);
-    &.router-link-active{
-      background: #517ace;
-    }
+    // &.router-link-active {
+    //   background: #517ace;
+    // }
   }
 }
 </style>
