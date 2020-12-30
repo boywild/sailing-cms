@@ -18,7 +18,7 @@
                   <div class="t-txt">{{ article.title }}</div>
                   <div class="t-comment">2</div>
                 </router-link>
-                <div class="desc">{{ article.content }}</div>
+                <div class="desc">{{ article.introduction }}</div>
                 <div class="time">信德海事{{ article.createDate }}</div>
               </div>
             </div>
@@ -49,11 +49,16 @@
         </div>
         <ReadingTop class="mgb15" before="阅读" after="排行" :content="homeReadTop"></ReadingTop>
         <ImgLazy class="mgb15" height="92"></ImgLazy>
-        <ImgLazy height="92"></ImgLazy>
+        <ImgLazy class="mgb15" height="92"></ImgLazy>
+        <HotBox class="mgb15" before="国内" after="热点" :main="inlandNews.slice(0, 2)" :list="inlandNews.slice(2)"></HotBox>
+        <ArticleToday class="mgb15" :content="internationalNews"></ArticleToday>
+        <HotBox class="mgb15" before="活动" after="热点" :main="activeHot.slice(0, 2)" :list="activeHot.slice(2)"></HotBox>
+        <HotBox class="mgb15" before="航情" after="热点" :main="sailingHot.slice(0, 2)" :list="sailingHot.slice(2)"></HotBox>
+        <FeatureBox before="专栏" after="分享" :content="professionNews"></FeatureBox>
       </div>
     </template>
   </PageContent>
-  <PageContent>
+  <!-- <PageContent>
     <template #banner>
       <ImgLazy class="mgb15" height="118"></ImgLazy>
     </template>
@@ -88,7 +93,7 @@
         <FeatureBox before="专栏" after="分享" :content="professionNews"></FeatureBox>
       </div>
     </template>
-  </PageContent>
+  </PageContent> -->
 </template>
 
 <script lang="ts">
