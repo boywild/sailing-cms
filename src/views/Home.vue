@@ -5,7 +5,13 @@
       <ImgLazy class="mgb15" height="118"></ImgLazy>
     </template>
     <template #content>
-      <div class="home-banner mgb15"></div>
+      <div class="home-banner mgb15">
+        <swiper>
+          <swiper-slide v-for="(item, index) in homeBanner" :key="index">
+            <img :src="item.image" />
+          </swiper-slide>
+        </swiper>
+      </div>
       <ImgLazy class="mgb15" height="118"></ImgLazy>
       <div class="article-box">
         <Title name="新闻速递" sub-name="news"></Title>
@@ -99,6 +105,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 import PageContent from '@/layout/components/PageContent.vue'
 import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
@@ -114,6 +121,8 @@ import article from '@/api/article'
 export default defineComponent({
   name: 'Home',
   components: {
+    Swiper,
+    SwiperSlide,
     PageContent,
     ImgLazy,
     Title,
@@ -223,6 +232,16 @@ export default defineComponent({
       ]
     }
   },
+  mounted() {
+    // setTimeout(() => {
+    //   const swiper = new Swiper('.swiper-container', {
+    //     pagination: {
+    //       el: '.swiper-pagination',
+    //       clickable: true
+    //     }
+    //   })
+    // }, 500)
+  },
   methods: {
     decode(html: string) {
       console.log(html)
@@ -243,6 +262,34 @@ export default defineComponent({
   width: 656px;
   height: 319px;
   background: #eee;
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    > img {
+      max-width: 100%;
+      display: block;
+    }
+  }
 }
 .news-list {
   .news-item {
