@@ -1,8 +1,8 @@
 <template>
   <div class="page-header pdtb15">
-    <div class="page-logo">
+    <router-link to="/" class="page-logo">
       <img class="img" src="../../assets/images/page-logo.png" alt="" />
-    </div>
+    </router-link>
     <div class="page-adv">
       <img class="img" src="../../assets/images/upload/header-adv.png" alt="" />
     </div>

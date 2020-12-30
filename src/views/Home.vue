@@ -11,15 +11,15 @@
         <Title name="新闻速递" sub-name="news"></Title>
         <div class="article-content">
           <div class="news-list">
-            <div class="news-item" v-for="(article, index) in articles" :key="index">
+            <div class="news-item" v-for="(article, index) in homeNews" :key="index">
               <ImgLazy width="151" height="101"></ImgLazy>
               <div class="new-info">
-                <router-link :to="{ name: 'post', params: { id: 1 } }" class="title">
-                  <div class="t-txt">世界最大船用双燃料发动机全球发布</div>
+                <router-link :to="{ name: 'post', params: { articleId: article.articleId } }" class="title">
+                  <div class="t-txt">{{ article.title }}</div>
                   <div class="t-comment">2</div>
                 </router-link>
-                <div class="desc">由中国船舶自主研发的目前世界上最大的船用双燃料发动机昨天(26日)正式面向 全球市场发布</div>
-                <div class="time">信德海事 2020-05-27 15:33</div>
+                <div class="desc">{{ article.content }}</div>
+                <div class="time">信德海事{{ article.createDate }}</div>
               </div>
             </div>
           </div>
@@ -32,7 +32,7 @@
         <Technology
           :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
         ></Technology>
-        <TradeShow class="mgb15" before="活动" after="会展" :content="tradeList"></TradeShow>
+        <TradeShow class="mgb15" before="活动" after="会展" :content="meetingNews"></TradeShow>
         <div class="usually-tools mgb20">
           <div class="tools-title">
             <div class="txt">实用查询</div>
@@ -47,7 +47,7 @@
             <div class="tools">PSC查询</div>
           </div>
         </div>
-        <ReadingTop class="mgb15" before="阅读" after="排行" :content="readingTop"></ReadingTop>
+        <ReadingTop class="mgb15" before="阅读" after="排行" :content="homeReadTop"></ReadingTop>
         <ImgLazy class="mgb15" height="92"></ImgLazy>
         <ImgLazy height="92"></ImgLazy>
       </div>
@@ -82,10 +82,10 @@
     <template #side>
       <div>
         <HotBox class="mgb20" before="国内" after="热点" :main="hotMain" :list="hotList"></HotBox>
-        <ArticleToday class="mgb20"></ArticleToday>
+        <ArticleToday class="mgb20" :content="internationalNews"></ArticleToday>
         <HotBox class="mgb20" before="活动" after="热点" :main="hotMain" :list="hotList"></HotBox>
         <HotBox class="mgb20" before="航情" after="热点" :main="hotMain" :list="hotList"></HotBox>
-        <FeatureBox before="专栏" after="分享" :content="featureList"></FeatureBox>
+        <FeatureBox before="专栏" after="分享" :content="professionNews"></FeatureBox>
       </div>
     </template>
   </PageContent>
@@ -93,6 +93,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import PageContent from '@/layout/components/PageContent.vue'
 import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
@@ -121,15 +122,59 @@ export default defineComponent({
   },
   setup() {
     const topArticles = ref([])
-    onMounted(async () => {
+    const homeBanner = ref([]) // 首页banner
+    const homeNews = ref([]) // 首页新闻
+    const homeReadTop = ref([]) // 首页阅读排行
+    const sailingHot = ref([]) // 航情热点
+    const meetingNews = ref([]) // 活动会展
+    const activeHot = ref([]) // 活动热点
+    const professionNews = ref([]) // 专栏分享
+    const inlandNews = ref([]) // 国内热点
+    const internationalNews = ref([]) // 国际风云
+    onMounted(() => {
       // const { data = [] } = await Test.queryTaskStatus()
-      const { data = [] } = await article.getArticleList({ pageNo: 1, pageSize: 30 })
-      console.log(data)
-      topArticles.value = data
+      const route = useRoute()
+      const allData = [
+        { name: '首页banner', type: (route.query.type || '1') as string, hot: '1' },
+        { name: '首页新闻', type: (route.query.type || '1') as string, sortType: '1' },
+        { name: '首页阅读排行', type: '1', sortType: '2' },
+        { name: '航情热点', type: '2', hot: '1' },
+        { name: '活动会展', type: '16', sortType: '1' },
+        { name: '活动热点', type: '4', hot: '1' },
+        { name: '专栏分享', type: '5', sortType: '1' },
+        { name: '国内热点', type: '24', hot: '1' },
+        { name: '国际风云', type: '25', hot: '1' }
+      ]
+      // const { type = '1' } = route.query
+      // const { data = [] } = await article.getArticleList({ pageNo: 1, pageSize: 30, type: type as string })
+      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, pageSize: 30, ...ele }))
+      Promise.all(fetchList).then((res) => {
+        const allDataList = res.map((ele) => ele.data.dataList || [])
+        homeBanner.value = allDataList[0]
+        homeNews.value = allDataList[1]
+        homeReadTop.value = allDataList[2]
+        sailingHot.value = allDataList[3]
+        meetingNews.value = allDataList[4]
+        activeHot.value = allDataList[5]
+        professionNews.value = allDataList[6]
+        inlandNews.value = allDataList[7]
+        internationalNews.value = allDataList[8]
+      })
+      // console.log(data)
+      // topArticles.value = data
     })
     console.log(topArticles)
     return {
-      topArticles
+      topArticles,
+      homeBanner,
+      homeNews,
+      homeReadTop,
+      sailingHot,
+      meetingNews,
+      activeHot,
+      professionNews,
+      inlandNews,
+      internationalNews
     }
   },
   data() {
@@ -171,23 +216,6 @@ export default defineComponent({
           category: [{ catName: '金融', title: '国际邮轮公司最新复工时间表', from: '信德海事', time: '2020-05-27 15:33' }]
         }
       ],
-      tradeList: [
-        { title: '2020（第十四届）干散货海运峰会', time: '2020年7月2-3日', location: '上海（详询会' },
-        { title: '会展业按下重启键 SHIPTEC助力企业线上新' },
-        { title: '宁波市政府携手英富曼会展创办宁波海博' },
-        { title: '有奖征集 | 纪念陈嘉庚先生创办集美航海' },
-        { title: '第三期“海仲云讲坛”线上讲座成功举办' },
-        { title: '2020集装箱多式联运亚洲展将于2021年3月' }
-      ],
-      readingTop: [
-        { title: '拆船厂或即将复工！史上被拆解的最大集' },
-        { title: '3条船“刮船底”后，猜猜能够节省多少' },
-        { title: '【头条】淡马锡挺身救太平船务' },
-        { title: '进口限制愈演愈烈 澳煤企寻求中国以外亚' },
-        { title: 'APL箱船大风浪中40箱子落水，本航次从中' },
-        { title: '希腊船东航运公司Central Group进入超大型油' },
-        { title: '需求受阻！沙特阿美暂停12艘LNG新造船建' }
-      ],
       hotMain: [
         { title: '大连海事大学原党委书记王昭翮调任中国农业', img: '' },
         { title: '重磅！中国石化集团改制为国有独资公司', img: '' }
@@ -198,13 +226,6 @@ export default defineComponent({
         { title: '董家口海事局成立', img: '' },
         { title: '王永新先生担任招商轮船总经理', img: '' },
         { title: '海员请注意：关于海事综合服务平台密码', img: '' }
-      ],
-      featureList: [
-        { title: '拉番轮大豆热损案定损数学模 式“科学性”论证', from: '信德海事网', img: '' },
-        { title: '海洋光谱号为何被称为超量子 级邮轮？', from: '信德海事网', img: '' },
-        { title: '使用低硫油的相关规定', from: '信德海事网', img: '' },
-        { title: '1999-2017海运进口大豆热损 损失认定案例综述', from: '信德海事网', img: '' },
-        { title: 'IMO第101届海安会概况', from: '信德海事网', img: '' }
       ]
     }
   },

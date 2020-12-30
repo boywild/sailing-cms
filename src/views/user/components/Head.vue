@@ -1,8 +1,8 @@
 <template>
   <div class="login-register-head">
-    <div class="head-logo">
+    <router-link to="/" class="head-logo">
       <img class="img" src="../../../assets/images/page-logo.png" alt="" />
-    </div>
+    </router-link>
   </div>
 </template>
 <script lang="ts">

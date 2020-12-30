@@ -2,11 +2,16 @@
   <div class="article-feature">
     <Title2 class="mgb10" :before="before" :after="after"></Title2>
     <div class="article-feature-content">
-      <router-link class="feature-list" to="/" v-for="(item, index) in content" :key="index">
+      <router-link
+        class="feature-list"
+        :to="{ name: 'post', params: { articleId: item.articleId } }"
+        v-for="(item, index) in content"
+        :key="index"
+      >
         <ImgLazy width="113" height="95"></ImgLazy>
         <div class="feature-msg">
           <div class="title">{{ item.title }}</div>
-          <div class="from">来源：{{ item.from }}</div>
+          <div class="from">来源：信德海事</div>
         </div>
       </router-link>
     </div>

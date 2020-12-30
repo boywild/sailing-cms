@@ -3,25 +3,9 @@
     <Title2 class="mgb10" before="国际" after="风云"></Title2>
     <div class="article-today-content">
       <div class="today-list">
-        <div class="feature-msg">
-          <div class="num">1</div>
-          <router-link class="title" to="/">33条船“刮船底”后，猜猜能够节省多少</router-link>
-        </div>
-        <div class="feature-msg">
-          <div class="num">2</div>
-          <router-link class="title" to="/">33条船“刮船底”后，猜猜能够节省多少</router-link>
-        </div>
-        <div class="feature-msg">
-          <div class="num">3</div>
-          <router-link class="title" to="/">33条船“刮船底”后，猜猜能够节省多少</router-link>
-        </div>
-        <div class="feature-msg">
-          <div class="num">4</div>
-          <router-link class="title" to="/">33条船“刮船底”后，猜猜能够节省多少</router-link>
-        </div>
-        <div class="feature-msg">
-          <div class="num">5</div>
-          <router-link class="title" to="/">33条船“刮船底”后，猜猜能够节省多少</router-link>
+        <div class="feature-msg" v-for="(item, index) in content" :key="index">
+          <div class="num">{{ index + 1 }}</div>
+          <router-link class="title" to="/">{{ item.title }}</router-link>
         </div>
       </div>
     </div>
@@ -71,6 +55,9 @@ export default defineComponent({
           color: $text-light-color;
           font-weight: bold;
           margin-right: 10px;
+        }
+        .title{
+          @include text-overflow();
         }
       }
     }

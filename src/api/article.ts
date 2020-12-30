@@ -21,9 +21,13 @@ interface SendSmsParams {
 interface ArticleParams {
   pageNo: number
   pageSize: number
+  name?: string
+  type?: string | null
   categoryId?: string
   keywords?: string
   hot?: string
+  authorId?: string
+  leaderId?: string
   sortType?: string
 }
 interface ArticleDetailParams {
