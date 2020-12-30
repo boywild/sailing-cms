@@ -12,7 +12,7 @@
         <div class="article-content">
           <div class="news-list">
             <div class="news-item" v-for="(article, index) in homeNews" :key="index">
-              <ImgLazy width="151" height="101"></ImgLazy>
+              <ImgLazy width="151" height="101" :src="article.image"></ImgLazy>
               <div class="new-info">
                 <router-link :to="{ name: 'post', params: { articleId: article.articleId } }" class="title">
                   <div class="t-txt">{{ article.title }}</div>
@@ -81,10 +81,10 @@
     </template>
     <template #side>
       <div>
-        <HotBox class="mgb20" before="国内" after="热点" :main="hotMain" :list="hotList"></HotBox>
+        <HotBox class="mgb20" before="国内" after="热点" :main="inlandNews.slice(0, 2)" :list="inlandNews.slice(2)"></HotBox>
         <ArticleToday class="mgb20" :content="internationalNews"></ArticleToday>
-        <HotBox class="mgb20" before="活动" after="热点" :main="hotMain" :list="hotList"></HotBox>
-        <HotBox class="mgb20" before="航情" after="热点" :main="hotMain" :list="hotList"></HotBox>
+        <HotBox class="mgb20" before="活动" after="热点" :main="activeHot.slice(0, 2)" :list="activeHot.slice(2)"></HotBox>
+        <HotBox class="mgb20" before="航情" after="热点" :main="sailingHot.slice(0, 2)" :list="sailingHot.slice(2)"></HotBox>
         <FeatureBox before="专栏" after="分享" :content="professionNews"></FeatureBox>
       </div>
     </template>
@@ -215,17 +215,6 @@ export default defineComponent({
           banner: '3',
           category: [{ catName: '金融', title: '国际邮轮公司最新复工时间表', from: '信德海事', time: '2020-05-27 15:33' }]
         }
-      ],
-      hotMain: [
-        { title: '大连海事大学原党委书记王昭翮调任中国农业', img: '' },
-        { title: '重磅！中国石化集团改制为国有独资公司', img: '' }
-      ],
-      hotList: [
-        { title: '大连海事大学原党委书记王昭翮调任中国农业', img: '' },
-        { title: '重磅！中国石化集团改制为国有独资公司！', img: '' },
-        { title: '董家口海事局成立', img: '' },
-        { title: '王永新先生担任招商轮船总经理', img: '' },
-        { title: '海员请注意：关于海事综合服务平台密码', img: '' }
       ]
     }
   },

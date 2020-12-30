@@ -42,5 +42,6 @@ export default defineComponent({
 <style scoped lang="scss">
 .img-box {
   background: #eee;
+  overflow: hidden;
 }
 </style>

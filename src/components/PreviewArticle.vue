@@ -1,6 +1,6 @@
 <template>
   <router-link class="preview-article" to="/">
-    <ImgLazy height="95"></ImgLazy>
+    <ImgLazy height="95" :src="content.image"></ImgLazy>
     <div class="article-short-content">{{ content.title }}</div>
   </router-link>
 </template>
