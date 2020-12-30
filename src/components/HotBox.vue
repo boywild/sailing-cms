@@ -7,7 +7,7 @@
       </div>
       <div class="hot-list">
         <div class="hot-title" v-for="(item, index) in list" :key="index">
-          <router-link to="/">{{ item.title }}</router-link>
+          <router-link :to="{ name: 'post', params: { articleId: item.articleId } }">{{ item.title }}</router-link>
         </div>
       </div>
     </div>

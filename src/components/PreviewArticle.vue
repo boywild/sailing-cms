@@ -1,5 +1,5 @@
 <template>
-  <router-link class="preview-article" to="/">
+  <router-link class="preview-article" :to="{ name: 'post', params: { articleId: content.articleId } }">
     <ImgLazy height="95" :src="content.image"></ImgLazy>
     <div class="article-short-content">{{ content.title }}</div>
   </router-link>

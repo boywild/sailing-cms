@@ -1,6 +1,9 @@
 const path = require('path')
 module.exports = {
   publicPath: '/sailing-cms/',
+  devServer: {
+    disableHostCheck: true
+  },
   chainWebpack: config => {
     config.devServer.proxy({
       '/api': {

@@ -8,7 +8,7 @@
         v-for="(item, index) in content"
         :key="index"
       >
-        <ImgLazy width="113" height="95"></ImgLazy>
+        <ImgLazy width="113" height="95" :src="item.image"></ImgLazy>
         <div class="feature-msg">
           <div class="title">{{ item.title }}</div>
           <div class="from">来源：信德海事</div>
