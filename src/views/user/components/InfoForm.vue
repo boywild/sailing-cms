@@ -1,13 +1,15 @@
 <template>
   <a-form layout="vertical">
     <a-form-item v-if="filedType === 'phone'" label="手机号" v-bind="validateInfos.phone">
-      <a-input v-model:value="modelRef.phone" @blur="validate('phone', { trigger: 'blur' }).catch(() => {})" />
+      <a-input v-model:value="modelRef.phone" type="tel" @blur="validate('phone', { trigger: 'blur' }).catch(() => {})" />
     </a-form-item>
     <a-form-item v-if="filedType === 'email'" label="邮箱" v-bind="validateInfos.email">
-      <a-input v-model:value="modelRef.email" @blur="validate('email', { trigger: 'blur' }).catch(() => {})" />
+      <a-input v-model:value="modelRef.email" type="email" @blur="validate('email', { trigger: 'blur' }).catch(() => {})" />
     </a-form-item>
     <a-form-item v-if="formType === 'register'" label="验证码" v-bind="validateInfos.code">
-      <a-input v-model:value="modelRef.code" @blur="validate('code', { trigger: 'blur' }).catch(() => {})" />
+      <a-input v-model:value="modelRef.code" type="tel" extra="232323" @blur="validate('code', { trigger: 'blur' }).catch(() => {})">
+        <template #addonAfter> <a-button type="primary"> 发送验证码 </a-button> </template>
+      </a-input>
     </a-form-item>
     <a-form-item label="密码" v-bind="validateInfos.password">
       <a-input type="password" v-model:value="modelRef.password" @blur="validate('password', { trigger: 'blur' }).catch(() => {})" />
@@ -37,6 +39,8 @@ export default defineComponent({
       phone: [
         {
           required: true,
+          min: 11,
+          max: 11,
           message: '请输入手机号'
         }
       ],
@@ -49,12 +53,16 @@ export default defineComponent({
       code: [
         {
           required: true,
+          min: 6,
+          max: 6,
           message: '请输入验证码'
         }
       ],
       password: [
         {
           required: true,
+          min: 6,
+          max: 11,
           message: '请输入密码'
         }
       ]
