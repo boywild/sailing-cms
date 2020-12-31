@@ -1,5 +1,5 @@
 <template>
-  <router-link class="preview-article" :to="{ name: 'post', params: { articleId: content.articleId } }">
+  <router-link class="preview-article" :to="{ name: 'post', params: { articleId: content.articleId, fromePage: pageType } }">
     <ImgLazy height="95" :src="content.image"></ImgLazy>
     <div class="article-short-content">{{ content.title }}</div>
   </router-link>
@@ -12,7 +12,8 @@ export default defineComponent({
   name: 'PreviewArticle',
   components: { ImgLazy },
   props: {
-    content: { type: Object, default: () => ({}) }
+    content: { type: Object, default: () => ({}) },
+    pageType: { type: String, default: () => '1' }
   }
 })
 </script>

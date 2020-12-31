@@ -7,7 +7,7 @@
       </div>
       <div class="hot-list">
         <div class="hot-title" v-for="(item, index) in list" :key="index">
-          <router-link :to="{ name: 'post', params: { articleId: item.articleId } }">{{ item.title }}</router-link>
+          <router-link :to="{ name: 'post', params: { articleId: item.articleId, fromePage: pageType } }">{{ item.title }}</router-link>
         </div>
       </div>
     </div>
@@ -29,7 +29,8 @@ export default defineComponent({
     before: { type: String, default: () => '' },
     after: { type: String, default: () => '' },
     main: { type: Array, default: () => [] },
-    list: { type: Array, default: () => [] }
+    list: { type: Array, default: () => [] },
+    pageType: { type: String, default: () => '1' }
   }
 })
 </script>

@@ -4,7 +4,7 @@
     <div class="article-feature-content">
       <router-link
         class="feature-list"
-        :to="{ name: 'post', params: { articleId: item.articleId } }"
+        :to="{ name: 'post', params: { articleId: item.articleId, fromePage: pageType } }"
         v-for="(item, index) in content"
         :key="index"
       >
@@ -32,7 +32,8 @@ export default defineComponent({
   props: {
     before: { type: String, default: () => '' },
     after: { type: String, default: () => '' },
-    content: { type: Array, default: () => [] }
+    content: { type: Array, default: () => [] },
+    pageType: { type: String, default: () => '1' }
   }
 })
 </script>

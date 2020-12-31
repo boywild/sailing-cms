@@ -4,7 +4,7 @@
     <div class="trade-list">
       <div class="trade-topic" v-for="(item, index) in content" :key="index">
         <div class="title">
-          <router-link :to="{ name: 'post', params: { articleId: item.articleId } }">{{ item.title }}</router-link>
+          <router-link :to="{ name: 'post', params: { articleId: item.articleId, fromePage: pageType } }">{{ item.title }}</router-link>
         </div>
         <div class="trade-info">会议时间：{{ item.time }} 会议地点：{{ item.location }}</div>
       </div>
@@ -21,7 +21,8 @@ export default defineComponent({
   props: {
     content: { type: Array, default: () => [] },
     before: { type: String, default: () => '' },
-    after: { type: String, default: () => '' }
+    after: { type: String, default: () => '' },
+    pageType: { type: String, default: () => '1' }
   }
 })
 </script>

@@ -3,7 +3,7 @@
     <Title2 :before="before" :after="after"></Title2>
     <div class="reading-list">
       <div class="reading-title" v-for="(item, index) in content" :key="index">
-        <router-link :to="{ name: 'post', params: { articleId: item.articleId } }">
+        <router-link :to="{ name: 'post', params: { articleId: item.articleId, fromePage: pageType } }">
           <span class="num">{{ index + 1 }}</span>
           <span class="content">{{ item.title }}</span>
         </router-link>
@@ -23,7 +23,8 @@ export default defineComponent({
   props: {
     before: { type: String, default: () => '' },
     after: { type: String, default: () => '' },
-    content: { type: Array, default: () => [] }
+    content: { type: Array, default: () => [] },
+    pageType: { type: String, default: () => '1' }
   }
 })
 </script>

@@ -20,7 +20,7 @@
             <div class="news-item" v-for="(article, index) in homeNews" :key="index">
               <ImgLazy width="151" height="101" :src="article.image"></ImgLazy>
               <div class="new-info">
-                <router-link :to="{ name: 'post', params: { articleId: article.articleId } }" class="title">
+                <router-link :to="{ name: 'post', params: { articleId: article.articleId, fromePage: '1' } }" class="title">
                   <div class="t-txt">{{ article.title }}</div>
                   <div class="t-comment">2</div>
                 </router-link>
