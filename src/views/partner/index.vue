@@ -4,9 +4,9 @@
       <ImgLazy class="mgb15" height="118"></ImgLazy>
     </template>
     <template #content>
-      <TradeComing class="mgb20"></TradeComing>
+      <TradeComing class="mgb20" :content="hotList"></TradeComing>
       <Title name="要闻" subName="news"></Title>
-      <ArticleList :list="list"></ArticleList>
+      <ArticleList :list="newsList"></ArticleList>
     </template>
     <template #side>
       <InnerSide></InnerSide>
@@ -18,7 +18,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import PageContent from '@/layout/components/PageContent.vue'
 import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
@@ -26,9 +27,33 @@ import InnerSide from '@/components/InnerSide.vue'
 import ArticleList from '@/components/ArticleList.vue'
 import TradeComing from '@/components/TradeComing.vue'
 import SiteMap from '@/components/SiteMap.vue'
+import article from '@/api/article'
 export default defineComponent({
   name: 'Partner',
   components: { PageContent, ImgLazy, Title, InnerSide, ArticleList, TradeComing, SiteMap },
+  setup() {
+    const hotList = ref([]) // 热点资讯
+    const newsList = ref([]) // 要闻
+
+    onMounted(() => {
+      const route = useRoute()
+      const pageType = route.query.type || '1'
+      const allData = [
+        { name: '热点资讯', type: pageType as string, hot: '1', pageSize: 4 },
+        { name: '要闻', type: pageType as string, sortType: '1', pageSize: 30 }
+      ]
+      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, ...ele }))
+      Promise.all(fetchList).then((res) => {
+        const allDataList = res.map((ele) => ele.data.dataList || [])
+        hotList.value = allDataList[0]
+        newsList.value = allDataList[1]
+      })
+    })
+    return {
+      hotList,
+      newsList
+    }
+  },
   data() {
     return {
       list: [

@@ -1,5 +1,6 @@
+import { Ref } from 'vue'
 import Http from '@/api/index'
-import commonParams from '@/utils/common-params'
+// import commonParams from '@/utils/common-params'
 
 interface LoginParams {
   account: string
@@ -22,7 +23,7 @@ interface ArticleParams {
   pageNo: number
   pageSize: number
   name?: string
-  type?: string | null
+  type?: string | null | Ref<string>
   categoryId?: string
   keywords?: string
   hot?: string

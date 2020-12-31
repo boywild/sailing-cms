@@ -6,7 +6,12 @@
     </div>
     <div class="top-rank-content">
       <div class="top-rank-list">
-        <router-link to="/" class="t-p-item" v-for="(item, index) in content" :key="index">
+        <router-link
+          :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }"
+          class="t-p-item"
+          v-for="(item, index) in content"
+          :key="index"
+        >
           <div class="index">{{ index + 1 }}</div>
           <div class="title">{{ item.title }}</div>
         </router-link>
@@ -21,7 +26,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'TopRank',
   props: {
-    content: { type: Array, default: () => [] }
+    content: { type: Array, default: () => [] },
+    pageType: { type: String, default: () => '1' }
   }
 })
 </script>
@@ -42,25 +48,25 @@ export default defineComponent({
 
       &:first-child {
         padding-right: 10px;
-        &::after {
-          content: '';
-          position: absolute;
-          right: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 2px;
-          height: 18px;
-          background: $text-color;
-        }
+        // &::after {
+        //   content: '';
+        //   position: absolute;
+        //   right: 0;
+        //   top: 50%;
+        //   transform: translateY(-50%);
+        //   width: 2px;
+        //   height: 18px;
+        //   background: $text-color;
+        // }
       }
       &:last-child {
         padding-left: 10px;
       }
       &.active {
         color: $theme-blue;
-        &::after {
-          background: $theme-blue;
-        }
+        // &::after {
+        //   background: $theme-blue;
+        // }
       }
     }
   }

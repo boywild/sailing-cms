@@ -29,7 +29,7 @@ import TradeComing from '@/components/TradeComing.vue'
 import SiteMap from '@/components/SiteMap.vue'
 import article from '@/api/article'
 export default defineComponent({
-  name: 'Home',
+  name: 'Sailing',
   components: { PageContent, ImgLazy, Title, InnerSide, ArticleList, TradeComing, SiteMap },
   setup() {
     const hotList = ref([]) // 热点资讯
@@ -39,10 +39,10 @@ export default defineComponent({
       const route = useRoute()
       const pageType = route.query.type || '1'
       const allData = [
-        { name: '热点资讯', type: pageType as string, hot: '1' },
-        { name: '要闻', type: pageType as string, sortType: '1' }
+        { name: '热点资讯', type: pageType as string, hot: '1', pageSize: 4 },
+        { name: '要闻', type: pageType as string, sortType: '1', pageSize: 30 }
       ]
-      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, pageSize: 30, ...ele }))
+      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, ...ele }))
       Promise.all(fetchList).then((res) => {
         const allDataList = res.map((ele) => ele.data.dataList || [])
         hotList.value = allDataList[0]

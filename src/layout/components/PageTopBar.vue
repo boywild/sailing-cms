@@ -3,9 +3,9 @@
     <div class="page-wrapper">
       <div class="page-title">信德海事网-专业海事信息咨询服务平台</div>
       <div class="page-registry">
-        <span class="registry">注册</span>
+        <router-link to="/register" class="registry">注册</router-link>
         <span class="line">|</span>
-        <span class="login">登录</span>
+        <router-link to="/login" class="login">登录</router-link>
       </div>
     </div>
   </div>
