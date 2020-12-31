@@ -1,17 +1,23 @@
 <template>
   <div class="trade-coming">
-    <ImgLazy width="302" height="201"></ImgLazy>
+    <ImgLazy width="302" height="201" :src="(content[0] && content[0].image) || ''"></ImgLazy>
     <div class="trade-box">
       <div class="trade-recent">
-        <router-link to="/" class="title">2020（第五届）青岛国际海...</router-link>
+        <router-link :to="{ name: 'post', params: { articleId: content[0] && content[0].articleId, fromPage: '2' } }" class="title">{{
+          content[0] && content[0].title
+        }}</router-link>
         <div class="desc">
-          尊敬的海洋业者：青岛海洋科学与技术试点国家实验室与青岛蓝谷管理局共同邀请您参观2020（第五届）青岛国际海洋科技展览会（以下简称“展会”），展会信息如下：一、展会时间、地点时间：2020年9月22日至24日地点：青岛国际博览中...
+          {{ content[0] && content[0].introduction }}
         </div>
       </div>
       <div class="trade-other">
-        <router-link to="/" class="trade-o-t">大连海事展官方小程序正式上线</router-link>
-        <router-link to="/" class="trade-o-t">2020（第五届）青岛国际海洋科技展览会邀您参会！</router-link>
-        <router-link to="/" class="trade-o-t">2020（第五届）青岛国际海洋科技展览会</router-link>
+        <router-link
+          :to="{ name: 'post', params: { articleId: item.articleId, fromPage: '2' } }"
+          class="trade-o-t"
+          v-for="(item, index) in content.slice(1, 4)"
+          :key="index"
+          >{{ item.title }}</router-link
+        >
       </div>
     </div>
   </div>
@@ -24,8 +30,7 @@ export default defineComponent({
   name: 'TradeComing',
   components: { ImgLazy },
   props: {
-    name: { type: String, default: () => '' },
-    subName: { type: String, default: () => '' }
+    content: { type: Array, default: () => [] }
   }
 })
 </script>
@@ -45,6 +50,7 @@ export default defineComponent({
       .desc {
         font-size: $text-size-small;
         padding: 5px 0 12px 0;
+        @include multi-overflow(5);
       }
     }
     .trade-other {
@@ -53,6 +59,7 @@ export default defineComponent({
         color: $theme-blue;
         position: relative;
         padding-left: 10px;
+        display: block;
         @include text-overflow();
         &::before {
           content: '';

@@ -8,7 +8,10 @@
       <div class="home-banner mgb15">
         <swiper>
           <swiper-slide v-for="(item, index) in homeBanner" :key="index">
-            <img :src="item.image" />
+            <div class="home-hot-preview">
+              <img :src="item.image" />
+              <div class="home-hot-txt">{{ item.title }}</div>
+            </div>
           </swiper-slide>
         </swiper>
       </div>
@@ -20,9 +23,9 @@
             <div class="news-item" v-for="(article, index) in homeNews" :key="index">
               <ImgLazy width="151" height="101" :src="article.image"></ImgLazy>
               <div class="new-info">
-                <router-link :to="{ name: 'post', params: { articleId: article.articleId, fromePage: '1' } }" class="title">
+                <router-link :to="{ name: 'post', params: { articleId: article.articleId, fromPage: '1' } }" class="title">
                   <div class="t-txt">{{ article.title }}</div>
-                  <div class="t-comment">2</div>
+                  <div class="t-comment">{{ article.comments }}</div>
                 </router-link>
                 <div class="desc">{{ article.introduction }}</div>
                 <div class="time">信德海事{{ article.createDate }}</div>
@@ -262,6 +265,25 @@ export default defineComponent({
   width: 656px;
   height: 319px;
   background: #eee;
+  .home-hot-preview {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .home-hot-txt {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0 20px;
+      font-size: $text-size-normal;
+      background: rgba($color: #000000, $alpha: 0.5);
+      color: #fff;
+      text-align: left;
+      height: 35px;
+      line-height: 35px;
+      @include text-overflow();
+    }
+  }
   .swiper-container {
     width: 100%;
     height: 100%;

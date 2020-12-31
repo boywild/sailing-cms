@@ -4,7 +4,7 @@
     <div class="article-feature-content">
       <router-link
         class="feature-list"
-        :to="{ name: 'post', params: { articleId: item.articleId, fromePage: pageType } }"
+        :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }"
         v-for="(item, index) in content"
         :key="index"
       >

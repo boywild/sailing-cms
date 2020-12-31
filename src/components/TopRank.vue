@@ -1,8 +1,8 @@
 <template>
   <div class="top-rank">
     <div class="top-rank-tab">
-      <div class="rank-tab-item active">点击排行</div>
-      <div class="rank-tab-item">评论排行</div>
+      <div class="rank-tab-item active">评论排行</div>
+      <!-- <div class="rank-tab-item">评论排行</div> -->
     </div>
     <div class="top-rank-content">
       <div class="top-rank-list">

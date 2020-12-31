@@ -1,13 +1,15 @@
 <template>
   <div class="article-preview-item">
-    <ImgLazy width="151" height="101"></ImgLazy>
+    <ImgLazy width="151" height="101" :src="content.image"></ImgLazy>
     <div class="article-preview-content">
       <div class="pre-title">
-        <div class="txt">{{ content.title }}</div>
-        <div class="comment">2</div>
+        <router-link :to="{ name: 'post', params: { articleId: content.articleId, fromPage: '2' } }" class="txt">{{
+          content.title
+        }}</router-link>
+        <div class="comment">{{ content.comments }}</div>
       </div>
-      <div class="pre-time">{{ content.from }}{{ content.time }}</div>
-      <div class="pre-desc">{{ content.desc }}</div>
+      <div class="pre-time">信德海事{{ content.createDate }}</div>
+      <div class="pre-desc">{{ content.introduction }}</div>
     </div>
   </div>
 </template>

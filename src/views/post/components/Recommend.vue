@@ -32,8 +32,6 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.article-recommend {
-}
 .recommend-list {
   .recommend-item {
     @include flex(flex-start);
