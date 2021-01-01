@@ -60,7 +60,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "profession" */ '../views/profession/index.vue')
       },
       {
-        path: 'profession/author',
+        path: 'profession/author/:authorId',
         name: 'author',
         redirect: '',
         meta: { title: '专栏作者' },
@@ -68,7 +68,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'profession/author/recommend',
-        name: 'author',
+        name: 'authorRecommend',
         redirect: '',
         meta: { title: '专栏推荐作者' },
         component: () => import(/* webpackChunkName: "authorRecommend" */ '../views/profession/author-recommend.vue')

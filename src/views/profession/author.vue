@@ -1,11 +1,11 @@
 <template>
   <PageContent>
     <template #content>
-      <AuthorIntroduce></AuthorIntroduce>
+      <AuthorIntroduce :content="state.authorDetail"></AuthorIntroduce>
       <div class="authors-article mgb20">
         <Title name="最新" subName="new"></Title>
         <div class="auth-hot">
-          <AuthArticle v-for="(item, index) in authArticle" :key="index" :content="item" :thumbnail="false"></AuthArticle>
+          <AuthArticle v-for="(item, index) in state.articleLIst" :key="index" :content="item" :thumbnail="false" page-type="5"></AuthArticle>
         </div>
       </div>
     </template>
@@ -15,7 +15,7 @@
         :showTitle="false"
         :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
       ></Technology>
-      <Authors class="mgb20" before="全部" :content="authors"></Authors>
+      <Authors class="mgb20" before="全部" :content="authorList"></Authors>
     </template>
     <template #footer>
       <SiteMap></SiteMap>
@@ -24,7 +24,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, onMounted, reactive } from 'vue'
+import { useRoute } from 'vue-router'
 import PageContent from '@/layout/components/PageContent.vue'
 import Title from '@/components/Title.vue'
 import Search from '@/components/Search.vue'
@@ -33,22 +34,44 @@ import Authors from './components/Authors.vue'
 import SiteMap from '@/components/SiteMap.vue'
 import AuthArticle from './components/AuthArticle.vue'
 import AuthorIntroduce from './components/AuthorIntroduce.vue'
+import article from '@/api/article'
 export default defineComponent({
-  name: 'Home',
+  name: 'Author',
   components: { PageContent, Title, Search, Technology, Authors, AuthArticle, SiteMap, AuthorIntroduce },
+  setup() {
+    const state = reactive({
+      authorDetail: {},
+      articleLIst: []
+    })
+    const authorList = ref([])
+    const pageType = ref('')
+
+    onMounted(() => {
+      const route = useRoute()
+      const fromPage = (route.query.type as string) || '1'
+      const authorId = route.params.authorId as string
+      pageType.value = fromPage
+      // 作者详情
+      article.authorDetail(authorId).then(({ data = {} }) => {
+        state.authorDetail = data
+      })
+      // 作者列表
+      article.author({ pageNo: 1, pageSize: 30, hot: '1' }).then(({ data = {} }) => {
+        authorList.value = data.dataList
+      })
+      // 作者的文章
+      article.getArticleList({ pageNo: 1, pageSize: 30, authorId }).then(({ data = {} }) => {
+        state.articleLIst = data.dataList
+      })
+    })
+    return {
+      state,
+      authorList,
+      pageType
+    }
+  },
   data() {
     return {
-      authors: [
-        { name: '王勇', img: '' },
-        { name: '刘颖钊', img: '' },
-        { name: '胡月祥', img: '' },
-        { name: '徐剑华', img: '' },
-        { name: '谢燮', img: '' },
-        { name: '王博', img: '' },
-        { name: '田明辉', img: '' },
-        { name: '王磊', img: '' },
-        { name: '孙士森', img: '' }
-      ],
       authArticle: [
         {
           title: '邮轮撤走母港看中国海上旅游的前景',

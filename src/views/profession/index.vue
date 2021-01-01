@@ -1,14 +1,14 @@
 <template>
   <PageContent>
     <template #content>
-      <WonderfulMsg></WonderfulMsg>
+      <WonderfulMsg :content="hotList"></WonderfulMsg>
       <div class="authors-article mgb20">
         <Title name="最新" subName="new"></Title>
         <div class="auth-hot">
-          <AuthArticle v-for="(item, index) in authArticle" :key="index" :content="item"></AuthArticle>
+          <AuthArticle v-for="(item, index) in newsList" :key="index" :content="item"></AuthArticle>
         </div>
       </div>
-      <Focusing></Focusing>
+      <!-- <Focusing></Focusing> -->
     </template>
     <template #side>
       <Search class="mgb15"></Search>
@@ -16,9 +16,9 @@
         :showTitle="false"
         :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
       ></Technology>
-      <Authors class="mgb20" :content="authors"></Authors>
-      <TopRank class="mgb20" :content="topRankList"></TopRank>
-      <FeatureBox before="热点" after="专题" :content="featureList"></FeatureBox>
+      <Authors class="mgb20" :content="authorList"></Authors>
+      <TopRank class="mgb20" :content="commentList" :page-type="pageType"></TopRank>
+      <FeatureBox before="热点" after="专题" :content="hotList" :page-type="pageType"></FeatureBox>
     </template>
     <template #footer>
       <SiteMap></SiteMap>
@@ -27,7 +27,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import PageContent from '@/layout/components/PageContent.vue'
 import Title from '@/components/Title.vue'
 import Search from '@/components/Search.vue'
@@ -37,80 +38,51 @@ import FeatureBox from '@/components/FeatureBox.vue'
 import WonderfulMsg from './components/WonderfulMsg.vue'
 import Authors from './components/Authors.vue'
 import AuthArticle from './components/AuthArticle.vue'
-import Focusing from './components/Focusing.vue'
+// import Focusing from './components/Focusing.vue'
 import SiteMap from '@/components/SiteMap.vue'
+import article from '@/api/article'
+
 export default defineComponent({
   name: 'Home',
-  components: { PageContent, Title, Search, Technology, TopRank, FeatureBox, WonderfulMsg, Authors, AuthArticle, Focusing, SiteMap },
-  data() {
-    return {
-      featureList: [
-        { title: '拉番轮大豆热损案定损数学模 式“科学性”论证', from: '信德海事网', img: '' },
-        { title: '海洋光谱号为何被称为超量子 级邮轮？', from: '信德海事网', img: '' },
-        { title: '使用低硫油的相关规定', from: '信德海事网', img: '' },
-        { title: '1999-2017海运进口大豆热损 损失认定案例综述', from: '信德海事网', img: '' },
-        { title: 'IMO第101届海安会概况', from: '信德海事网', img: '' }
-      ],
-      topRankList: [
-        { title: '拆船厂或即将复工！史上被拆解的最大集' },
-        { title: '33条船“刮船底”后，猜猜能够节省多少' },
-        { title: '【头条】淡马锡挺身救太平船务' },
-        { title: '进口限制愈演愈烈 澳煤企寻求中国以外亚' },
-        { title: '【航情观察】Wilson联手Arkon，欧洲近...' },
-        { title: '【船舶管理】全球最大的集装箱船HMM ...' },
-        { title: '【航情观察】大宇造船交付全球最大智能集...' },
-        { title: '【航情观察】孟加拉国强制要求船公司减免...' }
-      ],
-      authors: [
-        { name: '王勇', img: '' },
-        { name: '刘颖钊', img: '' },
-        { name: '胡月祥', img: '' },
-        { name: '徐剑华', img: '' },
-        { name: '谢燮', img: '' },
-        { name: '王博', img: '' },
-        { name: '田明辉', img: '' },
-        { name: '王磊', img: '' },
-        { name: '孙士森', img: '' }
-      ],
-      authArticle: [
-        {
-          title: '邮轮撤走母港看中国海上旅游的前景',
-          from: '王勇',
-          time: '06月28日 11:28',
-          desc: '港口会回归繁忙 航线会重返有序 货舱里的各色集装箱 和道路上飞驰的集卡车 都会一如往常 假如你是...'
-        },
-        {
-          title: '邮轮撤走母港看中国海上旅游的前景',
-          from: '王勇',
-          time: '06月28日 11:28',
-          desc: '港口会回归繁忙 航线会重返有序 货舱里的各色集装箱 和道路上飞驰的集卡车 都会一如往常 假如你是...'
-        },
-        {
-          title: '邮轮撤走母港看中国海上旅游的前景',
-          from: '王勇',
-          time: '06月28日 11:28',
-          desc: '港口会回归繁忙 航线会重返有序 货舱里的各色集装箱 和道路上飞驰的集卡车 都会一如往常 假如你是...'
-        },
-        {
-          title: '邮轮撤走母港看中国海上旅游的前景',
-          from: '王勇',
-          time: '06月28日 11:28',
-          desc: '港口会回归繁忙 航线会重返有序 货舱里的各色集装箱 和道路上飞驰的集卡车 都会一如往常 假如你是...'
-        },
-        {
-          title: '邮轮撤走母港看中国海上旅游的前景',
-          from: '王勇',
-          time: '06月28日 11:28',
-          desc: '港口会回归繁忙 航线会重返有序 货舱里的各色集装箱 和道路上飞驰的集卡车 都会一如往常 假如你是...'
-        },
-        {
-          title: '邮轮撤走母港看中国海上旅游的前景',
-          from: '王勇',
-          time: '06月28日 11:28',
-          desc: '港口会回归繁忙 航线会重返有序 货舱里的各色集装箱 和道路上飞驰的集卡车 都会一如往常 假如你是...'
-        }
+  components: { PageContent, Title, Search, Technology, TopRank, FeatureBox, WonderfulMsg, Authors, AuthArticle, SiteMap },
+  setup() {
+    const hotList = ref([]) // 热点资讯
+    const newsList = ref([]) // 要闻
+    const commentList = ref([]) // 评论排行
+    const authorList = ref([]) // 要闻
+    const pageType = ref('')
+
+    onMounted(() => {
+      const route = useRoute()
+      const fromPage = (route.query.type as string) || '1'
+      pageType.value = fromPage
+      const allData = [
+        { name: '热点资讯', type: fromPage, hot: '1', pageSize: 5 },
+        { name: '最新', type: fromPage, sortType: '1', pageSize: 30 },
+        { name: '评论排行', type: fromPage, sortType: '3', pageSize: 30 }
       ]
+      const fetchList = allData.map(ele => article.getArticleList({ pageNo: 1, ...ele }))
+
+      Promise.all(fetchList).then(res => {
+        const allDataList = res.map(ele => ele.data.dataList || [])
+        hotList.value = allDataList[0]
+        newsList.value = allDataList[1]
+        commentList.value = allDataList[2]
+      })
+      article.author({ pageNo: 1, pageSize: 9, hot: '1' }).then(({ data = {} }) => {
+        authorList.value = data.dataList
+      })
+    })
+    return {
+      hotList,
+      newsList,
+      commentList,
+      authorList,
+      pageType
     }
+  },
+  data() {
+    return {}
   }
 })
 </script>

@@ -2,10 +2,10 @@
   <div class="authors-box">
     <Title2 class="mgb20" :before="before" after="作者"></Title2>
     <div class="authors-list">
-      <div class="author" v-for="(item, index) in content" :key="index">
-        <ImgLazy width="80" height="105"></ImgLazy>
-        <div class="name">{{ item.name }}</div>
-      </div>
+      <router-link :to="{ name: 'author', params: { authorId: item.authorId } }" class="author" v-for="(item, index) in content" :key="index">
+        <ImgLazy width="80" height="105" :src="item.photo"></ImgLazy>
+        <div class="name">{{ item.username }}</div>
+      </router-link>
     </div>
   </div>
 </template>

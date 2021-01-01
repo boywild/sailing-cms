@@ -1,13 +1,13 @@
 <template>
   <div class="author-introduce">
     <div class="author-thumbnail">
-      <ImgLazy width="80" height="105"></ImgLazy>
-      <div class="name">王勇</div>
+      <ImgLazy width="80" height="105" :src="content.photo"></ImgLazy>
+      <div class="name">{{ content.username }}</div>
     </div>
     <div class="introduce-conent">
       <div class="title">作者简介</div>
       <div class="desc">
-        经济学博士，研究员。长江证券首席经济学家，曾长期供职央行货币政策部门，并任国际货币基金组织经济学家。中国经济学最高奖——孙冶方经济科学奖得主，曾获浦山政策研究奖、刘诗白经济学奖以及“远见杯”宏观经济预测季军。中国金融四十人论坛（CF40）成员、中国首席经济学家论坛理事，清华、复旦、人大等校兼职导师。
+        {{ content.content }}
       </div>
     </div>
   </div>
@@ -19,7 +19,9 @@ import ImgLazy from '@/components/ImgLazy.vue'
 export default defineComponent({
   name: 'Authors',
   components: { ImgLazy },
-  props: {}
+  props: {
+    content: { type: String, default: () => '' }
+  }
 })
 </script>
 

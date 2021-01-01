@@ -1,15 +1,17 @@
 <template>
   <div class="auth-article">
-    <ImgLazy v-if="thumbnail" width="80" height="105"></ImgLazy>
+    <ImgLazy v-if="thumbnail" width="80" height="105" :src="content.image"></ImgLazy>
     <div class="auth-a-content">
       <div class="auth-a-title">
         <div class="text">
-          <router-link to="/">{{ content.title }}</router-link>
+          <router-link :to="{ name: 'post', params: { articleId: content.articleId, fromPage: pageType } }">{{
+            content.title
+          }}</router-link>
         </div>
-        <div class="comment">1</div>
+        <div class="comment">{{ content.comments }}</div>
       </div>
-      <div class="publish-time">{{ content.from }}{{ content.time }}</div>
-      <div class="publish-desc">{{ content.desc }}</div>
+      <div class="publish-time">{{ content.author }}{{ content.createDate }}</div>
+      <div class="publish-desc">{{ content.introduction }}</div>
     </div>
   </div>
 </template>
@@ -22,7 +24,8 @@ export default defineComponent({
   components: { ImgLazy },
   props: {
     content: { type: Object, default: () => ({}) },
-    thumbnail: { type: Boolean, default: () => true }
+    thumbnail: { type: Boolean, default: () => true },
+    pageType: { type: String, default: () => '1' }
   }
 })
 </script>

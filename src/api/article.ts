@@ -46,6 +46,12 @@ interface PublishCommentParams {
   pageNo: number
   pageSize: number
 }
+
+interface ListParams {
+  pageNo: number
+  pageSize: number
+  hot?: string
+}
 class Article {
   /**
    * 登录
@@ -126,6 +132,55 @@ class Article {
     const http = new Http()
     http.path = '/addArticleComment'
     http.body = { ...params }
+    return http.post()
+  }
+
+  /**
+   * 作者列表
+   */
+  static author(params: ListParams) {
+    const http = new Http()
+    http.path = '/authorList'
+    http.body = { ...params }
+    return http.post()
+  }
+
+  /**
+   * 作者简介
+   */
+  static authorDetail(authorId: string) {
+    const http = new Http()
+    http.path = '/authorDetail'
+    http.body = { authorId }
+    return http.post()
+  }
+
+  /**
+   * 领航者列表
+   */
+  static leader(params: ListParams) {
+    const http = new Http()
+    http.path = '/leaderList'
+    http.body = { ...params }
+    return http.post()
+  }
+
+  /**
+   * 领航者简介
+   */
+  static leaderDetail(leaderId: string) {
+    const http = new Http()
+    http.path = '/leaderDetail'
+    http.body = { leaderId }
+    return http.post()
+  }
+
+  /**
+   * 专题分类
+   */
+  static topic() {
+    const http = new Http()
+    http.path = '/topicList'
     return http.post()
   }
 }
