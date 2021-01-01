@@ -1,10 +1,10 @@
 <template>
   <div class="login-info">
     <a-tabs @change="callback">
-      <a-tab-pane key="1" tab="手机注册">
+      <a-tab-pane key="1" :tab="`手机${formType === 'login' ? '登录' : '注册'}`">
         <InfoForm :form-type="formType" filed-type="phone"></InfoForm>
       </a-tab-pane>
-      <a-tab-pane key="2" tab="邮箱注册" force-render>
+      <a-tab-pane key="2" :tab="`邮箱${formType === 'login' ? '登录' : '注册'}`" force-render>
         <InfoForm :form-type="formType" filed-type="email"></InfoForm>
       </a-tab-pane>
     </a-tabs>
@@ -36,6 +36,13 @@ export default defineComponent({
 .login-info {
   width: 419px;
   margin: 0 auto;
+  .ant-btn-primary {
+    background-color: $theme-blue;
+    border-color: $theme-blue;
+  }
+  .ant-tabs-tab-active {
+    color: $theme-blue;
+  }
   .ant-form-item-label {
     font-weight: bold;
   }
@@ -44,6 +51,12 @@ export default defineComponent({
   }
   .ant-btn {
     height: 45px;
+  }
+  .sendSms {
+    .ant-input-group-addon {
+      padding: 0;
+      border: none;
+    }
   }
   .ant-tabs-nav {
     display: block;
@@ -54,6 +67,7 @@ export default defineComponent({
     }
     .ant-tabs-ink-bar {
       width: 50% !important;
+      background-color: $theme-blue;
     }
   }
 }

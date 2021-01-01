@@ -17,6 +17,7 @@ module.exports = {
     'space-before-function-paren': 'off',
     '@typescript-eslint/member-delimiter-style': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    'curly': 'off'
+    'curly': 'off',
+    'no-useless-escape': 'off'
   }
 }

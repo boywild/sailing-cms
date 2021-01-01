@@ -2,21 +2,22 @@ import { Ref } from 'vue'
 import Http from '@/api/index'
 // import commonParams from '@/utils/common-params'
 
-interface LoginParams {
+export interface LoginParams {
   account: string
   password: string
   type: string
 }
 
-interface RegistryParams {
+export interface RegistryParams {
   account: string
   password: string
   type: string
-  code: string
-  nickname: string
+  code?: string
+  nickname?: string
 }
 interface SendSmsParams {
-  phone: string
+  phone?: string
+  email?: string
 }
 
 interface ArticleParams {
