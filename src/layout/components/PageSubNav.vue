@@ -1,6 +1,13 @@
 <template>
   <div class="page-sub-nav mgtb15">
-    <router-link class="page-sub-nav-item" v-for="(item, index) in navList" :key="index" to=""> {{ item.title }}</router-link>
+    <router-link
+      class="page-sub-nav-item"
+      v-for="(item, index) in navList"
+      :key="index"
+      :to="{ name: item.link, query: { type: item.type } }"
+    >
+      {{ item.title }}</router-link
+    >
   </div>
 </template>
 
@@ -15,20 +22,23 @@ export default defineComponent({
   data() {
     return {
       navList: [
-        { title: '政策', link: '' },
-        { title: '金融', link: '' },
-        { title: '保险', link: '' },
-        { title: '专题', link: '' },
-        { title: '领航', link: '' },
-        { title: '学校', link: '' },
-        { title: 'PSC', link: '' },
-        { title: 'ENGLISH', link: '' },
-        { title: '更多', link: '' },
-        { title: '查询', link: '' },
-        { title: '微课', link: '' },
-        { title: '会议', link: '' },
-        { title: '问答', link: '' },
-        { title: '商城', link: '' }
+        { title: '会议', link: 'meeting', type: '16' },
+        { title: '政策', link: '', type: '17' },
+        { title: '金融', link: '', type: '18' },
+        { title: '保险', link: '', type: '19' },
+        { title: '专题', link: 'topic', type: '20' },
+        { title: '领航', link: 'kol', type: '21' },
+        { title: '学校', link: '', type: '22' },
+        // { title: 'PSC', link: '', type: '23' },
+        { title: 'ENGLISH', link: '', type: '23' },
+        { title: '国内', link: '', type: '24' },
+        { title: '国际', link: '', type: '25' }
+        // { title: '更多', link: '', type: '20' },
+        // { title: '查询', link: '', type: '20' },
+        // { title: '微课', link: '', type: '20' },
+        // { title: '会议', link: '', type: '20' },
+        // { title: '问答', link: '', type: '20' },
+        // { title: '商城', link: '', type: '20' }
       ]
     }
   }
