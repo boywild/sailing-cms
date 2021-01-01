@@ -25,7 +25,7 @@
               <div class="new-info">
                 <router-link :to="{ name: 'post', params: { articleId: article.articleId, fromPage: '1' } }" class="title">
                   <div class="t-txt">{{ article.title }}</div>
-                  <div class="t-comment">{{ article.comments }}</div>
+                  <div class="t-comment"><MessageOutlined class="icon-coment" />{{ article.comments }}</div>
                 </router-link>
                 <div class="desc">{{ article.introduction }}</div>
                 <div class="time">信德海事{{ article.createDate }}</div>
@@ -107,6 +107,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
+import { MessageOutlined } from '@ant-design/icons-vue'
 import { useRoute } from 'vue-router'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import PageContent from '@/layout/components/PageContent.vue'
@@ -124,6 +125,7 @@ import article from '@/api/article'
 export default defineComponent({
   name: 'Home',
   components: {
+    MessageOutlined,
     Swiper,
     SwiperSlide,
     PageContent,
@@ -164,9 +166,9 @@ export default defineComponent({
       ]
       // const { type = '1' } = route.query
       // const { data = [] } = await article.getArticleList({ pageNo: 1, pageSize: 30, type: type as string })
-      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, pageSize: 30, ...ele }))
-      Promise.all(fetchList).then((res) => {
-        const allDataList = res.map((ele) => ele.data.dataList || [])
+      const fetchList = allData.map(ele => article.getArticleList({ pageNo: 1, pageSize: 30, ...ele }))
+      Promise.all(fetchList).then(res => {
+        const allDataList = res.map(ele => ele.data.dataList || [])
         homeBanner.value = allDataList[0]
         homeNews.value = allDataList[1]
         homeReadTop.value = allDataList[2]
@@ -195,45 +197,7 @@ export default defineComponent({
     }
   },
   data() {
-    return {
-      articles: [1, 2, 3, 4, 5],
-      categoryList: [
-        {
-          banner: '',
-          category: [
-            { catName: '航情', title: '会展业按下重启键 SHIPTEC助力企业线上新商机', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '招聘', title: '会展业会展业按下重启键 SHIPTEC助力企业线上', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '活动', title: '宁波市政府携手英富曼会展创办宁波海博会', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '专栏', title: '奖征集 | 纪念陈嘉庚先生创办集美航海教育', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '图片', title: '第三期“海仲云讲坛”线上讲座成功举办', from: '信德海事', time: '2020-05-27 15:33' }
-          ]
-        },
-        {
-          banner: '1',
-          category: [
-            { catName: '视频', title: '2020集装箱多式联运亚洲展将于2021年3月16', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '造船', title: '会展业按下重启键 SHIPTEC助力企业线上新', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '交易', title: '第二期“海仲云讲坛”线上讲座成功举办', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '港口', title: '欢迎参加！YPSN 都市之夜Metro Night', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '海员', title: '大连海事大学港澳校友会成功举办“2020春天', from: '信德海事', time: '2020-05-27 15:33' }
-          ]
-        },
-        {
-          banner: '2',
-          category: [
-            { catName: '企业', title: '拖航到半路被拖船断裂沉没引起的纠缠', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '人物', title: '嘉年华邮轮公司与沙特主权财富基金之间的交', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '技术', title: '水上交通事故认定书等海事调查结论是否可诉', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '安全', title: '水上交通事故认定书等海事调查结论是否可诉', from: '信德海事', time: '2020-05-27 15:33' },
-            { catName: '政策', title: '一家船代公司集体跑路了..........警惕航运欺诈', from: '信德海事', time: '2020-05-27 15:33' }
-          ]
-        },
-        {
-          banner: '3',
-          category: [{ catName: '金融', title: '国际邮轮公司最新复工时间表', from: '信德海事', time: '2020-05-27 15:33' }]
-        }
-      ]
-    }
+    return {}
   },
   mounted() {
     // setTimeout(() => {

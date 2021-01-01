@@ -43,8 +43,8 @@ interface ArticleCommentParams {
 }
 interface PublishCommentParams {
   articleId: string
-  pageNo: number
-  pageSize: number
+  uid: string
+  content: string
 }
 
 interface ListParams {

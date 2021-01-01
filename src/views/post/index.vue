@@ -16,6 +16,31 @@
           </div>
           <div class="article-editor">文章编辑：信德海事</div>
         </div>
+        <div class="comment-box">
+          <a-form ref="ruleForm" layout="vertical" :hideRequiredMark="true">
+            <a-form-item name="content" v-bind="validateInfos.content">
+              <a-textarea v-model:value="modelRef.content" :autoSize="{ minRows: 5, maxRows: 5 }" showCount :maxlength="400" />
+            </a-form-item>
+            <a-form-item>
+              <a-button type="primary" @click="onSubmit">
+                发表评论
+              </a-button>
+              <a-button style="margin-left: 10px;" @click="resetFields">
+                取消
+              </a-button>
+            </a-form-item>
+          </a-form>
+          <div>
+            <a-comment
+              v-for="(item, index) in state.articleComments"
+              :key="index"
+              :author="item.nickname"
+              avatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              :datetime="item.createDate"
+              :content="item.content"
+            />
+          </div>
+        </div>
         <!-- <div class="article-share">分享到：微信 微博</div>
         <div class="article-between">
           <div class="prev-article related">上一篇：中国最大服务器厂商浪潮遭英特尔“断供”；拼多多黄峥转捐股权并卸任CEO</div>
@@ -53,8 +78,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref, toRaw } from 'vue'
 import { useRoute } from 'vue-router'
+import { message } from 'ant-design-vue'
+import { useForm } from '@ant-design-vue/use'
 import PageContent from '@/layout/components/PageContent.vue'
 import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
@@ -84,9 +111,10 @@ export default defineComponent({
     // Recommend,
     SiteMap
   },
-  setup() {
+  setup(props) {
     const state = reactive({
-      articleDetail: {}
+      articleDetail: {},
+      articleComments: []
     })
     const pageType = ref('')
     const readTop = ref([])
@@ -94,11 +122,51 @@ export default defineComponent({
     const hotList = ref([])
     const internationalNews = ref([])
     const professionNews = ref([])
+
+    const modelRef = reactive({
+      content: '',
+      articleId: '',
+      uid: localStorage.getItem('uid') as string
+    })
+    const rulesRef = reactive({
+      content: [
+        {
+          required: true,
+          trigger: 'blur',
+          message: '评论内容不能为空'
+        }
+      ]
+    })
+    const { resetFields, validate, validateInfos } = useForm(modelRef, rulesRef)
+    const getCommentList = async (articleId: string, pageNo = 1, pageSize = 10) => {
+      const { data = {} } = await article.articleComment({ articleId, pageNo, pageSize })
+      state.articleComments = data.dataList
+    }
+    const onSubmit = () => {
+      validate()
+        .then(async () => {
+          const { uid = '', content = '', articleId = '' } = toRaw(modelRef)
+          if (!uid) {
+            message.warning('请先登录', 2)
+            return
+          }
+          await article.pulishComment({ uid, content, articleId })
+          message.info('评论成功', 2)
+          resetFields()
+          getCommentList(articleId)
+          console.log(toRaw(modelRef))
+        })
+        .catch(err => {
+          console.log('error', err)
+        })
+    }
+
     onMounted(async () => {
       const route = useRoute()
       const fromPage = (route.params.fromPage as string) || '1'
       pageType.value = fromPage
       const articleId = route.params.articleId as string
+      modelRef.articleId = articleId
       const allData = [
         { name: '阅读排行', type: fromPage, hot: '1', pageSize: 7 },
         { name: '评论排行', type: fromPage, hot: '1', pageSize: 7 },
@@ -106,11 +174,11 @@ export default defineComponent({
         { name: '国际风云', type: '25', hot: '1', pageSize: 7 },
         { name: '专栏分享', type: '5', sortType: '1', pageSize: 5 }
       ]
-      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, ...ele }))
+      const fetchList = allData.map(ele => article.getArticleList({ pageNo: 1, ...ele }))
       const { data = {} } = await article.articleDetail({ articleId })
       state.articleDetail = data
-      Promise.all(fetchList).then((res) => {
-        const allDataList = res.map((ele) => ele.data.dataList || [])
+      Promise.all(fetchList).then(res => {
+        const allDataList = res.map(ele => ele.data.dataList || [])
         console.log(allDataList)
         readTop.value = allDataList[0]
         commentList.value = allDataList[1]
@@ -118,7 +186,9 @@ export default defineComponent({
         internationalNews.value = allDataList[3]
         professionNews.value = allDataList[4]
       })
+      getCommentList(articleId)
     })
+
     return {
       state,
       readTop,
@@ -126,7 +196,12 @@ export default defineComponent({
       hotList,
       internationalNews,
       professionNews,
-      pageType
+      pageType,
+      resetFields,
+      validate,
+      modelRef,
+      validateInfos,
+      onSubmit
     }
   },
   data() {

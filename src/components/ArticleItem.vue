@@ -2,12 +2,10 @@
   <div class="article-preview-item">
     <ImgLazy width="151" height="101" :src="content.image"></ImgLazy>
     <div class="article-preview-content">
-      <div class="pre-title">
-        <router-link :to="{ name: 'post', params: { articleId: content.articleId, fromPage: '2' } }" class="txt">{{
-          content.title
-        }}</router-link>
-        <div class="comment">{{ content.comments }}</div>
-      </div>
+      <router-link class="pre-title" :to="{ name: 'post', params: { articleId: content.articleId, fromPage: '2' } }">
+        <div class="txt">{{ content.title }}</div>
+        <div class="comment"><MessageOutlined class="icon-coment"></MessageOutlined>{{ content.comments }}</div>
+      </router-link>
       <div class="pre-time">信德海事{{ content.createDate }}</div>
       <div class="pre-desc">{{ content.introduction }}</div>
     </div>
@@ -16,10 +14,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { MessageOutlined } from '@ant-design/icons-vue'
 import ImgLazy from './ImgLazy.vue'
 export default defineComponent({
   name: 'ArticleItem',
-  components: { ImgLazy },
+  components: { ImgLazy, MessageOutlined },
   props: {
     content: { type: Object, default: () => ({}) }
   }
