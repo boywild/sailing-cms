@@ -29,11 +29,13 @@ import Title from '@/components/Title.vue'
 import InnerSide from '@/components/InnerSide.vue'
 import ArticleList from '@/components/ArticleList.vue'
 import TradeComing from '@/components/TradeComing.vue'
+import SiteMap from '@/components/SiteMap.vue'
+
 import article from '@/api/article'
 
 export default defineComponent({
   name: 'VideoLib',
-  components: { PageContent, ImgLazy, Title, InnerSide, ArticleList, TradeComing },
+  components: { PageContent, ImgLazy, Title, InnerSide, ArticleList, TradeComing, SiteMap },
   setup() {
     const state = reactive({
       videoList: [],

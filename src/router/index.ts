@@ -106,7 +106,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "kol" */ '../views/kol/index.vue')
       },
       {
-        path: 'kol/:id',
+        path: 'kol/:fromPage/:authorId',
         name: 'kolDetail',
         meta: { title: '领航者详情' },
         component: () => import(/* webpackChunkName: "kolDetail" */ '../views/kol/kol-detail.vue')

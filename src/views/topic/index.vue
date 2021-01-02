@@ -2,25 +2,23 @@
   <PageContentThrough>
     <template #content>
       <div class="topic-box mgb20">
-        <div class="topic-cat" v-for="(item, index) in topicList" :key="index">
+        <div class="topic-cat" v-for="(item, index) in state.topicList" :key="index">
           <Title :name="item.title" direction="top">
             <template #right>
               <router-link to="/" class="show-more">更多>></router-link>
             </template>
           </Title>
           <div class="topic-row">
-            <router-link to="/" class="topic-col">
-              <ImgLazy width="135" height="92"></ImgLazy>
-              <div class="title">Stena Line:在减排方面...</div>
+            <router-link
+              :to="{ name: 'post', params: { articleId: article.articleId, fromPage: '20' } }"
+              class="topic-col"
+              v-for="(article, index) in item.articleList.slice(0, 3)"
+              :key="index"
+            >
+              <ImgLazy width="135" height="92" :src="article.image"></ImgLazy>
+              <div class="title">{{ article.title }}</div>
             </router-link>
-            <router-link to="/" class="topic-col">
-              <ImgLazy width="135" height="92"></ImgLazy>
-              <div class="title">Stena Line:在减排方面...</div>
-            </router-link>
-            <router-link to="/" class="topic-col">
-              <ImgLazy width="135" height="92"></ImgLazy>
-              <div class="title">Stena Line:在减排方面...</div>
-            </router-link>
+            <a-empty v-if="!item.articleList.length" description="暂无数据" />
           </div>
         </div>
       </div>
@@ -31,32 +29,39 @@
   </PageContentThrough>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import PageContentThrough from '@/layout/components/PageContentThrough.vue'
 import SiteMap from '@/components/SiteMap.vue'
 import Title from '@/components/Title.vue'
 import ImgLazy from '@/components/ImgLazy.vue'
+import article from '@/api/article'
 export default defineComponent({
   name: 'Topic',
   components: { PageContentThrough, SiteMap, Title, ImgLazy },
-  data() {
-    return {
-      topicList: [
-        { title: '绿色航运' },
-        { title: '智能航运' },
-        { title: '航运安全' },
-        { title: '船舶建造' },
-        { title: '船舶交易' },
-        { title: '港口咨询' },
+  setup() {
+    const state = reactive({
+      topicList: [],
+      fromPage: ''
+    })
 
-        { title: '海员频道' },
-        { title: '海上保安' },
-        { title: '航运企业' },
-        { title: '航届人物' },
-        { title: '疫情防控' },
-        { title: '天气播报' }
-      ]
+    onMounted(() => {
+      // const { data = [] } = await Test.queryTaskStatus()
+      const route = useRoute()
+      const fromPage = route.query.type as string
+      state.fromPage = fromPage
+      article.topic().then(({ data = {} }) => {
+        console.log(data)
+        state.topicList = data.dataList
+      })
+      // getList()
+    })
+    return {
+      state
     }
+  },
+  data() {
+    return {}
   }
 })
 </script>
@@ -84,6 +89,7 @@ export default defineComponent({
     }
     .topic-row {
       padding: 20px 24px;
+      min-height: 170px;
       @include flex(space-between);
       .topic-col {
         width: 135px;
@@ -93,6 +99,9 @@ export default defineComponent({
           padding-top: 10px;
           @include text-overflow();
         }
+      }
+      .ant-empty {
+        margin: 0 auto;
       }
     }
   }

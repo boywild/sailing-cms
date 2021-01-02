@@ -51,6 +51,8 @@ interface ListParams {
   pageNo: number
   pageSize: number
   hot?: string
+  authorId?: string
+  leaderId?: string
 }
 class Article {
   /**

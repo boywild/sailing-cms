@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { Form, Button, Input, Tabs, BackTop, Icon, Comment } from 'ant-design-vue'
+import { Form, Button, Input, Tabs, BackTop, Icon, Comment, Empty } from 'ant-design-vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -14,4 +14,5 @@ app.use(Tabs)
 app.use(BackTop)
 app.use(Icon)
 app.use(Comment)
+app.use(Empty)
 app.use(store).use(router).mount('#app')

@@ -6,7 +6,7 @@
         <div class="title">
           <router-link :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }">{{ item.title }}</router-link>
         </div>
-        <div class="trade-info">会议时间：{{ item.time }} 会议地点：{{ item.location }}</div>
+        <div class="trade-info">会议时间：{{ item.meetDate }} 会议地点：{{ item.address }}</div>
       </div>
     </div>
   </div>
@@ -50,6 +50,11 @@ export default defineComponent({
     .title {
       padding-left: 15px;
       position: relative;
+      > a {
+        @include text-overflow();
+        width: 100%;
+        display: block;
+      }
       &::before {
         content: '';
         position: absolute;

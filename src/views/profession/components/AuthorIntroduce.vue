@@ -20,7 +20,7 @@ export default defineComponent({
   name: 'Authors',
   components: { ImgLazy },
   props: {
-    content: { type: String, default: () => '' }
+    content: { type: Object, default: () => ({}) }
   }
 })
 </script>
