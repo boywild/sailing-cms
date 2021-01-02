@@ -6,6 +6,7 @@
         <Title name="最新" subName="new"></Title>
         <div class="auth-hot">
           <AuthArticle v-for="(item, index) in state.articleLIst" :key="index" :content="item" :thumbnail="false" page-type="5"></AuthArticle>
+          <a-empty v-if="!state.articleLIst.length" description="暂无数据" />
         </div>
       </div>
     </template>

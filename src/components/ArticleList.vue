@@ -1,6 +1,7 @@
 <template>
   <div class="article-preview-list">
     <ArticleItem v-for="(item, index) in list" :key="index" :content="item" :page-type="pageType"></ArticleItem>
+    <a-empty v-if="!list.length" description="暂无数据" />
   </div>
 </template>
 

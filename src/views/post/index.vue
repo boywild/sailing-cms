@@ -111,7 +111,7 @@ export default defineComponent({
     // Recommend,
     SiteMap
   },
-  setup(props) {
+  setup() {
     const state = reactive({
       articleDetail: {},
       articleComments: []

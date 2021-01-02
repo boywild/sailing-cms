@@ -31,6 +31,7 @@
                 <div class="time">信德海事{{ article.createDate }}</div>
               </div>
             </div>
+            <a-empty v-if="!homeNews.length" description="暂无数据" />
           </div>
         </div>
       </div>

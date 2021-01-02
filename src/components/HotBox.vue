@@ -10,6 +10,7 @@
           <router-link :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }">{{ item.title }}</router-link>
         </div>
       </div>
+      <a-empty v-if="!main.length" description="暂无数据" />
     </div>
   </div>
 </template>

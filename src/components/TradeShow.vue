@@ -8,6 +8,7 @@
         </div>
         <div class="trade-info">会议时间：{{ item.meetDate }} 会议地点：{{ item.address }}</div>
       </div>
+      <a-empty v-if="!content.length" description="暂无数据" />
     </div>
   </div>
 </template>

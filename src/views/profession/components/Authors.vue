@@ -6,6 +6,7 @@
         <ImgLazy width="80" height="105" :src="item.photo"></ImgLazy>
         <div class="name">{{ item.username }}</div>
       </router-link>
+      <a-empty v-if="!content.length" description="暂无数据" />
     </div>
   </div>
 </template>

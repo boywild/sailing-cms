@@ -10,6 +10,7 @@
           }}</router-link>
         </div>
       </div>
+      <a-empty v-if="!content.length" description="暂无数据" />
     </div>
   </div>
 </template>
