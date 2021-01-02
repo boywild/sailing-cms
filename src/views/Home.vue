@@ -6,7 +6,7 @@
     </template>
     <template #content>
       <div class="home-banner mgb15">
-        <swiper>
+        <swiper :pagination="{ clickable: true }" :autoplay="{ delay: 3000 }">
           <swiper-slide v-for="(item, index) in homeBanner" :key="index">
             <div class="home-hot-preview">
               <img :src="item.image" />
@@ -20,7 +20,7 @@
         <Title name="新闻速递" sub-name="news"></Title>
         <div class="article-content">
           <div class="news-list">
-            <div class="news-item" v-for="(article, index) in homeNews" :key="index">
+            <div class="news-item mgb20" v-for="(article, index) in state.homeNews" :key="index">
               <ImgLazy width="151" height="101" :src="article.image"></ImgLazy>
               <div class="new-info">
                 <router-link :to="{ name: 'post', params: { articleId: article.articleId, fromPage: '1' } }" class="title">
@@ -31,7 +31,10 @@
                 <div class="time">信德海事{{ article.createDate }}</div>
               </div>
             </div>
-            <a-empty v-if="!homeNews.length" description="暂无数据" />
+            <a-empty v-if="!state.homeNews.length" description="暂无数据" />
+            <a-button v-else class="mgb20" block :loading="state.loadingMore" @click="getList" :disabled="state.pageNo > state.totalPage">
+              {{ state.pageNo > state.totalPage ? '没有更多了' : '加载更多' }}
+            </a-button>
           </div>
         </div>
       </div>
@@ -107,9 +110,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref, reactive } from 'vue'
 import { MessageOutlined } from '@ant-design/icons-vue'
 import { useRoute } from 'vue-router'
+import SwiperCore, { Pagination, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import PageContent from '@/layout/components/PageContent.vue'
 import ImgLazy from '@/components/ImgLazy.vue'
@@ -123,6 +127,7 @@ import ArticleToday from '@/components/ArticleToday.vue'
 import ReadingTop from '@/components/ReadingTop.vue'
 // import Test from '@/api/test'
 import article from '@/api/article'
+SwiperCore.use([Pagination, Autoplay])
 export default defineComponent({
   name: 'Home',
   components: {
@@ -151,12 +156,28 @@ export default defineComponent({
     const professionNews = ref([]) // 专栏分享
     const inlandNews = ref([]) // 国内热点
     const internationalNews = ref([]) // 国际风云
+    const state = reactive({
+      homeNews: [],
+      pageNo: 1,
+      totalPage: 1,
+      loadingMore: false
+    })
+    const getList = () => {
+      if (state.pageNo > state.totalPage) return
+      state.loadingMore = true
+      article.getArticleList({ pageNo: state.pageNo, pageSize: 20, type: '1' }).then(({ data = {} }) => {
+        state.homeNews = state.homeNews.concat(data.dataList)
+        state.totalPage = data.totalPage
+        state.loadingMore = false
+        state.pageNo += 1
+      })
+    }
     onMounted(() => {
       // const { data = [] } = await Test.queryTaskStatus()
       const route = useRoute()
       const allData = [
         { name: '首页banner', type: (route.query.type || '1') as string, hot: '1' },
-        { name: '首页新闻', type: (route.query.type || '1') as string, sortType: '1' },
+        // { name: '首页新闻', type: (route.query.type || '1') as string, sortType: '1' },
         { name: '首页阅读排行', type: '1', sortType: '2' },
         { name: '航情热点', type: '2', hot: '1' },
         { name: '活动会展', type: '16', sortType: '1' },
@@ -165,26 +186,29 @@ export default defineComponent({
         { name: '国内热点', type: '24', hot: '1' },
         { name: '国际风云', type: '25', hot: '1' }
       ]
+      getList()
       // const { type = '1' } = route.query
       // const { data = [] } = await article.getArticleList({ pageNo: 1, pageSize: 30, type: type as string })
       const fetchList = allData.map(ele => article.getArticleList({ pageNo: 1, pageSize: 30, ...ele }))
       Promise.all(fetchList).then(res => {
         const allDataList = res.map(ele => ele.data.dataList || [])
         homeBanner.value = allDataList[0]
-        homeNews.value = allDataList[1]
-        homeReadTop.value = allDataList[2]
-        sailingHot.value = allDataList[3]
-        meetingNews.value = allDataList[4]
-        activeHot.value = allDataList[5]
-        professionNews.value = allDataList[6]
-        inlandNews.value = allDataList[7]
-        internationalNews.value = allDataList[8]
+        // homeNews.value = allDataList[1]
+        homeReadTop.value = allDataList[1]
+        sailingHot.value = allDataList[2]
+        meetingNews.value = allDataList[3]
+        activeHot.value = allDataList[4]
+        professionNews.value = allDataList[5]
+        inlandNews.value = allDataList[6]
+        internationalNews.value = allDataList[7]
       })
       // console.log(data)
       // topArticles.value = data
     })
     console.log(topArticles)
     return {
+      state,
+      getList,
       topArticles,
       homeBanner,
       homeNews,
@@ -226,58 +250,6 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-.home-banner {
-  width: 656px;
-  height: 319px;
-  background: #eee;
-  .home-hot-preview {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    .home-hot-txt {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 0 20px;
-      font-size: $text-size-normal;
-      background: rgba($color: #000000, $alpha: 0.5);
-      color: #fff;
-      text-align: left;
-      height: 35px;
-      line-height: 35px;
-      @include text-overflow();
-    }
-  }
-  .swiper-container {
-    width: 100%;
-    height: 100%;
-  }
-
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-    > img {
-      max-width: 100%;
-      display: block;
-    }
-  }
-}
 .news-list {
   .news-item {
     @include flex(flex-start);
@@ -403,6 +375,45 @@ export default defineComponent({
       border: 1px solid #707070;
       color: $theme-blue;
       margin-top: 9px;
+    }
+  }
+}
+</style>
+<style lang="scss">
+.home-banner {
+  width: 656px;
+  height: 319px;
+  background: #eee;
+  .home-hot-preview {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .home-hot-txt {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0 20px;
+      font-size: $text-size-normal;
+      background: rgba($color: #000000, $alpha: 0.5);
+      color: #fff;
+      text-align: left;
+      height: 40px;
+      line-height: 40px;
+      @include text-overflow();
+    }
+  }
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+    .swiper-pagination {
+      text-align: right;
+      .swiper-pagination-bullet {
+        background: #a5a5a5;
+        &.swiper-pagination-bullet-active {
+          background: #fff;
+        }
+      }
     }
   }
 }
