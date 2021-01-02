@@ -15,6 +15,7 @@
           <div class="index">{{ index + 1 }}</div>
           <div class="title">{{ item.title }}</div>
         </router-link>
+        <a-empty v-if="!content.length" description="暂无数据" />
       </div>
     </div>
   </div>
