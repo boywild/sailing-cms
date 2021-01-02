@@ -5,7 +5,7 @@
       <div class="authors-article mgb20">
         <Title name="最新" subName="new"></Title>
         <div class="auth-hot">
-          <AuthArticle v-for="(item, index) in newsList" :key="index" :content="item"></AuthArticle>
+          <AuthArticle v-for="(item, index) in newsList" :key="index" :content="item" :page-type="pageType"></AuthArticle>
         </div>
       </div>
       <!-- <Focusing></Focusing> -->

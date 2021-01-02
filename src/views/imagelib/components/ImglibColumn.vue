@@ -1,8 +1,8 @@
 <template>
   <div class="imglib-column">
     <div class="img-item" v-for="(item, index) in list" :key="index">
-      <ImgLazy width="181" height="124"></ImgLazy>
-      <div class="img-desc">{{ item.name }}</div>
+      <ImgLazy width="181" height="124" :src="item.image"></ImgLazy>
+      <div class="img-desc">{{ item.title }}</div>
     </div>
   </div>
 </template>

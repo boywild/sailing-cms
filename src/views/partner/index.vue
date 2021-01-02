@@ -6,7 +6,7 @@
     <template #content>
       <TradeComing class="mgb20" :content="hotList"></TradeComing>
       <Title name="要闻" subName="news"></Title>
-      <ArticleList :list="newsList"></ArticleList>
+      <ArticleList :list="newsList" :page-type="fromPage"></ArticleList>
     </template>
     <template #side>
       <InnerSide></InnerSide>
@@ -34,24 +34,26 @@ export default defineComponent({
   setup() {
     const hotList = ref([]) // 热点资讯
     const newsList = ref([]) // 要闻
-
+    const fromPage = ref('')
     onMounted(() => {
       const route = useRoute()
-      const pageType = route.query.type || '1'
+      const pageType = (route.query.type as string) || '1'
+      fromPage.value = pageType
       const allData = [
         { name: '热点资讯', type: pageType as string, hot: '1', pageSize: 4 },
         { name: '要闻', type: pageType as string, sortType: '1', pageSize: 30 }
       ]
-      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, ...ele }))
-      Promise.all(fetchList).then((res) => {
-        const allDataList = res.map((ele) => ele.data.dataList || [])
+      const fetchList = allData.map(ele => article.getArticleList({ pageNo: 1, ...ele }))
+      Promise.all(fetchList).then(res => {
+        const allDataList = res.map(ele => ele.data.dataList || [])
         hotList.value = allDataList[0]
         newsList.value = allDataList[1]
       })
     })
     return {
       hotList,
-      newsList
+      newsList,
+      fromPage
     }
   },
   data() {

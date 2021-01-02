@@ -1,6 +1,6 @@
 <template>
   <div class="article-preview-list">
-    <ArticleItem v-for="(item, index) in list" :key="index" :content="item"></ArticleItem>
+    <ArticleItem v-for="(item, index) in list" :key="index" :content="item" :page-type="pageType"></ArticleItem>
   </div>
 </template>
 
@@ -11,7 +11,8 @@ export default defineComponent({
   name: 'ArticleList',
   components: { ArticleItem },
   props: {
-    list: { type: Array, default: () => [] }
+    list: { type: Array, default: () => [] },
+    pageType: { type: String, default: () => '' }
   }
 })
 </script>

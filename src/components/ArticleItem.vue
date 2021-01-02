@@ -2,7 +2,7 @@
   <div class="article-preview-item">
     <ImgLazy width="151" height="101" :src="content.image"></ImgLazy>
     <div class="article-preview-content">
-      <router-link class="pre-title" :to="{ name: 'post', params: { articleId: content.articleId, fromPage: '2' } }">
+      <router-link class="pre-title" :to="{ name: 'post', params: { articleId: content.articleId, fromPage: pageType } }">
         <div class="txt">{{ content.title }}</div>
         <div class="comment"><MessageOutlined class="icon-coment"></MessageOutlined>{{ content.comments }}</div>
       </router-link>
@@ -20,7 +20,8 @@ export default defineComponent({
   name: 'ArticleItem',
   components: { ImgLazy, MessageOutlined },
   props: {
-    content: { type: Object, default: () => ({}) }
+    content: { type: Object, default: () => ({}) },
+    pageType: { type: String, default: () => '' }
   }
 })
 </script>

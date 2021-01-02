@@ -2,14 +2,12 @@
   <div class="auth-article">
     <ImgLazy v-if="thumbnail" width="80" height="105" :src="content.image"></ImgLazy>
     <div class="auth-a-content">
-      <div class="auth-a-title">
+      <router-link class="auth-a-title" :to="{ name: 'post', params: { articleId: content.articleId, fromPage: pageType } }">
         <div class="text">
-          <router-link :to="{ name: 'post', params: { articleId: content.articleId, fromPage: pageType } }">{{
-            content.title
-          }}</router-link>
+          <div>{{ content.title }}</div>
         </div>
-        <div class="comment">{{ content.comments }}</div>
-      </div>
+        <div class="comment"><MessageOutlined class="icon-coment"></MessageOutlined>{{ content.comments }}</div>
+      </router-link>
       <div class="publish-time">{{ content.author }}{{ content.createDate }}</div>
       <div class="publish-desc">{{ content.introduction }}</div>
     </div>
@@ -18,10 +16,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { MessageOutlined } from '@ant-design/icons-vue'
 import ImgLazy from '@/components/ImgLazy.vue'
 export default defineComponent({
   name: 'Authors',
-  components: { ImgLazy },
+  components: { ImgLazy, MessageOutlined },
   props: {
     content: { type: Object, default: () => ({}) },
     thumbnail: { type: Boolean, default: () => true },

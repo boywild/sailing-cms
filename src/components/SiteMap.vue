@@ -63,17 +63,17 @@ export default defineComponent({
             { name: '天气播报', link: '' }
           ]
         },
-        {
-          title: '专题',
-          items: [
-            { name: '绿色航运', link: '' },
-            { name: '只能航运', link: '' },
-            { name: '航运安全', link: '' },
-            { name: '船舶建造', link: '' },
-            { name: '船舶交易', link: '' },
-            { name: '港口咨询', link: '' }
-          ]
-        },
+        // {
+        //   title: '专题',
+        //   items: [
+        //     { name: '绿色航运', link: '' },
+        //     { name: '只能航运', link: '' },
+        //     { name: '航运安全', link: '' },
+        //     { name: '船舶建造', link: '' },
+        //     { name: '船舶交易', link: '' },
+        //     { name: '港口咨询', link: '' }
+        //   ]
+        // },
         {
           title: '资料库',
           items: [

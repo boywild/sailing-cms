@@ -6,7 +6,10 @@
     <template #content>
       <div class="imglib-banner mgb20"></div>
       <Title class="mgb20" name="实时热点" direction="top"></Title>
-      <ImglibColumn :list="imglibList"></ImglibColumn>
+      <ImglibColumn :list="state.imgList"></ImglibColumn>
+      <a-button class="mgb20" block :loading="state.loadingMore" @click="getList" :disabled="state.pageNo > state.totalPage">
+        {{ state.pageNo > state.totalPage ? '没有更多了' : '加载更多' }}
+      </a-button>
     </template>
     <template #side>
       <Search class="mgb15"></Search>
@@ -17,10 +20,10 @@
       <div class="imglib-hot">
         <Title2 class="mgb20" before="实时" after="热点"></Title2>
         <div class="imglig-hot-list">
-          <PreviewArticle v-for="(item, index) in hotMain" :key="index" :content="item"></PreviewArticle>
+          <PreviewArticle v-for="(item, index) in state.imgHotList" :key="index" :content="item"></PreviewArticle>
         </div>
       </div>
-      <div class="imglib-hot">
+      <!-- <div class="imglib-hot">
         <Title2 class="mgb20" before="实时" after="热点"></Title2>
         <div class="imglig-hot-important">
           <div class="hot-important-preview mgb20">
@@ -32,7 +35,7 @@
             <div class="title">一个“横漂”的自我修养</div>
           </div>
         </div>
-      </div>
+      </div> -->
     </template>
     <template #footer>
       <SiteMap></SiteMap>
@@ -41,7 +44,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, reactive } from 'vue'
+import { useRoute } from 'vue-router'
 import PageContent from '@/layout/components/PageContent.vue'
 import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
@@ -51,28 +55,48 @@ import Technology from '@/components/Technology.vue'
 import ImglibColumn from './components/ImglibColumn.vue'
 import SiteMap from '@/components/SiteMap.vue'
 import PreviewArticle from '@/components/PreviewArticle.vue'
+import article from '@/api/article'
+
 export default defineComponent({
   name: 'ImageLib',
   components: { PageContent, ImgLazy, Title, Title2, Search, Technology, ImglibColumn, SiteMap, PreviewArticle },
-  data() {
-    return {
-      imglibList: [
-        { name: 'Stena Line:在减排方面...', img: '' },
-        { name: 'Stena Line:在减排方面...', img: '' },
-        { name: 'Stena Line:在减排方面...', img: '' },
-        { name: 'Stena Line:在减排方面...', img: '' },
-        { name: 'Stena Line:在减排方面...', img: '' },
-        { name: 'Stena Line:在减排方面...', img: '' }
-      ],
-      hotMain: [
-        { title: '大连海事大学原党委书记王昭翮调任中国农业', img: '' },
-        { title: '重磅！中国石化集团改制为国有独资公司', img: '' },
-        { title: '重磅！中国石化集团改制为国有独资公司', img: '' },
-        { title: '重磅！中国石化集团改制为国有独资公司', img: '' },
-        { title: '重磅！中国石化集团改制为国有独资公司', img: '' },
-        { title: '重磅！中国石化集团改制为国有独资公司', img: '' }
-      ]
+  setup() {
+    const state = reactive({
+      imgList: [],
+      imgHotList: [],
+      fromPage: '',
+      pageNo: 1,
+      totalPage: 1,
+      showMoreBtn: false,
+      loadingMore: false
+    })
+    const getList = () => {
+      if (state.pageNo > state.totalPage) return
+      state.loadingMore = true
+      article.getArticleList({ pageNo: state.pageNo, pageSize: 15, type: state.fromPage }).then(({ data = {} }) => {
+        state.imgList = state.imgList.concat(data.dataList)
+        state.totalPage = data.totalPage
+        state.loadingMore = false
+        state.pageNo += 1
+      })
     }
+    onMounted(() => {
+      // const { data = [] } = await Test.queryTaskStatus()
+      const route = useRoute()
+      const fromPage = route.query.type as string
+      state.fromPage = fromPage
+      article.getArticleList({ pageNo: 1, pageSize: 9, type: fromPage }).then(({ data = {} }) => {
+        state.imgHotList = data.dataList
+      })
+      getList()
+    })
+    return {
+      state,
+      getList
+    }
+  },
+  data() {
+    return {}
   }
 })
 </script>
