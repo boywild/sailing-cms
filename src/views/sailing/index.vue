@@ -79,7 +79,7 @@ export default defineComponent({
       article
         .getArticleList({
           pageNo: state.pageNo,
-          pageSize: 20,
+          pageSize: 15,
           type: pageType,
           categoryId: state.tabDefaultActive === '0' ? '' : state.tabDefaultActive
         })
