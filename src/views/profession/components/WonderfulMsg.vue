@@ -3,7 +3,7 @@
     <div class="wonderful-big">
       <ImgLazy width="346" height="274" :src="content[0] && content[0].image"></ImgLazy>
       <div class="wonderful-b-content">
-        <router-link :to="{ name: 'post', params: { articleId: content[0] && content[0].articleId, fromPage: '5' } }" class="title">{{
+        <router-link target="_blank"  :to="{ name: 'post', params: { articleId: content[0] && content[0].articleId, fromPage: '5' } }" class="title">{{
           content[0] && content[0].title
         }}</router-link>
         <div class="desc">
@@ -15,7 +15,7 @@
       <div class="wonderful-m-item">
         <ImgLazy width="290" height="101" :src="content[1] && content[1].image"></ImgLazy>
         <div class="wonderful-m-content">
-          <router-link :to="{ name: 'post', params: { articleId: content[1] && content[1].articleId, fromPage: '5' } }" class="title">{{
+          <router-link target="_blank"  :to="{ name: 'post', params: { articleId: content[1] && content[1].articleId, fromPage: '5' } }" class="title">{{
             content[1] && content[1].title
           }}</router-link>
           <div class="desc">{{ content[1] && content[1].introduction }}</div>
@@ -24,7 +24,7 @@
       <div class="wonderful-m-item" v-if="content[2]">
         <ImgLazy width="290" height="101" :src="content[2] && content[2].image"></ImgLazy>
         <div class="wonderful-m-content">
-          <router-link :to="{ name: 'post', params: { articleId: content[2] && content[2].articleId, fromPage: '5' } }" class="title">{{
+          <router-link target="_blank"  :to="{ name: 'post', params: { articleId: content[2] && content[2].articleId, fromPage: '5' } }" class="title">{{
             content[2] && content[2].title
           }}</router-link>
           <div class="desc">{{ content[2] && content[2].introduction }}</div>

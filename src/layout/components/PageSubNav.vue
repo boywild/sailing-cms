@@ -1,6 +1,6 @@
 <template>
   <div class="page-sub-nav mgtb15">
-    <router-link
+    <router-link target="_blank"
       class="page-sub-nav-item"
       v-for="(item, index) in navList"
       :key="index"

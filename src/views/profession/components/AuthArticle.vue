@@ -2,7 +2,7 @@
   <div class="auth-article">
     <ImgLazy v-if="thumbnail" width="80" height="105" :src="content.image"></ImgLazy>
     <div class="auth-a-content">
-      <router-link class="auth-a-title" :to="{ name: 'post', params: { articleId: content.articleId, fromPage: pageType } }">
+      <router-link target="_blank"  class="auth-a-title" :to="{ name: 'post', params: { articleId: content.articleId, fromPage: pageType } }">
         <div class="text">
           <div>{{ content.title }}</div>
         </div>

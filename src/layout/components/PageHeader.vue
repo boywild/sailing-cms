@@ -1,6 +1,6 @@
 <template>
   <div class="page-header pdtb15">
-    <router-link to="/" class="page-logo">
+    <router-link target="_blank"  to="/" class="page-logo">
       <img class="img" src="../../assets/images/page-logo.png" alt="" />
     </router-link>
     <div class="page-adv">

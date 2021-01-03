@@ -3,15 +3,19 @@
     <ImgLazy width="302" height="201" :src="(content[0] && content[0].image) || ''"></ImgLazy>
     <div class="trade-box">
       <div class="trade-recent">
-        <router-link :to="{ name: 'post', params: { articleId: content[0] && content[0].articleId, fromPage: '2' } }" class="title">{{
-          content[0] && content[0].title
-        }}</router-link>
+        <router-link
+          target="_blank"
+          :to="{ name: 'post', params: { articleId: content[0] && content[0].articleId, fromPage: '2' } }"
+          class="title"
+          >{{ content[0] && content[0].title }}</router-link
+        >
         <div class="desc">
           {{ content[0] && content[0].introduction }}
         </div>
       </div>
       <div class="trade-other">
         <router-link
+          target="_blank"
           :to="{ name: 'post', params: { articleId: item.articleId, fromPage: '2' } }"
           class="trade-o-t"
           v-for="(item, index) in content.slice(1, 4)"

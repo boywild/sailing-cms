@@ -1,6 +1,6 @@
 <template>
   <div class="page-nav">
-    <router-link class="page-nav-item" v-for="(item, index) in catList" :key="index" :to="{ name: item.link, query: { type: item.type } }">
+    <router-link target="_blank"  class="page-nav-item" v-for="(item, index) in catList" :key="index" :to="{ name: item.link, query: { type: item.type } }">
       {{ item.title }}</router-link
     >
   </div>

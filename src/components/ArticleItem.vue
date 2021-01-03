@@ -2,7 +2,7 @@
   <div class="article-preview-item">
     <ImgLazy width="151" height="101" :src="content.image"></ImgLazy>
     <div class="article-preview-content">
-      <router-link class="pre-title" :to="{ name: 'post', params: { articleId: content.articleId, fromPage: pageType } }">
+      <router-link target="_blank"  class="pre-title" :to="{ name: 'post', params: { articleId: content.articleId, fromPage: pageType } }">
         <div class="txt">{{ content.title }}</div>
         <div class="comment"><MessageOutlined class="icon-coment"></MessageOutlined>{{ content.comments }}</div>
       </router-link>

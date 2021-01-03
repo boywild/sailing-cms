@@ -5,7 +5,7 @@
       <div class="map-col" v-for="(map, index) in mapList" :key="index">
         <div class="m-c-title">{{ map.title }}</div>
         <div class="m-c-item" v-for="(col, colIndex) in map.items" :key="colIndex">
-          <router-link :to="{ name: col.link, query: { ...col.query } }">{{ col.name }}</router-link>
+          <router-link target="_blank" :to="{ name: col.link, query: { ...col.query } }">{{ col.name }}</router-link>
         </div>
       </div>
     </div>

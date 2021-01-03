@@ -1,7 +1,7 @@
 <template>
   <div class="new-technology">
     <div class="new-info mgb15" v-for="(item, index) in content" :key="index">
-      <router-link to="/">
+      <router-link target="_blank"  to="/">
         <ImgLazy height="96" :src="item.image"></ImgLazy>
         <div class="new-desc" v-if="showTitle">{{ item.title }}</div>
       </router-link>

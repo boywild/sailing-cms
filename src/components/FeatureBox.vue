@@ -2,7 +2,7 @@
   <div class="article-feature">
     <Title2 class="mgb10" :before="before" :after="after"></Title2>
     <div class="article-feature-content">
-      <router-link
+      <router-link target="_blank"
         class="feature-list"
         :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }"
         v-for="(item, index) in content"

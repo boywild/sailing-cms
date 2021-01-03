@@ -5,7 +5,7 @@
       <div class="today-list">
         <div class="feature-msg" v-for="(item, index) in content" :key="index">
           <div class="num">{{ index + 1 }}</div>
-          <router-link class="title" :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }">{{
+          <router-link target="_blank"  class="title" :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }">{{
             item.title
           }}</router-link>
         </div>

@@ -6,7 +6,7 @@
     </div>
     <div class="top-rank-content">
       <div class="top-rank-list">
-        <router-link
+        <router-link target="_blank"
           :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }"
           class="t-p-item"
           v-for="(item, index) in content"

@@ -3,6 +3,7 @@
     <template #content>
       <div class="kol-list">
         <router-link
+          target="_blank"
           :to="{ name: 'kolDetail', params: { authorId: item.authorId, fromPage: '21' } }"
           class="kol"
           v-for="(item, index) in state.kolList"
