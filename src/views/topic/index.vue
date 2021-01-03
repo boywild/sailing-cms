@@ -5,11 +5,17 @@
         <div class="topic-cat" v-for="(item, index) in state.topicList" :key="index">
           <Title :name="item.title" direction="top">
             <template #right>
-              <router-link target="_blank"  to="/" class="show-more">更多>></router-link>
+              <router-link
+                target="_blank"
+                :to="{ name: 'topicItem', query: { type: '20', cat: item.topicId, name: item.title } }"
+                class="show-more"
+                >更多>></router-link
+              >
             </template>
           </Title>
           <div class="topic-row">
-            <router-link target="_blank"
+            <router-link
+              target="_blank"
               :to="{ name: 'post', params: { articleId: article.articleId, fromPage: '20' } }"
               class="topic-col"
               v-for="(article, index) in item.articleList.slice(0, 3)"

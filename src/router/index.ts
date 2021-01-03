@@ -101,6 +101,12 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "topic" */ '../views/topic/index.vue')
       },
       {
+        path: 'topic/item',
+        name: 'topicItem',
+        meta: { title: '专题' },
+        component: () => import(/* webpackChunkName: "topicItem" */ '../views/topic/topic-item.vue')
+      },
+      {
         path: 'meeting',
         name: 'meeting',
         meta: { title: '会议' },
