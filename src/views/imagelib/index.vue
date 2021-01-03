@@ -1,7 +1,7 @@
 <template>
   <PageContent class="mgb15">
     <template #banner>
-      <ImgLazy class="mgb15" height="118"></ImgLazy>
+      <ImgLazy class="mgb15" height="118" src="/upload/inner-adv1.png"></ImgLazy>
     </template>
     <template #content>
       <div class="imglib-banner mgb20"></div>

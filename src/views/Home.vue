@@ -2,7 +2,7 @@
   <PageContent class="mgb15">
     <template #banner>
       <!-- <div v-html="decode(topArticles[0] && topArticles[0].article.content)"></div> -->
-      <ImgLazy class="mgb15" height="118"></ImgLazy>
+      <ImgLazy class="mgb15" height="118" src="/upload/home-adv1.png"></ImgLazy>
     </template>
     <template #content>
       <div class="home-banner mgb15">
@@ -15,7 +15,7 @@
           </swiper-slide>
         </swiper>
       </div>
-      <ImgLazy class="mgb15" height="118"></ImgLazy>
+      <ImgLazy class="mgb15" height="118" src="/upload/home-adv2.png"></ImgLazy>
       <div class="article-box">
         <Title name="新闻速递" sub-name="news"></Title>
         <div class="article-content">
@@ -43,7 +43,10 @@
       <div>
         <Search class="mgb15"></Search>
         <Technology
-          :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
+          :content="[
+            { title: 'ALFA LAVAL——压载水处理的信心之选', image: '/upload/home-adv3.png' },
+            { title: '集美大学电子电气员定向委培班联合招生', image: '/upload/home-adv4.png' }
+          ]"
         ></Technology>
         <TradeShow class="mgb15" before="活动" after="会展" :content="meetingNews"></TradeShow>
         <div class="usually-tools mgb20">
@@ -61,8 +64,8 @@
           </div>
         </div>
         <ReadingTop class="mgb15" before="阅读" after="排行" :content="homeReadTop"></ReadingTop>
-        <ImgLazy class="mgb15" height="92"></ImgLazy>
-        <ImgLazy class="mgb15" height="92"></ImgLazy>
+        <ImgLazy class="mgb15" height="92" src="/upload/home-adv5.png"></ImgLazy>
+        <ImgLazy class="mgb15" height="92" src="/upload/home-adv3.png"></ImgLazy>
         <HotBox class="mgb15" before="国内" after="热点" :main="inlandNews.slice(0, 2)" :list="inlandNews.slice(2)"></HotBox>
         <ArticleToday class="mgb15" :content="internationalNews"></ArticleToday>
         <HotBox class="mgb15" before="活动" after="热点" :main="activeHot.slice(0, 2)" :list="activeHot.slice(2)"></HotBox>

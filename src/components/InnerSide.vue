@@ -3,7 +3,10 @@
     <Search class="mgb15"></Search>
     <Technology
       :showTitle="false"
-      :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
+      :content="[
+        { title: 'ALFA LAVAL——压载水处理的信心之选', image: '/upload/home-adv5.png' },
+        { title: '集美大学电子电气员定向委培班联合招生', image: '/upload/home-adv3.png' }
+      ]"
     ></Technology>
     <ReadingTop class="mgb15" before="阅读" after="排行" :content="readTop" :page-type="pageType"></ReadingTop>
     <HotBox class="mgb20" before="热点" after="资讯" :main="hotList.slice(0, 2)" :list="hotList.slice(2)" :page-type="pageType"></HotBox>
@@ -44,9 +47,9 @@ export default defineComponent({
         { name: '评论排行', type: queryType, sortType: '3', pageSize: 8 },
         { name: '热点专题', type: '5', hot: '1', pageSize: 5 }
       ]
-      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, ...ele }))
-      Promise.all(fetchList).then((res) => {
-        const allDataList = res.map((ele) => ele.data.dataList || [])
+      const fetchList = allData.map(ele => article.getArticleList({ pageNo: 1, ...ele }))
+      Promise.all(fetchList).then(res => {
+        const allDataList = res.map(ele => ele.data.dataList || [])
         readTop.value = allDataList[0]
         hotList.value = allDataList[1]
         commentList.value = allDataList[2]

@@ -37,7 +37,7 @@ export default defineComponent({
           title: '招聘',
           items: [
             { name: '海员薪资', link: 'partner', query: { type: '3', cat: '1' } },
-            { name: '招聘求职', link: 'partner', query: { type: '3', cat: '3' } },
+            { name: '招聘求职', link: 'partner', query: { type: '3', cat: '2' } },
             { name: '招生培训', link: 'partner', query: { type: '3', cat: '3' } },
             { name: '航海院校', link: 'partner', query: { type: '3', cat: '4' } }
           ]

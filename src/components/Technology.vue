@@ -2,7 +2,7 @@
   <div class="new-technology">
     <div class="new-info mgb15" v-for="(item, index) in content" :key="index">
       <router-link to="/">
-        <ImgLazy height="96"></ImgLazy>
+        <ImgLazy height="96" :src="item.image"></ImgLazy>
         <div class="new-desc" v-if="showTitle">{{ item.title }}</div>
       </router-link>
     </div>
