@@ -28,8 +28,15 @@ const routes: Array<RouteRecordRaw> = [
         path: 'post/:fromPage/:articleId',
         name: 'post',
         redirect: '',
-        meta: { title: '文章' },
+        meta: { title: '文章详情' },
         component: () => import(/* webpackChunkName: "post" */ '../views/post/index.vue')
+      },
+      {
+        path: 'article',
+        name: 'article',
+        redirect: '',
+        meta: { title: '文章' },
+        component: () => import(/* webpackChunkName: "article" */ '../views/article/index.vue')
       },
       {
         path: 'sailing',
