@@ -88,6 +88,13 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "imagelib" */ '../views/imagelib/index.vue')
       },
       {
+        path: 'imagepreview/:articleId',
+        name: 'imagePreview',
+        redirect: '',
+        meta: { title: '图片预览' },
+        component: () => import(/* webpackChunkName: "imagePreview" */ '../views/imagelib/image-preview.vue')
+      },
+      {
         path: 'videolib',
         name: 'videolib',
         redirect: '',
@@ -137,14 +144,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'register',
     meta: { title: '注册' },
     component: () => import(/* webpackChunkName: "register" */ '../views/user/register.vue')
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 

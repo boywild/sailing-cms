@@ -1,9 +1,15 @@
 <template>
   <div class="imglib-column">
-    <div class="img-item" v-for="(item, index) in list" :key="index">
+    <router-link
+      target="_blank"
+      :to="{ name: 'imagePreview', params: { articleId: item.articleId } }"
+      class="img-item"
+      v-for="(item, index) in list"
+      :key="index"
+    >
       <ImgLazy width="181" height="124" :src="item.image"></ImgLazy>
       <div class="img-desc">{{ item.title }}</div>
-    </div>
+    </router-link>
   </div>
 </template>
 
