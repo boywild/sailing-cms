@@ -28,10 +28,12 @@
   </a-form>
 </template>
 <script lang="ts">
+import Cookies from 'js-cookie'
 import { defineComponent, reactive, toRaw, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
 import { useForm } from '@ant-design-vue/use'
+
 import CountDown from '@/components/CountDown.vue'
 import article, { RegistryParams, LoginParams } from '@/api/article'
 
@@ -160,6 +162,10 @@ export default defineComponent({
           if (data.result === '1') {
             message.warn(data.resultNote)
           } else {
+            const expiresTime = new Date(new Date().getTime() + 4 * 60 * 60 * 1000)
+            Cookies.set('uid', data.uid, {
+              expires: expiresTime
+            })
             localStorage.setItem('uid', data.uid)
 
             console.log(router)

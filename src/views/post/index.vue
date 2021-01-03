@@ -82,6 +82,7 @@ import { defineComponent, onMounted, reactive, ref, toRaw } from 'vue'
 import { useRoute } from 'vue-router'
 import { message } from 'ant-design-vue'
 import { useForm } from '@ant-design-vue/use'
+import Cookies from 'js-cookie'
 import PageContent from '@/layout/components/PageContent.vue'
 import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
@@ -126,7 +127,7 @@ export default defineComponent({
     const modelRef = reactive({
       content: '',
       articleId: '',
-      uid: localStorage.getItem('uid') as string
+      uid: Cookies.get('uid') as string
     })
     const rulesRef = reactive({
       content: [

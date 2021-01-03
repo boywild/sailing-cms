@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-
+import Cookies from 'js-cookie'
 export default defineComponent({
   name: 'PageTopBar',
   props: {
@@ -24,13 +24,13 @@ export default defineComponent({
   },
   setup() {
     const isLogin = ref(false)
-    const uid = localStorage.getItem('uid')
+    const uid = Cookies.get('uid')
     if (uid) {
       isLogin.value = true
     }
     const logout = () => {
       isLogin.value = false
-      localStorage.removeItem('uid')
+      Cookies.remove('uid')
     }
     return {
       isLogin,
