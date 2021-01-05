@@ -131,10 +131,12 @@ export default defineComponent({
           const { data = {} } = await article.registry(registryParams)
           if (data.result === '1') {
             message.warn(data.resultNote)
+          } else {
+            router.replace({ name: 'login' })
           }
           console.log(toRaw(modelRef))
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('error', err)
         })
     }
@@ -166,14 +168,11 @@ export default defineComponent({
             Cookies.set('uid', data.uid, {
               expires: expiresTime
             })
-            localStorage.setItem('uid', data.uid)
-
-            console.log(router)
             router.replace({ name: 'home' })
           }
           console.log(toRaw(modelRef))
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('error', err)
         })
     }

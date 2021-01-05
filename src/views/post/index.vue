@@ -11,9 +11,7 @@
             {{ state.articleDetail.title }}
           </div>
           <div class="article-detail-time">{{ state.articleDetail.createDate }}</div>
-          <div class="article-detail-content">
-            {{ state.articleDetail.content }}
-          </div>
+          <div class="article-detail-content" v-html="state.articleDetail.content"></div>
           <div class="article-editor">文章编辑：信德海事</div>
         </div>
         <div class="comment-box">
@@ -22,12 +20,8 @@
               <a-textarea v-model:value="modelRef.content" :autoSize="{ minRows: 5, maxRows: 5 }" showCount :maxlength="400" />
             </a-form-item>
             <a-form-item>
-              <a-button type="primary" @click="onSubmit">
-                发表评论
-              </a-button>
-              <a-button style="margin-left: 10px;" @click="resetFields">
-                取消
-              </a-button>
+              <a-button type="primary" @click="onSubmit"> 发表评论 </a-button>
+              <a-button style="margin-left: 10px" @click="resetFields"> 取消 </a-button>
             </a-form-item>
           </a-form>
           <div>
@@ -157,7 +151,7 @@ export default defineComponent({
           getCommentList(articleId)
           console.log(toRaw(modelRef))
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('error', err)
         })
     }
@@ -175,11 +169,11 @@ export default defineComponent({
         { name: '国际风云', type: '25', hot: '1', pageSize: 7 },
         { name: '专栏分享', type: '5', sortType: '1', pageSize: 5 }
       ]
-      const fetchList = allData.map(ele => article.getArticleList({ pageNo: 1, ...ele }))
+      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, ...ele }))
       const { data = {} } = await article.articleDetail({ articleId })
       state.articleDetail = data
-      Promise.all(fetchList).then(res => {
-        const allDataList = res.map(ele => ele.data.dataList || [])
+      Promise.all(fetchList).then((res) => {
+        const allDataList = res.map((ele) => ele.data.dataList || [])
         console.log(allDataList)
         readTop.value = allDataList[0]
         commentList.value = allDataList[1]
@@ -223,9 +217,12 @@ export default defineComponent({
       padding: 15px 0;
     }
     .article-detail-content {
-      color: #707070;
       line-height: 25px;
       padding: 10px 0;
+      overflow: hidden;
+      img {
+        max-width: 100%;
+      }
     }
     .article-editor {
       text-align: right;
