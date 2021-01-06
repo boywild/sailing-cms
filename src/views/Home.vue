@@ -23,7 +23,7 @@
             <div class="news-item mgb20" v-for="(article, index) in state.homeNews" :key="index">
               <ImgLazy width="151" height="101" :src="article.image"></ImgLazy>
               <div class="new-info">
-                <router-link target="_blank"  :to="{ name: 'post', params: { articleId: article.articleId, fromPage: '1' } }" class="title">
+                <router-link target="_blank" :to="{ name: 'post', params: { articleId: article.articleId, fromPage: '1' } }" class="title">
                   <div class="t-txt">{{ article.title }}</div>
                   <div class="t-comment"><MessageOutlined class="icon-coment" />{{ article.comments }}</div>
                 </router-link>
@@ -179,22 +179,22 @@ export default defineComponent({
       // const { data = [] } = await Test.queryTaskStatus()
       const route = useRoute()
       const allData = [
-        { name: '首页banner', type: (route.query.type || '1') as string, hot: '1' },
+        { name: '首页banner', type: (route.query.type || '1') as string, hot: '1', pageSize: 5 },
         // { name: '首页新闻', type: (route.query.type || '1') as string, sortType: '1' },
-        { name: '首页阅读排行', type: '1', sortType: '2' },
-        { name: '航情热点', type: '2', hot: '1' },
-        { name: '活动会展', type: '16', sortType: '1' },
-        { name: '活动热点', type: '4', hot: '1' },
-        { name: '专栏分享', type: '5', sortType: '1' },
-        { name: '国内热点', type: '24', hot: '1' },
-        { name: '国际风云', type: '25', hot: '1' }
+        { name: '首页阅读排行', type: '1', sortType: '2', pageSize: 30 },
+        { name: '航情热点', type: '2', hot: '1', pageSize: 7 },
+        { name: '活动会展', type: '16', sortType: '1', pageSize: 10 },
+        { name: '活动热点', type: '4', hot: '1', pageSize: 7 },
+        { name: '专栏分享', type: '5', sortType: '1', pageSize: 5 },
+        { name: '国内热点', type: '24', hot: '1', pageSize: 7 },
+        { name: '国际风云', type: '25', hot: '1', pageSize: 7 }
       ]
       getList()
       // const { type = '1' } = route.query
       // const { data = [] } = await article.getArticleList({ pageNo: 1, pageSize: 30, type: type as string })
-      const fetchList = allData.map(ele => article.getArticleList({ pageNo: 1, pageSize: 30, ...ele }))
-      Promise.all(fetchList).then(res => {
-        const allDataList = res.map(ele => ele.data.dataList || [])
+      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, ...ele }))
+      Promise.all(fetchList).then((res) => {
+        const allDataList = res.map((ele) => ele.data.dataList || [])
         homeBanner.value = allDataList[0]
         // homeNews.value = allDataList[1]
         homeReadTop.value = allDataList[1]

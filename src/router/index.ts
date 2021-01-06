@@ -130,6 +130,12 @@ const routes: Array<RouteRecordRaw> = [
         name: 'kolDetail',
         meta: { title: '领航者详情' },
         component: () => import(/* webpackChunkName: "kolDetail" */ '../views/kol/kol-detail.vue')
+      },
+      {
+        path: 'about/:id',
+        name: 'about',
+        meta: { title: '领航者详情' },
+        component: () => import(/* webpackChunkName: "about" */ '../views/about/index.vue')
       }
     ]
   },

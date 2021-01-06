@@ -185,5 +185,36 @@ class Article {
     http.path = '/topicList'
     return http.post()
   }
+
+  /**
+   * 广告
+   */
+  static advList(type: string) {
+    const http = new Http()
+    http.path = '/adList'
+    http.body = { type }
+    return http.post()
+  }
+
+  /**
+   * 广告点击
+   */
+  static advCount(adId: string) {
+    const http = new Http()
+    http.path = '/clickAd'
+    http.body = { adId }
+    return http.post()
+  }
+
+  /**
+   * 说明协议
+   * 1注册协议 2关于我们 3法律声明 4隐私政策 5广告业务 6联系我们
+   */
+  static agreement(id: string) {
+    const http = new Http()
+    http.path = '/agreementInfo'
+    http.body = { id }
+    return http.post()
+  }
 }
 export default Article
