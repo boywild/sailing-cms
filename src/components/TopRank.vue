@@ -6,7 +6,8 @@
     </div>
     <div class="top-rank-content">
       <div class="top-rank-list">
-        <router-link target="_blank"
+        <router-link
+          target="_blank"
           :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }"
           class="t-p-item"
           v-for="(item, index) in content"
@@ -92,6 +93,7 @@ export default defineComponent({
     }
     .title {
       flex: 1;
+      @include text-overflow();
     }
   }
 }

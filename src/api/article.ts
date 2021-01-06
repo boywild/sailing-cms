@@ -189,10 +189,10 @@ class Article {
   /**
    * 广告
    */
-  static advList(type: string) {
+  static advList(type: string, category: string) {
     const http = new Http()
     http.path = '/adList'
-    http.body = { type }
+    http.body = { type, category }
     return http.post()
   }
 
