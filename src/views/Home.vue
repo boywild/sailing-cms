@@ -2,7 +2,7 @@
   <PageContent class="mgb15">
     <template #banner>
       <!-- <div v-html="decode(topArticles[0] && topArticles[0].article.content)"></div> -->
-      <ImgLazy class="mgb15" height="118" :src="state.adv1Img.image"></ImgLazy>
+      <SingleAdv class="mgb15" height="118" :content="state.adv1Img"></SingleAdv>
     </template>
     <template #content>
       <div class="home-banner mgb15">
@@ -64,8 +64,7 @@
           </div>
         </div>
         <ReadingTop class="mgb15" before="阅读" after="排行" :content="homeReadTop"></ReadingTop>
-        <ImgLazy class="mgb15" height="92" :src="state.adv3Img[0] && state.adv3Img[0].image"></ImgLazy>
-        <ImgLazy class="mgb15" height="92" :src="state.adv3Img[1] && state.adv3Img[1].image"></ImgLazy>
+        <MultipleAdv height="92" :list="state.adv3Img"></MultipleAdv>
         <HotBox class="mgb15" before="国内" after="热点" :main="inlandNews.slice(0, 2)" :list="inlandNews.slice(2)"></HotBox>
         <ArticleToday class="mgb15" :content="internationalNews"></ArticleToday>
         <HotBox class="mgb15" before="活动" after="热点" :main="activeHot.slice(0, 2)" :list="activeHot.slice(2)"></HotBox>
@@ -128,6 +127,8 @@ import Technology from '@/components/Technology.vue'
 import TradeShow from '@/components/TradeShow.vue'
 import ArticleToday from '@/components/ArticleToday.vue'
 import ReadingTop from '@/components/ReadingTop.vue'
+import SingleAdv from '@/components/SingleAdv.vue'
+import MultipleAdv from '@/components/MultipleAdv.vue'
 // import Test from '@/api/test'
 import article from '@/api/article'
 SwiperCore.use([Pagination, Autoplay])
@@ -146,7 +147,9 @@ export default defineComponent({
     Technology,
     TradeShow,
     ArticleToday,
-    ReadingTop
+    ReadingTop,
+    SingleAdv,
+    MultipleAdv
   },
   setup() {
     const topArticles = ref([])
