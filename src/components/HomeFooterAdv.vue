@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, computed } from 'vue'
 import SingleAdv from './SingleAdv.vue'
 
 export default defineComponent({
@@ -16,18 +16,20 @@ export default defineComponent({
   },
   components: { SingleAdv },
   setup(props) {
-    const img = reactive({
-      show: false,
-      content: {}
-    })
-    console.info(props.imgList)
-    if ((props.count + 1) % 5 === 0) {
-      const index = (props.count + 1) / 5
-      img.content = (props.imgList[index - 1] as any) || {}
-      img.show = true
-    }
     return {
-      img
+      img: computed(() => {
+        let content = {}
+        let show = false
+        if ((props.count + 1) % 5 === 0) {
+          const index = (props.count + 1) / 5
+          content = (props.imgList[index - 1] as any) || {}
+          show = true
+        }
+        return {
+          show,
+          content
+        }
+      })
     }
   }
 })
