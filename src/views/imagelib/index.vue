@@ -5,7 +5,16 @@
       <!-- <ImgLazy class="mgb15" height="118" src="/upload/inner-adv1.png"></ImgLazy> -->
     </template>
     <template #content>
-      <div class="imglib-banner mgb20"></div>
+      <div class="imglib-banner mgb20">
+        <swiper :pagination="{ clickable: true }" :autoplay="{ delay: 3000 }">
+          <swiper-slide v-for="(item, index) in state.imgHotList" :key="index">
+            <div class="hot-preview">
+              <img :src="item.image" />
+              <div class="hot-txt">{{ item.title }}</div>
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
       <Title class="mgb20" name="实时热点" direction="top"></Title>
       <ImglibColumn :list="state.imgList"></ImglibColumn>
       <a-button class="mgb20" block :loading="state.loadingMore" @click="getList" :disabled="state.pageNo > state.totalPage">
@@ -44,6 +53,8 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
+import SwiperCore, { Pagination, Autoplay } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 import PageContent from '@/layout/components/PageContent.vue'
 // import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
@@ -56,10 +67,10 @@ import PreviewArticle from '@/components/PreviewArticle.vue'
 import SideAdv from '@/components/SideAdv.vue'
 import UpAdv from '@/components/UpAdv.vue'
 import article from '@/api/article'
-
+SwiperCore.use([Pagination, Autoplay])
 export default defineComponent({
   name: 'ImageLib',
-  components: { PageContent, Title, Title2, Search, ImglibColumn, SiteMap, PreviewArticle, SideAdv, UpAdv },
+  components: { PageContent, Swiper, SwiperSlide, Title, Title2, Search, ImglibColumn, SiteMap, PreviewArticle, SideAdv, UpAdv },
   setup() {
     const state = reactive({
       imgList: [],
@@ -100,11 +111,44 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .imglib-banner {
   width: 100%;
   height: 418px;
   background: #eee;
+
+  .hot-preview {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .hot-txt {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0 20px;
+      font-size: $text-size-normal;
+      background: rgba($color: #000000, $alpha: 0.5);
+      color: #fff;
+      text-align: left;
+      height: 40px;
+      line-height: 40px;
+      @include text-overflow();
+    }
+  }
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+    .swiper-pagination {
+      text-align: right;
+      .swiper-pagination-bullet {
+        background: #a5a5a5;
+        &.swiper-pagination-bullet-active {
+          background: #fff;
+        }
+      }
+    }
+  }
 }
 .imglig-hot-list {
   @include flex(space-between);
