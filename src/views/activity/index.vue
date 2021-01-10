@@ -7,7 +7,7 @@
     <template #content>
       <TradeComing class="mgb20" :content="hotList"></TradeComing>
       <Title name="要闻" subName="news"></Title>
-      <ArticleList :list="newsList" :page-type="fromPage"></ArticleList>
+      <ArticleList :list="newsList" :page-type="fromPage" :show-adv="true"></ArticleList>
     </template>
     <template #side>
       <InnerSide></InnerSide>

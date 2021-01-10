@@ -9,19 +9,19 @@
       <Title name="要闻" subName="news"></Title>
       <a-tabs class="mgb20" @change="callback" :defaultActiveKey="state.tabDefaultActive">
         <a-tab-pane key="0" tab="全部">
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
         <a-tab-pane key="1" tab="海员薪资" force-render>
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
         <a-tab-pane key="2" tab="招聘求职">
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
         <a-tab-pane key="3" tab="招生培训">
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
         <a-tab-pane key="4" tab="航海院校">
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
       </a-tabs>
       <a-button

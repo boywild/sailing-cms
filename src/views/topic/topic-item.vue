@@ -7,7 +7,7 @@
     <template #content>
       <Title :name="state.name" subName="news"></Title>
       <div class="mgb20">
-        <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+        <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
       </div>
       <a-button
         class="mgb20"

@@ -9,19 +9,19 @@
       <Title name="要闻" subName="news"></Title>
       <a-tabs class="mgb20" @change="callback" :defaultActiveKey="state.tabDefaultActive">
         <a-tab-pane key="0" tab="全部">
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
         <a-tab-pane key="1" tab="行情观察" force-render>
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
         <a-tab-pane key="2" tab="市场交易">
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
         <a-tab-pane key="3" tab="船舶管理">
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
         <a-tab-pane key="4" tab="信德周报">
-          <ArticleList :list="state.newsList" :page-type="state.fromPage"></ArticleList>
+          <ArticleList :list="state.newsList" :page-type="state.fromPage" :show-adv="true"></ArticleList>
         </a-tab-pane>
       </a-tabs>
       <a-button
