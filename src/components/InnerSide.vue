@@ -1,13 +1,7 @@
 <template>
   <div class="inner-side">
     <Search class="mgb15"></Search>
-    <Technology
-      :showTitle="false"
-      :content="[
-        { title: 'ALFA LAVAL——压载水处理的信心之选', image: '/upload/home-adv5.png' },
-        { title: '集美大学电子电气员定向委培班联合招生', image: '/upload/home-adv3.png' }
-      ]"
-    ></Technology>
+    <SideAdv height="92"></SideAdv>
     <ReadingTop class="mgb15" before="阅读" after="排行" :content="readTop" :page-type="pageType"></ReadingTop>
     <HotBox class="mgb20" before="热点" after="资讯" :main="hotList.slice(0, 2)" :list="hotList.slice(2)" :page-type="pageType"></HotBox>
     <TopRank class="mgb20" :content="commentList" :page-type="pageType"></TopRank>
@@ -19,16 +13,17 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import Search from '@/components/Search.vue'
-import Technology from '@/components/Technology.vue'
+// import Technology from '@/components/Technology.vue'
 import ReadingTop from '@/components/ReadingTop.vue'
 import HotBox from '@/components/HotBox.vue'
 import TopRank from '@/components/TopRank.vue'
 import FeatureBox from '@/components/FeatureBox.vue'
+import SideAdv from '@/components/SideAdv.vue'
 import article from '@/api/article'
 
 export default defineComponent({
   name: 'InnerSide',
-  components: { Search, Technology, ReadingTop, HotBox, FeatureBox, TopRank },
+  components: { Search, ReadingTop, HotBox, FeatureBox, TopRank, SideAdv },
   props: {},
   setup() {
     const readTop = ref([]) // 阅读排行

@@ -12,10 +12,7 @@
     </template>
     <template #side>
       <Search class="mgb15"></Search>
-      <Technology
-        :showTitle="false"
-        :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
-      ></Technology>
+      <SideAdv height="92"></SideAdv>
       <Authors class="mgb20" :content="authorList"></Authors>
       <TopRank class="mgb20" :content="commentList" :page-type="pageType"></TopRank>
       <FeatureBox before="热点" after="专题" :content="hotList" :page-type="pageType"></FeatureBox>
@@ -32,7 +29,7 @@ import { useRoute } from 'vue-router'
 import PageContent from '@/layout/components/PageContent.vue'
 import Title from '@/components/Title.vue'
 import Search from '@/components/Search.vue'
-import Technology from '@/components/Technology.vue'
+// import Technology from '@/components/Technology.vue'
 import TopRank from '@/components/TopRank.vue'
 import FeatureBox from '@/components/FeatureBox.vue'
 import WonderfulMsg from './components/WonderfulMsg.vue'
@@ -40,11 +37,12 @@ import Authors from './components/Authors.vue'
 import AuthArticle from './components/AuthArticle.vue'
 // import Focusing from './components/Focusing.vue'
 import SiteMap from '@/components/SiteMap.vue'
+import SideAdv from '@/components/SideAdv.vue'
 import article from '@/api/article'
 
 export default defineComponent({
   name: 'Home',
-  components: { PageContent, Title, Search, Technology, TopRank, FeatureBox, WonderfulMsg, Authors, AuthArticle, SiteMap },
+  components: { PageContent, Title, Search, SideAdv, TopRank, FeatureBox, WonderfulMsg, Authors, AuthArticle, SiteMap },
   setup() {
     const hotList = ref([]) // 热点资讯
     const newsList = ref([]) // 要闻

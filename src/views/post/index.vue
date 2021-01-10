@@ -1,7 +1,8 @@
 <template>
   <PageContent class="mgb15">
     <template #banner>
-      <ImgLazy class="mgb15" height="118"></ImgLazy>
+      <UpAdv class="mgb15" height="118"></UpAdv>
+      <!-- <ImgLazy class="mgb15" height="118"></ImgLazy> -->
     </template>
     <template #content>
       <div class="article-detail-box gap">
@@ -46,10 +47,11 @@
     <template #side>
       <div>
         <Search class="mgb15"></Search>
-        <Technology
+        <SideAdv height="92"></SideAdv>
+        <!-- <Technology
           :showTitle="false"
           :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
-        ></Technology>
+        ></Technology> -->
         <!-- <TradeShow class="mgb15" before="点击" after="排行" :content="tradeList"></TradeShow> -->
         <ReadingTop class="mgb15" before="阅读" after="排行" :content="readTop" :page-type="pageType"></ReadingTop>
         <ReadingTop class="mgb15" before="评论" after="排行" :content="commentList" :page-type="pageType"></ReadingTop>
@@ -78,33 +80,35 @@ import { message } from 'ant-design-vue'
 import { useForm } from '@ant-design-vue/use'
 import Cookies from 'js-cookie'
 import PageContent from '@/layout/components/PageContent.vue'
-import ImgLazy from '@/components/ImgLazy.vue'
+// import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
 import Search from '@/components/Search.vue'
 import HotBox from '@/components/HotBox.vue'
 import FeatureBox from '@/components/FeatureBox.vue'
-import Technology from '@/components/Technology.vue'
+// import Technology from '@/components/Technology.vue'
 // import TradeShow from '@/components/TradeShow.vue'
 import ArticleToday from '@/components/ArticleToday.vue'
 import ReadingTop from '@/components/ReadingTop.vue'
 import SiteMap from '@/components/SiteMap.vue'
+import SideAdv from '@/components/SideAdv.vue'
+import UpAdv from '@/components/UpAdv.vue'
 // import Recommend from './components/Recommend.vue'
 import article from '@/api/article'
 export default defineComponent({
   name: 'Home',
   components: {
     PageContent,
-    ImgLazy,
     Title,
     Search,
     HotBox,
     FeatureBox,
-    Technology,
     // TradeShow,
     ArticleToday,
     ReadingTop,
     // Recommend,
-    SiteMap
+    SiteMap,
+    SideAdv,
+    UpAdv
   },
   setup() {
     const state = reactive({
@@ -151,7 +155,7 @@ export default defineComponent({
           getCommentList(articleId)
           console.log(toRaw(modelRef))
         })
-        .catch((err) => {
+        .catch(err => {
           console.log('error', err)
         })
     }
@@ -169,11 +173,11 @@ export default defineComponent({
         { name: '国际风云', type: '25', hot: '1', pageSize: 7 },
         { name: '专栏分享', type: '5', sortType: '1', pageSize: 5 }
       ]
-      const fetchList = allData.map((ele) => article.getArticleList({ pageNo: 1, ...ele }))
+      const fetchList = allData.map(ele => article.getArticleList({ pageNo: 1, ...ele }))
       const { data = {} } = await article.articleDetail({ articleId })
       state.articleDetail = data
-      Promise.all(fetchList).then((res) => {
-        const allDataList = res.map((ele) => ele.data.dataList || [])
+      Promise.all(fetchList).then(res => {
+        const allDataList = res.map(ele => ele.data.dataList || [])
         console.log(allDataList)
         readTop.value = allDataList[0]
         commentList.value = allDataList[1]

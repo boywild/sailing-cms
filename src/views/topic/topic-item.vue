@@ -1,7 +1,8 @@
 <template>
   <PageContent class="mgb15">
     <template #banner>
-      <ImgLazy class="mgb15" height="118" src="/upload/inner-adv1.png"></ImgLazy>
+      <UpAdv class="mgb15" height="118"></UpAdv>
+      <!-- <ImgLazy class="mgb15" height="118" src="/upload/inner-adv1.png"></ImgLazy> -->
     </template>
     <template #content>
       <Title :name="state.name" subName="news"></Title>
@@ -32,15 +33,16 @@
 import { defineComponent, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import PageContent from '@/layout/components/PageContent.vue'
-import ImgLazy from '@/components/ImgLazy.vue'
+// import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
 import InnerSide from '@/components/InnerSide.vue'
 import ArticleList from '@/components/ArticleList.vue'
 import SiteMap from '@/components/SiteMap.vue'
+import UpAdv from '@/components/UpAdv.vue'
 import article from '@/api/article'
 export default defineComponent({
   name: 'Article',
-  components: { PageContent, ImgLazy, Title, InnerSide, ArticleList, SiteMap },
+  components: { PageContent, Title, InnerSide, ArticleList, SiteMap, UpAdv },
   setup() {
     const state = reactive({
       name: '',

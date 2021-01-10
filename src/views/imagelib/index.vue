@@ -1,7 +1,8 @@
 <template>
   <PageContent class="mgb15">
     <template #banner>
-      <ImgLazy class="mgb15" height="118" src="/upload/inner-adv1.png"></ImgLazy>
+      <UpAdv class="mgb15" height="118"></UpAdv>
+      <!-- <ImgLazy class="mgb15" height="118" src="/upload/inner-adv1.png"></ImgLazy> -->
     </template>
     <template #content>
       <div class="imglib-banner mgb20"></div>
@@ -13,10 +14,7 @@
     </template>
     <template #side>
       <Search class="mgb15"></Search>
-      <Technology
-        :showTitle="false"
-        :content="[{ title: 'ALFA LAVAL——压载水处理的信心之选' }, { title: '集美大学电子电气员定向委培班联合招生' }]"
-      ></Technology>
+      <SideAdv height="92"></SideAdv>
       <div class="imglib-hot">
         <Title2 class="mgb20" before="实时" after="热点"></Title2>
         <div class="imglig-hot-list">
@@ -47,19 +45,21 @@
 import { defineComponent, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import PageContent from '@/layout/components/PageContent.vue'
-import ImgLazy from '@/components/ImgLazy.vue'
+// import ImgLazy from '@/components/ImgLazy.vue'
 import Title from '@/components/Title.vue'
 import Title2 from '@/components/Title2.vue'
 import Search from '@/components/Search.vue'
-import Technology from '@/components/Technology.vue'
+// import Technology from '@/components/Technology.vue'
 import ImglibColumn from './components/ImglibColumn.vue'
 import SiteMap from '@/components/SiteMap.vue'
 import PreviewArticle from '@/components/PreviewArticle.vue'
+import SideAdv from '@/components/SideAdv.vue'
+import UpAdv from '@/components/UpAdv.vue'
 import article from '@/api/article'
 
 export default defineComponent({
   name: 'ImageLib',
-  components: { PageContent, ImgLazy, Title, Title2, Search, Technology, ImglibColumn, SiteMap, PreviewArticle },
+  components: { PageContent, Title, Title2, Search, ImglibColumn, SiteMap, PreviewArticle, SideAdv, UpAdv },
   setup() {
     const state = reactive({
       imgList: [],
