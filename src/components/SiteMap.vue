@@ -5,7 +5,9 @@
       <div class="map-col" v-for="(map, index) in mapList" :key="index">
         <div class="m-c-title">{{ map.title }}</div>
         <div class="m-c-item" v-for="(col, colIndex) in map.items" :key="colIndex">
-          <router-link target="_blank" :to="{ name: col.link, query: { ...col.query } }">{{ col.name }}</router-link>
+          <router-link target="_blank" :to="{ name: col.link, query: { ...col.query }, params: { ...col.params } }">{{
+            col.name
+          }}</router-link>
         </div>
       </div>
     </div>
@@ -89,10 +91,10 @@ export default defineComponent({
         {
           title: '我们',
           items: [
-            { name: '关于我们', link: 'home', query: {} },
-            { name: '联系我们', link: 'home', query: {} },
-            { name: '免责声明', link: 'home', query: {} },
-            { name: '隐私政策', link: 'home', query: {} }
+            { name: '关于我们', link: 'about', params: { id: '2' } },
+            { name: '联系我们', link: 'about', params: { id: '6' } },
+            { name: '免责声明', link: 'about', params: { id: '3' } },
+            { name: '隐私政策', link: 'about', params: { id: '4' } }
           ]
         }
       ]
