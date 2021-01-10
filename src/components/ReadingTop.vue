@@ -3,7 +3,7 @@
     <Title2 :before="before" :after="after"></Title2>
     <div class="reading-list">
       <div class="reading-title" v-for="(item, index) in content" :key="index">
-        <router-link target="_blank"  :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }">
+        <router-link class="title-box" target="_blank" :to="{ name: 'post', params: { articleId: item.articleId, fromPage: pageType } }">
           <span class="num">{{ index + 1 }}</span>
           <span class="content">{{ item.title }}</span>
         </router-link>
@@ -47,6 +47,14 @@ export default defineComponent({
       font-weight: bold;
       color: #a5a5a5;
       margin-right: 10px;
+    }
+    .content {
+      @include text-overflow();
+      flex: 1;
+    }
+    .title-box {
+      display: block;
+      @include flex(flex-start);
     }
   }
 }
